@@ -280,6 +280,58 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname(4,indxn2o_nev)='  '
 # endif
 
+# ifdef EXPLICIT_MICROBES 
+      vname(1,indxaoa)='AOA                              ' 
+      vname(2,indxaoa)='Ammonia oxidising archaea        ' 
+      vname(3,indxaoa)='mMol C m-3                       ' 
+      vname(4,indxaoa)='  ' 
+ 
+      vname(1,indxnob)='NOB                              ' 
+      vname(2,indxnob)='Nitrite oxidising bacteria       ' 
+      vname(3,indxnob)='mMol C m-3                       ' 
+      vname(4,indxnob)='  ' 
+ 
+      vname(1,indxaox)='AOX                              ' 
+      vname(2,indxaox)='Anaerobic ammonium oxidising bacteria       ' 
+      vname(3,indxaox)='mMol C m-3                       ' 
+      vname(4,indxaox)='  ' 
+
+      vname(1,indxnar)='NAR                              '
+      vname(2,indxnar)='Facultative NO3-->NO2 reducing heterotrophs'
+      vname(3,indxnar)='mMol C m-3                       '
+      vname(4,indxnar)='  '
+
+      vname(1,indxnai)='NAI                              '
+      vname(2,indxnai)='Facultative NO3-->N2O reducing heterotrophs'
+      vname(3,indxnai)='mMol C m-3                       '
+      vname(4,indxnai)='  '
+
+      vname(1,indxnir)='NIR                              '
+      vname(2,indxnir)='Facultative NO2-->N2O reducing heterotrophs'
+      vname(3,indxnir)='mMol C m-3                       '
+      vname(4,indxnir)='  '
+
+      vname(1,indxnio)='NIO                              '
+      vname(2,indxnio)='Facultative NO2-->N2 reducing heterotrophs'
+      vname(3,indxnio)='mMol C m-3                       '
+      vname(4,indxnio)='  '
+
+      vname(1,indxnos)='NOS                              '
+      vname(2,indxnos)='Facultative N2O-->N2 reducing heterotrophs'
+      vname(3,indxnos)='mMol C m-3                       '
+      vname(4,indxnos)='  '
+
+      vname(1,indxdocr)='DOCR                              '
+      vname(2,indxdocr)='refractory dissolved organic carbon  '
+      vname(3,indxdocr)='mMol C m-3                       '
+      vname(4,indxdocr)='  '
+
+      vname(1,indxSZOOC)='SZOOC'
+      vname(2,indxSZOOC)='Small Zooplankton'
+      vname(3,indxSZOOC)='mMol C m-3'
+      vname(4,indxSZOOC)='  '
+# endif
+
       vname(1,indxdust)='dust                                       '
       vname(2,indxdust)='dust flux                      '
       vname(3,indxdust)='kg m-2 s-1                                '
@@ -1249,17 +1301,17 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname_bec2_diag_3d(4,indxanammox)=' '
 
       vname_bec2_diag_3d(1,indxDENITRIF1)='DENITRIF1'
-      vname_bec2_diag_3d(2,indxDENITRIF1)='Denitrification1'
+      vname_bec2_diag_3d(2,indxDENITRIF1)='Denitrification (NO3-->NO2)'
       vname_bec2_diag_3d(3,indxDENITRIF1)='mmol/m3/s'
       vname_bec2_diag_3d(4,indxDENITRIF1)=' '
 
       vname_bec2_diag_3d(1,indxDENITRIF2)='DENITRIF2'
-      vname_bec2_diag_3d(2,indxDENITRIF2)='Denitrification2'
+      vname_bec2_diag_3d(2,indxDENITRIF2)='Denitrification (NO2-->N2O)'
       vname_bec2_diag_3d(3,indxDENITRIF2)='mmol/m3/s'
       vname_bec2_diag_3d(4,indxDENITRIF2)=' '
 
       vname_bec2_diag_3d(1,indxDENITRIF3)='DENITRIF3'
-      vname_bec2_diag_3d(2,indxDENITRIF3)='Denitrification3'
+      vname_bec2_diag_3d(2,indxDENITRIF3)='Denitrification (N2O-->N2)'
       vname_bec2_diag_3d(3,indxDENITRIF3)='mmol/m3/s'
       vname_bec2_diag_3d(4,indxDENITRIF3)=' '
 
@@ -1306,7 +1358,369 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname_bec2_diag_3d(3,indxDIAZNO2UPTAKE)='mmol/m3/s  '
       vname_bec2_diag_3d(4,indxDIAZNO2UPTAKE)=' '
 
-# endif
+# ifdef EXPLICIT_MICROBES
+      vname_bec2_diag_3d(1,indxAOAmu)='AOAmu'
+      vname_bec2_diag_3d(2,indxAOAmu)='Realised growth rate of AOA'
+      vname_bec2_diag_3d(3,indxAOAmu)='/s'
+      vname_bec2_diag_3d(4,indxAOAmu)=' '
+
+      vname_bec2_diag_3d(1,indxNOBmu)='NOBmu'
+      vname_bec2_diag_3d(2,indxNOBmu)='Realised growth rate of NOB'
+      vname_bec2_diag_3d(3,indxNOBmu)='/s'
+      vname_bec2_diag_3d(4,indxNOBmu)=' '
+
+      vname_bec2_diag_3d(1,indxAOXmu)='AOXmu'
+      vname_bec2_diag_3d(2,indxAOXmu)='Realised growth rate of AOX'
+      vname_bec2_diag_3d(3,indxAOXmu)='/s'
+      vname_bec2_diag_3d(4,indxAOXmu)=' '
+
+      vname_bec2_diag_3d(1,indxAOAbio)='AOAbio'
+      vname_bec2_diag_3d(2,indxAOAbio)='Realised biomass growth of AOA'
+      vname_bec2_diag_3d(3,indxAOAbio)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxAOAbio)=' '
+
+      vname_bec2_diag_3d(1,indxNOBbio)='NOBbio'
+      vname_bec2_diag_3d(2,indxNOBbio)='Realised biomass growth of NOB'
+      vname_bec2_diag_3d(3,indxNOBbio)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNOBbio)=' '
+
+      vname_bec2_diag_3d(1,indxAOXbio)='AOXbio'
+      vname_bec2_diag_3d(2,indxAOXbio)='Realised biomass growth of AOX'
+      vname_bec2_diag_3d(3,indxAOXbio)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxAOXbio)=' '
+
+      vname_bec2_diag_3d(1,indxAOA2zoo)='AOA2zoo'
+      vname_bec2_diag_3d(2,indxAOA2zoo)='Grazing losses of AOA to ZOO'
+      vname_bec2_diag_3d(3,indxAOA2zoo)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxAOA2zoo)=' '
+
+      vname_bec2_diag_3d(1,indxNOB2zoo)='NOB2zoo'
+      vname_bec2_diag_3d(2,indxNOB2zoo)='Grazing losses of NOB to ZOO'
+      vname_bec2_diag_3d(3,indxNOB2zoo)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNOB2zoo)=' '
+
+      vname_bec2_diag_3d(1,indxAOX2zoo)='AOX2zoo'
+      vname_bec2_diag_3d(2,indxAOX2zoo)='Grazing losses of AOX to ZOO'
+      vname_bec2_diag_3d(3,indxAOX2zoo)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxAOX2zoo)=' '
+
+      vname_bec2_diag_3d(1,indxAOA2zoo_excN)='AOA2zoo_excN'
+      vname_bec2_diag_3d(2,indxAOA2zoo_excN)='Grazing losses of AOA to ZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxAOA2zoo_excN)='mmolN/m3/s'
+      vname_bec2_diag_3d(4,indxAOA2zoo_excN)=' '
+
+      vname_bec2_diag_3d(1,indxNOB2zoo_excN)='NOB2zoo_excN'
+      vname_bec2_diag_3d(2,indxNOB2zoo_excN)='Grazing losses of NOB to ZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxNOB2zoo_excN)='mmolN/m3/s'
+      vname_bec2_diag_3d(4,indxNOB2zoo_excN)=' '
+
+      vname_bec2_diag_3d(1,indxAOX2zoo_excN)='AOX2zoo_excN'
+      vname_bec2_diag_3d(2,indxAOX2zoo_excN)='Grazing losses of AOX to ZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxAOX2zoo_excN)='mmolN/m3/s'
+      vname_bec2_diag_3d(4,indxAOX2zoo_excN)=' '
+
+      vname_bec2_diag_3d(1,indxAOA2zoo_excP)='AOA2zoo_excP'
+      vname_bec2_diag_3d(2,indxAOA2zoo_excP)='Grazing losses of AOA to ZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxAOA2zoo_excP)='mmolP/m3/s'
+      vname_bec2_diag_3d(4,indxAOA2zoo_excP)=' '
+
+      vname_bec2_diag_3d(1,indxNOB2zoo_excP)='NOB2zoo_excP'
+      vname_bec2_diag_3d(2,indxNOB2zoo_excP)='Grazing losses of NOB to ZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxNOB2zoo_excP)='mmolP/m3/s'
+      vname_bec2_diag_3d(4,indxNOB2zoo_excP)=' '
+
+      vname_bec2_diag_3d(1,indxAOX2zoo_excP)='AOX2zoo_excP'
+      vname_bec2_diag_3d(2,indxAOX2zoo_excP)='Grazing losses of AOX to ZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxAOX2zoo_excP)='mmolP/m3/s'
+      vname_bec2_diag_3d(4,indxAOX2zoo_excP)=' '
+
+      vname_bec2_diag_3d(1,indxAOA2zoo_excFe)='AOA2zoo_excFe'
+      vname_bec2_diag_3d(2,indxAOA2zoo_excFe)='Grazing losses of AOA to ZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxAOA2zoo_excFe)='mmolFe/m3/s'
+      vname_bec2_diag_3d(4,indxAOA2zoo_excFe)=' '
+
+      vname_bec2_diag_3d(1,indxNOB2zoo_excFe)='NOB2zoo_excFe'
+      vname_bec2_diag_3d(2,indxNOB2zoo_excFe)='Grazing losses of NOB to ZOO but excreted as P (DOP + PO4)'
+      vname_bec2_diag_3d(3,indxNOB2zoo_excFe)='mmolFe/m3/s'
+      vname_bec2_diag_3d(4,indxNOB2zoo_excFe)=' '
+
+      vname_bec2_diag_3d(1,indxAOX2zoo_excFe)='AOX2zoo_excFe'
+      vname_bec2_diag_3d(2,indxAOX2zoo_excFe)='Grazing losses of AOX to ZOO but excreted as Fe (DOFe + dFe)'
+      vname_bec2_diag_3d(3,indxAOX2zoo_excFe)='mmolFe/m3/s'
+      vname_bec2_diag_3d(4,indxAOX2zoo_excFe)=' '
+
+      vname_bec2_diag_3d(1,indxAOAmort)='AOAmort'
+      vname_bec2_diag_3d(2,indxAOAmort)='Linear mortality losses of AOA'
+      vname_bec2_diag_3d(3,indxAOAmort)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxAOAmort)=' '
+
+      vname_bec2_diag_3d(1,indxNOBmort)='NOBmort'
+      vname_bec2_diag_3d(2,indxNOBmort)='Linear mortality losses of NOB'
+      vname_bec2_diag_3d(3,indxNOBmort)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNOBmort)=' '
+
+      vname_bec2_diag_3d(1,indxAOXmort)='AOXmort'
+      vname_bec2_diag_3d(2,indxAOXmort)='Linear mortality losses of AOX'
+      vname_bec2_diag_3d(3,indxAOXmort)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxAOXmort)=' '
+
+      vname_bec2_diag_3d(1,indxNARmu)='NARmu'
+      vname_bec2_diag_3d(2,indxNARmu)='Realised growth rate of NAR'
+      vname_bec2_diag_3d(3,indxNARmu)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNARmu)=' '
+
+      vname_bec2_diag_3d(1,indxNAImu)='NAImu'
+      vname_bec2_diag_3d(2,indxNAImu)='Realised growth rate of NAI'
+      vname_bec2_diag_3d(3,indxNAImu)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNAImu)=' '
+
+      vname_bec2_diag_3d(1,indxNIRmu)='NIRmu'
+      vname_bec2_diag_3d(2,indxNIRmu)='Realised growth rate of NIR'
+      vname_bec2_diag_3d(3,indxNIRmu)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNIRmu)=' '
+
+      vname_bec2_diag_3d(1,indxNIOmu)='NIOmu'
+      vname_bec2_diag_3d(2,indxNIOmu)='Realised growth rate of NIO'
+      vname_bec2_diag_3d(3,indxNIOmu)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNIOmu)=' '
+
+      vname_bec2_diag_3d(1,indxNOSmu)='NOSmu'
+      vname_bec2_diag_3d(2,indxNOSmu)='Realised growth rate of NOS'
+      vname_bec2_diag_3d(3,indxNOSmu)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNOSmu)=' '
+
+      vname_bec2_diag_3d(1,indxNARbio)='NARbio'
+      vname_bec2_diag_3d(2,indxNARbio)='Realised biomass growth of NAR'
+      vname_bec2_diag_3d(3,indxNARbio)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNARbio)=' '
+
+      vname_bec2_diag_3d(1,indxNAIbio)='NAIbio'
+      vname_bec2_diag_3d(2,indxNAIbio)='Realised biomass growth of NAI'
+      vname_bec2_diag_3d(3,indxNAIbio)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNAIbio)=' '
+
+      vname_bec2_diag_3d(1,indxNIRbio)='NIRbio'
+      vname_bec2_diag_3d(2,indxNIRbio)='Realised biomass growth of NIR'
+      vname_bec2_diag_3d(3,indxNIRbio)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNIRbio)=' '
+
+      vname_bec2_diag_3d(1,indxNIObio)='NIObio'
+      vname_bec2_diag_3d(2,indxNIObio)='Realised biomass growth of NIO'
+      vname_bec2_diag_3d(3,indxNIObio)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNIObio)=' '
+
+      vname_bec2_diag_3d(1,indxNOSbio)='NOSbio'
+      vname_bec2_diag_3d(2,indxNOSbio)='Realised biomass growth of NOS'
+      vname_bec2_diag_3d(3,indxNOSbio)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNOSbio)=' '
+
+      vname_bec2_diag_3d(1,indxNARana)='NARana'
+      vname_bec2_diag_3d(2,indxNARana)='Growth of NAR anaerobic?'
+      vname_bec2_diag_3d(3,indxNARana)='1 == yes'
+      vname_bec2_diag_3d(4,indxNARana)=' '
+
+      vname_bec2_diag_3d(1,indxNAIana)='NAIana'
+      vname_bec2_diag_3d(2,indxNAIana)='Growth of NAI anaerobic?'
+      vname_bec2_diag_3d(3,indxNAIana)='1 == yes'
+      vname_bec2_diag_3d(4,indxNAIana)=' '
+
+      vname_bec2_diag_3d(1,indxNIRana)='NIRana'
+      vname_bec2_diag_3d(2,indxNIRana)='Growth of NIR anaerobic?'
+      vname_bec2_diag_3d(3,indxNIRana)='1 == yes'
+      vname_bec2_diag_3d(4,indxNIRana)=' '
+
+      vname_bec2_diag_3d(1,indxNIOana)='NIOana'
+      vname_bec2_diag_3d(2,indxNIOana)='Growth of NIO anaerobic?'
+      vname_bec2_diag_3d(3,indxNIOana)='1 == yes'
+      vname_bec2_diag_3d(4,indxNIOana)=' '
+
+      vname_bec2_diag_3d(1,indxNOSana)='NOSana'
+      vname_bec2_diag_3d(2,indxNOSana)='Growth of NOS anaerobic?'
+      vname_bec2_diag_3d(3,indxNOSana)='1 == yes'
+      vname_bec2_diag_3d(4,indxNOSana)=' '
+
+      vname_bec2_diag_3d(1,indxNAR2szoo)='NAR2szoo'
+      vname_bec2_diag_3d(2,indxNAR2szoo)='Grazing losses of NAR to sZOO'
+      vname_bec2_diag_3d(3,indxNAR2szoo)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNAR2szoo)=' '
+
+      vname_bec2_diag_3d(1,indxNAI2szoo)='NAI2szoo'
+      vname_bec2_diag_3d(2,indxNAI2szoo)='Grazing losses of NAI to sZOO'
+      vname_bec2_diag_3d(3,indxNAI2szoo)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNAI2szoo)=' '
+
+      vname_bec2_diag_3d(1,indxNIR2szoo)='NIR2szoo'
+      vname_bec2_diag_3d(2,indxNIR2szoo)='Grazing losses of NIR to sZOO'
+      vname_bec2_diag_3d(3,indxNIR2szoo)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNIR2szoo)=' '
+
+      vname_bec2_diag_3d(1,indxNIO2szoo)='NIO2szoo'
+      vname_bec2_diag_3d(2,indxNIO2szoo)='Grazing losses of NIO to sZOO'
+      vname_bec2_diag_3d(3,indxNIO2szoo)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNIO2szoo)=' '
+
+      vname_bec2_diag_3d(1,indxNOS2szoo)='NOS2szoo'
+      vname_bec2_diag_3d(2,indxNOS2szoo)='Grazing losses of NOS to sZOO'
+      vname_bec2_diag_3d(3,indxNOS2szoo)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNOS2szoo)=' '
+
+      vname_bec2_diag_3d(1,indxNAR2szoo_excN)='NAR2szoo_excN'
+      vname_bec2_diag_3d(2,indxNAR2szoo_excN)='Grazing losses of NAR to sZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxNAR2szoo_excN)='mmolN/m3/s'
+      vname_bec2_diag_3d(4,indxNAR2szoo_excN)=' '
+
+      vname_bec2_diag_3d(1,indxNAI2szoo_excN)='NAI2szoo_excN'
+      vname_bec2_diag_3d(2,indxNAI2szoo_excN)='Grazing losses of NAI to sZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxNAI2szoo_excN)='mmolN/m3/s'
+      vname_bec2_diag_3d(4,indxNAI2szoo_excN)=' '
+
+      vname_bec2_diag_3d(1,indxNIR2szoo_excN)='NIR2szoo_excN'
+      vname_bec2_diag_3d(2,indxNIR2szoo_excN)='Grazing losses of NIR to sZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxNIR2szoo_excN)='mmolN/m3/s'
+      vname_bec2_diag_3d(4,indxNIR2szoo_excN)=' '
+
+      vname_bec2_diag_3d(1,indxNIO2szoo_excN)='NIO2szoo_excN'
+      vname_bec2_diag_3d(2,indxNIO2szoo_excN)='Grazing losses of NIO to sZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxNIO2szoo_excN)='mmolN/m3/s'
+      vname_bec2_diag_3d(4,indxNIO2szoo_excN)=' '
+
+      vname_bec2_diag_3d(1,indxNOS2szoo_excN)='NOS2szoo_excN'
+      vname_bec2_diag_3d(2,indxNOS2szoo_excN)='Grazing losses of NOS to sZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxNOS2szoo_excN)='mmolN/m3/s'
+      vname_bec2_diag_3d(4,indxNOS2szoo_excN)=' '
+
+      vname_bec2_diag_3d(1,indxNAR2szoo_excP)='NAR2szoo_excP'
+      vname_bec2_diag_3d(2,indxNAR2szoo_excP)='Grazing losses of NAR to sZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxNAR2szoo_excP)='mmolP/m3/s'
+      vname_bec2_diag_3d(4,indxNAR2szoo_excP)=' '
+
+      vname_bec2_diag_3d(1,indxNAI2szoo_excP)='NAI2szoo_excP'
+      vname_bec2_diag_3d(2,indxNAI2szoo_excP)='Grazing losses of NAI to sZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxNAI2szoo_excP)='mmolP/m3/s'
+      vname_bec2_diag_3d(4,indxNAI2szoo_excP)=' '
+
+      vname_bec2_diag_3d(1,indxNIR2szoo_excP)='NIR2szoo_excP'
+      vname_bec2_diag_3d(2,indxNIR2szoo_excP)='Grazing losses of NIR to sZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxNIR2szoo_excP)='mmolP/m3/s'
+      vname_bec2_diag_3d(4,indxNIR2szoo_excP)=' '
+
+      vname_bec2_diag_3d(1,indxNIO2szoo_excP)='NIO2szoo_excP'
+      vname_bec2_diag_3d(2,indxNIO2szoo_excP)='Grazing losses of NIO to sZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxNIO2szoo_excP)='mmolP/m3/s'
+      vname_bec2_diag_3d(4,indxNIO2szoo_excP)=' '
+
+      vname_bec2_diag_3d(1,indxNOS2szoo_excP)='NOS2szoo_excP'
+      vname_bec2_diag_3d(2,indxNOS2szoo_excP)='Grazing losses of NOS to sZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxNOS2szoo_excP)='mmolP/m3/s'
+      vname_bec2_diag_3d(4,indxNOS2szoo_excP)=' '
+
+      vname_bec2_diag_3d(1,indxNAR2szoo_excFe)='NAR2szoo_excFe'
+      vname_bec2_diag_3d(2,indxNAR2szoo_excFe)='Grazing losses of NAR to sZOO but excreted as dFe'
+      vname_bec2_diag_3d(3,indxNAR2szoo_excFe)='mmolFe/m3/s'
+      vname_bec2_diag_3d(4,indxNAR2szoo_excFe)=' '
+
+      vname_bec2_diag_3d(1,indxNAI2szoo_excFe)='NAI2szoo_excFe'
+      vname_bec2_diag_3d(2,indxNAI2szoo_excFe)='Grazing losses of NAI to sZOO but excreted as dFe'
+      vname_bec2_diag_3d(3,indxNAI2szoo_excFe)='mmolFe/m3/s'
+      vname_bec2_diag_3d(4,indxNAI2szoo_excFe)=' '
+
+      vname_bec2_diag_3d(1,indxNIR2szoo_excFe)='NIR2szoo_excFe'
+      vname_bec2_diag_3d(2,indxNIR2szoo_excFe)='Grazing losses of NIR to sZOO but excreted as dFe'
+      vname_bec2_diag_3d(3,indxNIR2szoo_excFe)='mmolFe/m3/s'
+      vname_bec2_diag_3d(4,indxNIR2szoo_excFe)=' '
+
+      vname_bec2_diag_3d(1,indxNIO2szoo_excFe)='NIO2szoo_excFe'
+      vname_bec2_diag_3d(2,indxNIO2szoo_excFe)='Grazing losses of NIO to sZOO but excreted as dFe'
+      vname_bec2_diag_3d(3,indxNIO2szoo_excFe)='mmolFe/m3/s'
+      vname_bec2_diag_3d(4,indxNIO2szoo_excFe)=' '
+
+      vname_bec2_diag_3d(1,indxNOS2szoo_excFe)='NOS2szoo_excFe'
+      vname_bec2_diag_3d(2,indxNOS2szoo_excFe)='Grazing losses of NOS to sZOO but excreted as dFe'
+      vname_bec2_diag_3d(3,indxNOS2szoo_excFe)='mmolFe/m3/s'
+      vname_bec2_diag_3d(4,indxNOS2szoo_excFe)=' '
+
+      vname_bec2_diag_3d(1,indxNARmort)='NARmort'
+      vname_bec2_diag_3d(2,indxNARmort)='Linear mortality losses of NAR'
+      vname_bec2_diag_3d(3,indxNARmort)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNARmort)=' '
+
+      vname_bec2_diag_3d(1,indxNAImort)='NAImort'
+      vname_bec2_diag_3d(2,indxNAImort)='Linear mortality losses of NAI'
+      vname_bec2_diag_3d(3,indxNAImort)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNAImort)=' '
+
+      vname_bec2_diag_3d(1,indxNIRmort)='NIRmort'
+      vname_bec2_diag_3d(2,indxNIRmort)='Linear mortality losses of NIR'
+      vname_bec2_diag_3d(3,indxNIRmort)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNIRmort)=' '
+
+      vname_bec2_diag_3d(1,indxNIOmort)='NIOmort'
+      vname_bec2_diag_3d(2,indxNIOmort)='Linear mortality losses of NIO'
+      vname_bec2_diag_3d(3,indxNIOmort)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNIOmort)=' '
+
+      vname_bec2_diag_3d(1,indxNOSmort)='NOSmort'
+      vname_bec2_diag_3d(2,indxNOSmort)='Linear mortality losses of NOS'
+      vname_bec2_diag_3d(3,indxNOSmort)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNOSmort)=' '
+
+      vname_bec2_diag_3d(1,indxDINrelease)='DINrelease'
+      vname_bec2_diag_3d(2,indxDINrelease)='DIN release by Heterotrophic bacteria'
+      vname_bec2_diag_3d(3,indxDINrelease)='mmol N /m3/s'
+      vname_bec2_diag_3d(4,indxDINrelease)=' '
+
+      vname_bec2_diag_3d(1,indxDIPrelease)='DIPrelease'
+      vname_bec2_diag_3d(2,indxDIPrelease)='PO4 release by Heterotrophic bacteria'
+      vname_bec2_diag_3d(3,indxDIPrelease)='mmol PO4 /m3/s'
+      vname_bec2_diag_3d(4,indxDIPrelease)=' '
+
+      vname_bec2_diag_3d(1,indxDINuptake)='DINuptake'
+      vname_bec2_diag_3d(2,indxDINuptake)='Supplementary DIN uptake by Heterotrophic bacteria'
+      vname_bec2_diag_3d(3,indxDINuptake)='mmol N /m3/s'
+      vname_bec2_diag_3d(4,indxDINuptake)=' '
+
+      vname_bec2_diag_3d(1,indxDIPuptake)='DIPuptake'
+      vname_bec2_diag_3d(2,indxDIPuptake)='Supplementary PO4 uptake by Heterotrophic bacteria'
+      vname_bec2_diag_3d(3,indxDIPuptake)='mmol PO4 /m3/s'
+      vname_bec2_diag_3d(4,indxDIPuptake)=' '
+
+      vname_bec2_diag_3d(1,indxdFeuptake)='dFeuptake'
+      vname_bec2_diag_3d(2,indxdFeuptake)='Supplementary dFe uptake by Heterotrophic bacteria'
+      vname_bec2_diag_3d(3,indxdFeuptake)='mmol dFe /m3/s'
+      vname_bec2_diag_3d(4,indxdFeuptake)=' '
+
+      vname_bec2_diag_3d(1,indxSZOOLOSS)='SZOO_LOSS'
+      vname_bec2_diag_3d(2,indxSZOOLOSS)='Mortality due to implicit grazing by higher trophic levels (closure)'
+      vname_bec2_diag_3d(3,indxSZOOLOSS)='mmol C/m3/s '
+      vname_bec2_diag_3d(4,indxSZOOLOSS)=' '
+
+      vname_bec2_diag_3d(1,indxDOCRREMIN)='DOCr_REMIN'
+      vname_bec2_diag_3d(2,indxDOCRREMIN)='Remineralisation rate of refractory DOC'
+      vname_bec2_diag_3d(3,indxDOCRREMIN)='mmol C/m3/s '
+      vname_bec2_diag_3d(4,indxDOCRREMIN)=' '
+
+      vname_bec2_diag_3d(1,indxDOPRREMIN)='DOPr_REMIN'
+      vname_bec2_diag_3d(2,indxDOPRREMIN)='Remineralisation rate of refractory DOP'
+      vname_bec2_diag_3d(3,indxDOPRREMIN)='mmol P/m3/s '
+      vname_bec2_diag_3d(4,indxDOPRREMIN)=' '
+      
+      vname_bec2_diag_3d(1,indxNOBfmu)='NOBfmu'
+      vname_bec2_diag_3d(2,indxNOBfmu)='NOB growth limited by NO2(1) or O2(0)'
+      vname_bec2_diag_3d(3,indxNOBfmu)=' '
+      vname_bec2_diag_3d(4,indxNOBfmu)=' '
+      
+      vname_bec2_diag_3d(1,indxDEN4)='DENITRIF4'
+      vname_bec2_diag_3d(2,indxDEN4)='Denitrification4 (NO3-->N2O)'
+      vname_bec2_diag_3d(3,indxDEN4)='mmol/m3/s '
+      vname_bec2_diag_3d(4,indxDEN4)=' '
+
+      vname_bec2_diag_3d(1,indxDEN5)='DENITRIF5'
+      vname_bec2_diag_3d(2,indxDEN5)='Denitrification5 (NO2-->N2)'
+      vname_bec2_diag_3d(3,indxDEN5)='mmol/m3/s '
+      vname_bec2_diag_3d(4,indxDEN5)=' '
+
+# endif /* EXPLICIT_MICROBES */
+# endif /* Ncycle_SY */
 # endif /* BEC2_DIAG */
 
 # ifdef USE_EXPLICIT_VSINK
@@ -1424,26 +1838,26 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
 # ifdef BEC2_DIAG
 
         ! MF: Control BEC2_DIAG Output vars
-      wrtavg_bec2_diag_3d=(/.true. ,.true. ,.false.,.true. ,.false.,   !PAR, POC_FLUX_IN, POC_Prod,POC_REMIN, CACO3_FLUX_IN,
+      wrtavg_bec2_diag_3d=(/.true. ,.false. ,.true.,.true. ,.false.,   !PAR, POC_FLUX_IN, POC_Prod,POC_REMIN, CACO3_FLUX_IN,
      &                      .false.,.false.,.false.,.false.,.false.,   !PCACO3_PROD, CACO3_REMIN,SIO2_FLUX_IN, SIO2_PROD, SIO2_REMIN,
      &                      .false.,.false.,.false.,.false.,.false.,   !DUST_FLUX_IN, DUST_REMIN,P_IRON_FLUX_IN, P_IRON_PROD, P_IRON_REMIN,
-     &                      .false.,.false.,.false.,.false.,.false.,   !GRAZE_SP, GRAZE_DIAT,GRAZE_DIAZ, SP_LOSS, DIAT_LOSS,
-     &                      .false.,.false.,.false.,.true. ,.true. ,   !ZOO_LOSS, SP_AGG, DIAT_AGG,PHOTOC_SP, PHOTOC_DIAT,
-     &                      .true. ,.false.,.true. ,.false.,.false.,   !TOT_PROD, DOC_PROD,DOC_REMIN, FE_SCAVENGE, SP_N_LIM, 
+     &                      .true., .true., .true., .true., .true.,    !GRAZE_SP, GRAZE_DIAT,GRAZE_DIAZ, SP_LOSS, DIAT_LOSS,
+     &                      .true., .true., .true., .true. ,.true. ,   !ZOO_LOSS, SP_AGG, DIAT_AGG,PHOTOC_SP, PHOTOC_DIAT,
+     &                      .false. ,.true. ,.true. ,.false.,.false.,  !TOT_PROD, DOC_PROD,DOC_REMIN, FE_SCAVENGE, SP_N_LIM, 
      &                      .false.,.false.,.false.,.false.,.false.,   !SP_FE_LIM, SP_PO4_LIM,SP_LIGHT_LIM, DIAT_N_LIM, DIAT_FE_LIM,
      &                      .false.,.false.,.false.,.false.,.true. ,   !DIAT_PO4_LIM, DIAT_SIO3_LIM,DIAT_LIGHT_LIM, CACO3_PROD, DIAZ_NFIX,
-     &                      .false.,.true. ,.false.,.false.,.false.,   !DIAZ_LOSS, PHOTOC_DIAZ,DIAZ_PO4_LIM, DIAZ_FE_LIM, DIAZ_LIGHT_LIM,
-     &                      .false.,.false.,.true. ,.false.,.false.,   !FE_SCAVENGE_RATE, DON_PROD,DON_REMIN, DOFE_PROD, DOFE_REMIN,
+     &                      .true. ,.true. ,.false.,.false.,.false.,   !DIAZ_LOSS, PHOTOC_DIAZ,DIAZ_PO4_LIM, DIAZ_FE_LIM, DIAZ_LIGHT_LIM,
+     &                      .false.,.false.,.false. ,.false.,.false.,  !FE_SCAVENGE_RATE, DON_PROD,DON_REMIN, DOFE_PROD, DOFE_REMIN,
      &                      .false.,.false.,.false.,.false.,.false.,   !DOP_PROD, DOP_REMIN,DIAT_SI_UPTAKE, PHOTOFE_SP, PHOTOFE_DIA,  
-     &                      .false.,.false.,.false.,.true. ,.true. ,   !PHOTOFE_DIAZ, NITRI,DENITRI,SP_NO3_UPTAKE,DIAT_NO3_UPTAKE,  
-     &                      .true. ,.true. ,.true. ,.true. ,.true. ,   !DIAZ_NO3_UPTAKE,SP_NH4_UPTAKE, DIAT_NH4_UPTAKE,DIAZ_NH4_UPTAKE,SP_GRAZE_DIC,  
-     &                      .true. ,.true. ,.true. ,.true. ,.true. ,   !DIAT_GRAZE_DIC,DIAZ_GRAZE_DIC, SP_LOSS_DIC,DIAT_LOSS_DIC,DIAZ_LOSS_DIC,  
-     &                      .true. ,.false.,.false.,.false.,.false.,   !ZOO_LOSS_DIC, DIAZ_AGG,GRAZE_SP_ZOO, GRAZE_DIAT_ZOO, GRAZE_DIAZ_ZOO, 
+     &                      .false.,.false.,.false.,.false. ,.false.,  !PHOTOFE_DIAZ, NITRI,DENITRI,SP_NO3_UPTAKE,DIAT_NO3_UPTAKE,  
+     &                      .false.,.false.,.false.,.false.,.false.,   !DIAZ_NO3_UPTAKE,SP_NH4_UPTAKE, DIAT_NH4_UPTAKE,DIAZ_NH4_UPTAKE,SP_GRAZE_DIC,  
+     &                      .false. ,.false. ,.false.,.false.,.false., !DIAT_GRAZE_DIC,DIAZ_GRAZE_DIC, SP_LOSS_DIC,DIAT_LOSS_DIC,DIAZ_LOSS_DIC,  
+     &                      .false. ,.true. ,.false.,.false.,.false.,  !ZOO_LOSS_DIC, DIAZ_AGG,GRAZE_SP_ZOO, GRAZE_DIAT_ZOO, GRAZE_DIAZ_ZOO,      
      &                      .false.,.false.,.false.,.false.,           !SPQCACO3,PHOTOACC_SP,PHOTOACC_DIAT, PHOTOACC_DIAZ,
      &                      .false.,.false.,.false.,.false.,.false.,   !SPC_ZERO, DIATC_ZERO, DIAZC_ZERO, DOC_ZERO, ZOOC_ZERO
-     &                      .false.,.true. ,.true. ,.false.,           !SPCACO3_ZERO, DONR_REMIN, TOTCHL, SP_P_LIM 
-     &                      .false.,.false.,.false.,.true. ,.true.     !DIAT_P_LIM,DIAZ_P_LIM, TOT_PHYTO_C, O2_CONSUMPTION, O2_PRODUCTION
-     ! 93 tracer
+     &                      .false.,.false. ,.false. ,.false.,           !SPCACO3_ZERO, DONR_REMIN, TOTCHL, SP_P_LIM 
+     &                      .false.,.false.,.false.,.true.,.true.     !DIAT_P_LIM,DIAZ_P_LIM, TOT_PHYTO_C, O2_CONSUMPTION, O2_PRODUCTION
+    ! 93 tracer
 # ifdef USE_EXPLICIT_VSINK
      ! +10 -> 101 tracer 
      &                     ,.false.,.false.,.false.,.false.,.false.,  ! PIRON_HARD_REMIN, CACO3_HARD_REMIN, SIO2_HARD_REMIN, POC_HARD_REMIN,DUST_HARD_REMIN
@@ -1460,13 +1874,37 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
 # endif
 # ifdef Ncycle_SY
      &                     ,.true.,.true.,.true.,.true.,.true.,.true.  !AMMOX, NITROX,ANAMMOX,DENITRIF1,DENITRIF2,DENITRIF3
-     &                     ,.true.,.true.,.true.,.true.,.true.         !SP_NO2_UPT,DIAT_NO2_UPTAKE, DIAZ_NO2_UPTAKE, N2OAMMOX, N2OSODEN_CONS
-     &                     ,.true.,.true.,.true.                       !N2OAO1_CONS, N2OATM_CONS, N2OSIDEN_CONS
+     &                     ,.false.,.false.,.false.,.false.,.false.    !SP_NO2_UPT,DIAT_NO2_UPTAKE, DIAZ_NO2_UPTAKE, N2OAMMOX, N2OSODEN_CONS
+     &                     ,.false.,.false.,.false.                    !N2OAO1_CONS, N2OATM_CONS, N2OSIDEN_CONS
 # endif
 # ifdef N2O_NEV
      &                     ,.false.,.false. ! n2o_cons_nev, n2o_prod_nev
 # endif
+# ifdef EXPLICIT_MICROBES
+     &                     ,.true.,.true.,.true.,.true.,.true.,.true.! AOAmu, NOBmu, AOXmu, AOAbio, NOBbio, AOXbio
+     &                     ,.true.,.true.,.true.                     ! AOA2zoo, NOB2zoo, AOX2zoo
+     &                     ,.false.,.false.,.false.                  ! AOA2zoo_excN, NOB2zoo_excN, AOX2zoo_excN
+     &                     ,.false.,.false.,.false.                  ! AOA2zoo_excP, NOB2zoo_excP, AOX2zoo_excP
+     &                     ,.false.,.false.,.false.                  ! AOA2zoo_excFe, NOB2zoo_excFe, AOX2zoo_excFe
+     &                     ,.true.,.true.,.true.                     ! AOAmort, NOBmort, AOXmort
+     &                     ,.true.,.true.,.true.,.true.,.true.       ! NARmu, NAImu, NIRmu, NIOmu, NOSmu 
+     &                     ,.true.,.true.,.true.,.true.,.true.       ! NARbio, NAIbio, NIRbio, NIObio, NOSbio 
+     &                     ,.true.,.true.,.true.,.true.,.true.       ! NARana, NAIana, NIRana, NIOana, NOSana 
+     &                     ,.false.,.false.,.false.,.false.,.false.  ! NAR2szoo, NAI2szoo, NIR2szoo, NIO2szoo, NOS2szoo 
+     &                     ,.false.,.false.,.false.,.false.,.false.  ! NAR2szoo_excN, NAI2szoo_excN, NIR2szoo_excN, NIO2szoo_excN, NOS2szoo_excN 
+     &                     ,.false.,.false.,.false.,.false.,.false.  ! NAR2szoo_excP, NAI2szoo_excP, NIR2szoo_excP, NIO2szoo_excP, NOS2szoo_excP 
+     &                     ,.false.,.false.,.false.,.false.,.false.  ! NAR2szoo_excFe, NAI2szoo_excFe, NIR2szoo_excFe, NIO2szoo_excFe, NOS2szoo_excFe 
+     &                     ,.true.,.true.,.true.,.true.,.true.       ! NARmort, NAImort, NIRmort, NIOmort, NOSmort 
+     &                     ,.false.,.false.                          ! DINrelease, DIPrelease
+     &                     ,.false.,.false.,.false.                  ! DINuptake, DIPuptake, dFeuptake
+     &                     ,.false.                                  ! SZOOLOSS 
+     &                     ,.false.,.false.                          ! DOCr_REMIN, DOPr_REMIN  
+     &                     ,.true.                                   ! NOBfmu
+     &                     ,.true.,.true.                            ! DENITRIF4, DENITRIF5
+# endif
      &                     /)
+
+
 
 # endif /* BEC2_DIAG */
 
@@ -1518,6 +1956,18 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
 # endif
 # ifdef N2O_NEV
       tclm_name(iN2O_NEV) = 'n2o_nev_time'
+# endif
+# ifdef EXPLICIT_MICROBES
+      tclm_name(iAOA) = 'aoa_time'
+      tclm_name(iNOB) = 'nob_time'
+      tclm_name(iAOX) = 'aox_time'
+      tclm_name(iNAR) = 'nar_time'
+      tclm_name(iNAI) = 'nai_time'
+      tclm_name(iNIR) = 'nir_time'
+      tclm_name(iNIO) = 'nio_time'
+      tclm_name(iNOS) = 'nos_time'
+      tclm_name(iDOCR) = 'DOCR_time'
+      tclm_name(iSZOOC) = 'szooc_time'
 # endif
 #endif /* SOLVE3D */
       return

@@ -156,6 +156,44 @@
 # endif
 # ifdef N2O_NEV
      &            , indxn2oprodnev=LAST_I+1,indxn2oconsnev=LAST_I+2
+#  undef LAST_I
+#  define LAST_I indxn2oconsnev
+# endif
+# ifdef EXPLICIT_MICROBES
+     &            , indxAOAmu=LAST_I+1,indxNOBmu=LAST_I+2,indxAOXmu=LAST_I+3,
+     &            indxAOAbio=LAST_I+4,indxNOBbio=LAST_I+5,indxAOXbio=LAST_I+6,
+     &            indxAOA2zoo=LAST_I+7,indxNOB2zoo=LAST_I+8,indxAOX2zoo=LAST_I+9,
+     &            indxAOA2zoo_excN=LAST_I+10,indxNOB2zoo_excN=LAST_I+11,
+     &            indxAOX2zoo_excN=LAST_I+12,indxAOA2zoo_excP=LAST_I+13,
+     &            indxNOB2zoo_excP=LAST_I+14,indxAOX2zoo_excP=LAST_I+15,
+     &            indxAOA2zoo_excFe=LAST_I+16,indxNOB2zoo_excFe=LAST_I+17,
+     &            indxAOX2zoo_excFe=LAST_I+18,
+     &            indxAOAmort=LAST_I+19,indxNOBmort=LAST_I+20,indxAOXmort=LAST_I+21,
+     &            indxNARmu=LAST_I+22,indxNAImu=LAST_I+23,indxNIRmu=LAST_I+24,
+     &            indxNIOmu=LAST_I+25,indxNOSmu=LAST_I+26,
+     &            indxNARbio=LAST_I+27,indxNAIbio=LAST_I+28,indxNIRbio=LAST_I+29,
+     &            indxNIObio=LAST_I+30,indxNOSbio=LAST_I+31,
+     &            indxNARana=LAST_I+32,indxNAIana=LAST_I+33,indxNIRana=LAST_I+34,
+     &            indxNIOana=LAST_I+35,indxNOSana=LAST_I+36,
+     &            indxNAR2szoo=LAST_I+37,indxNAI2szoo=LAST_I+38,
+     &            indxNIR2szoo=LAST_I+39,indxNIO2szoo=LAST_I+40,indxNOS2szoo=LAST_I+41,
+     &            indxNAR2szoo_excN=LAST_I+42,indxNAI2szoo_excN=LAST_I+43,
+     &            indxNIR2szoo_excN=LAST_I+44,indxNIO2szoo_excN=LAST_I+45,
+     &            indxNOS2szoo_excN=LAST_I+46,
+     &            indxNAR2szoo_excP=LAST_I+47,indxNAI2szoo_excP=LAST_I+48,
+     &            indxNIR2szoo_excP=LAST_I+49,indxNIO2szoo_excP=LAST_I+50,
+     &            indxNOS2szoo_excP=LAST_I+51,
+     &            indxNAR2szoo_excFe=LAST_I+52,indxNAI2szoo_excFe=LAST_I+53,
+     &            indxNIR2szoo_excFe=LAST_I+54,indxNIO2szoo_excFe=LAST_I+55,
+     &            indxNOS2szoo_excFe=LAST_I+56,
+     &            indxNARmort=LAST_I+57,indxNAImort=LAST_I+58,indxNIRmort=LAST_I+59,
+     &            indxNIOmort=LAST_I+60,indxNOSmort=LAST_I+61,
+     &            indxDINrelease=LAST_I+62,indxDIPrelease=LAST_I+63,
+     &            indxDINuptake=LAST_I+64,indxDIPuptake=LAST_I+65,indxdFeuptake=LAST_I+66,
+     &            indxSZOOLOSS=LAST_I+67, 
+     &            indxDOCRREMIN=LAST_I+68,indxDOPRREMIN=LAST_I+69,
+     &            indxNOBfmu=LAST_I+70,
+     &            indxDEN4=LAST_I+71, indxDEN5=LAST_I+72
 # endif
 
 

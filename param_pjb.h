@@ -341,15 +341,27 @@ c     &      NSUB_X=2, NSUB_E=8  ! <-- iswake 768x192
      &       , ntrc_bio_ncycle=0
 # endif
 
+# ifdef EXPLICIT_MICROBES
+     &       , iAOA=LAST_I+1, iNOB=LAST_I+2, iAOX=LAST_I+3
+     &       , iNAR=LAST_I+4, iNAI=LAST_I+5, iNIR=LAST_I+6
+     &       , iNIO=LAST_I+7, iNOS=LAST_I+8
+     &       , iDOCR=LAST_I+9, iSZOOC=LAST_I+10
+     &       , ntrc_bio_mic=10
+#  undef LAST_I
+#  define LAST_I iSZOOC
+# else
+     &       , ntrc_bio_mic=0
+# endif
+
 #   ifdef USE_EXPLICIT_VSINK
      &       , iDUSTHARD=LAST_I+1, iPOCHARD=LAST_I+2
      &       , iPCACO3HARD=LAST_I+3, iPSIO2HARD=LAST_I+4
      &       , iPIRONHARD=LAST_I+5, iDUSTSOFT=LAST_I+6
      &       , iPOCSOFT=LAST_I+7, iPCACO3SOFT=LAST_I+8
      &       , iPSIO2SOFT=LAST_I+9, iPIRONSOFT=LAST_I+10
-     &       , ntrc_bio=ntrc_bio_base+ntrc_bio_cocco+ntrc_bio_ncycle+10
+     &       , ntrc_bio=ntrc_bio_base+ntrc_bio_cocco+ntrc_bio_ncycle+ntrc_bio_mic+10
 #   else /* USE_EXPLICIT_VSINK */
-     &       , ntrc_bio=ntrc_bio_base+ntrc_bio_cocco+ntrc_bio_ncycle
+     &       , ntrc_bio=ntrc_bio_base+ntrc_bio_cocco+ntrc_bio_ncycle+ntrc_bio_mic
 #   endif /* USE_EXPLICIT_VSINK */
 #  else  /* no  BIOLOGY */
      &       , ntrc_bio=0

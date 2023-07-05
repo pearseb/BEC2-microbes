@@ -37,6 +37,9 @@
 #ifdef N2O_NEV
      &  +2 
 #endif
+# ifdef EXPLICIT_MICROBES
+     &  +72
+#endif
 # ifdef USE_EXPLICIT_VSINK
      &  +10
 #endif
@@ -172,9 +175,49 @@
 #  undef LAST_I
 #  define LAST_I n2osiden_cons_idx_t
 # endif
-
 # ifdef N2O_NEV
       integer, parameter :: n2oprodnev_idx_t=LAST_I+1,n2oconsnev_idx_t=LAST_I+2
+#  undef LAST_I
+#  define LAST_I n2oconsnev_idx_t
+# endif
+# ifdef EXPLICIT_MICROBES
+      integer, parameter ::
+     &   aoamu_idx_t=LAST_I+1, nobmu_idx_t=LAST_I+2, aoxmu_idx_t=LAST_I+3,
+     &   aoabio_idx_t=LAST_I+4, nobbio_idx_t=LAST_I+5, aoxbio_idx_t=LAST_I+6,
+     &   aoa2zoo_idx_t=LAST_I+7, nob2zoo_idx_t=LAST_I+8, aox2zoo_idx_t=LAST_I+9,
+     &   aoa2zoo_excN_idx_t=LAST_I+10, nob2zoo_excN_idx_t=LAST_I+11,
+     &   aox2zoo_excN_idx_t=LAST_I+12, aoa2zoo_excP_idx_t=LAST_I+13,
+     &   nob2zoo_excP_idx_t=LAST_I+14, aox2zoo_excP_idx_t=LAST_I+15,
+     &   aoa2zoo_excFe_idx_t=LAST_I+16, nob2zoo_excFe_idx_t=LAST_I+17,
+     &   aox2zoo_excFe_idx_t=LAST_I+18,
+     &   aoamort_idx_t=LAST_I+19, nobmort_idx_t=LAST_I+20, aoxmort_idx_t=LAST_I+21,
+     &   narmu_idx_t=LAST_I+22, naimu_idx_t=LAST_I+23, nirmu_idx_t=LAST_I+24, 
+     &   niomu_idx_t=LAST_I+25, nosmu_idx_t=LAST_I+26,
+     &   narbio_idx_t=LAST_I+27, naibio_idx_t=LAST_I+28, nirbio_idx_t=LAST_I+29, 
+     &   niobio_idx_t=LAST_I+30, nosbio_idx_t=LAST_I+31,
+     &   narana_idx_t=LAST_I+32, naiana_idx_t=LAST_I+33, nirana_idx_t=LAST_I+34, 
+     &   nioana_idx_t=LAST_I+35, nosana_idx_t=LAST_I+36,
+     &   nar2szoo_idx_t=LAST_I+37,nai2szoo_idx_t=LAST_I+38,nir2szoo_idx_t=LAST_I+39, 
+     &   nio2szoo_idx_t=LAST_I+40, nos2szoo_idx_t=LAST_I+41,
+     &   nar2szoo_excN_idx_t=LAST_I+42, nai2szoo_excN_idx_t=LAST_I+43,
+     &   nir2szoo_excN_idx_t=LAST_I+44, nio2szoo_excN_idx_t=LAST_I+45, 
+     &   nos2szoo_excN_idx_t=LAST_I+46, 
+     &   nar2szoo_excP_idx_t=LAST_I+47, nai2szoo_excP_idx_t=LAST_I+48,
+     &   nir2szoo_excP_idx_t=LAST_I+49, nio2szoo_excP_idx_t=LAST_I+50, 
+     &   nos2szoo_excP_idx_t=LAST_I+51, 
+     &   nar2szoo_excFe_idx_t=LAST_I+52, nai2szoo_excFe_idx_t=LAST_I+53,
+     &   nir2szoo_excFe_idx_t=LAST_I+54, nio2szoo_excFe_idx_t=LAST_I+55, 
+     &   nos2szoo_excFe_idx_t=LAST_I+56, 
+     &   narmort_idx_t=LAST_I+57, naimort_idx_t=LAST_I+58, nirmort_idx_t=LAST_I+59,
+     &   niomort_idx_t=LAST_I+60, nosmort_idx_t=LAST_I+61,
+     &   dinrelease_idx_t=LAST_I+62, diprelease_idx_t=LAST_I+63,
+     &   dinuptake_idx_t=LAST_I+64, dipuptake_idx_t=LAST_I+65,
+     &   dfeuptake_idx_t=LAST_I+66, szooloss_idx_t=LAST_I+67,
+     &   docrremin_idx_t=LAST_I+68, doprremin_idx_t=LAST_I+69,
+     &   nobfmu_idx_t=LAST_I+70,
+     &   denitrif4_idx_t=LAST_I+71, denitrif5_idx_t=LAST_I+72
+#  undef LAST_I
+#  define LAST_I denitrif5_idx_t
 # endif
 
       ! Indices to be used in bec2_diag_2d only:
@@ -350,6 +393,16 @@
 #  undef LAST_I
 #  define LAST_I n2o_nev_ind_t
 #endif
+
+# ifdef EXPLICIT_MICROBES
+      integer, parameter ::
+     &      aoa_ind_t=LAST_I+1, nob_ind_t=LAST_I+2, aox_ind_t=LAST_I+3,
+     &      nar_ind_t=LAST_I+4, nai_ind_t=LAST_I+5, nir_ind_t=LAST_I+6, 
+     &      nio_ind_t=LAST_I+7, nos_ind_t=LAST_I+8, docr_ind_t=LAST_I+9,
+     &      szooc_ind_t=LAST_I+10
+#  undef LAST_I
+#  define LAST_I szooc_ind_t
+# endif
 
 !
 ! Parameters related to sinking particles:

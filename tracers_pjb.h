@@ -67,6 +67,16 @@
 #  undef LAST_I
 #  define LAST_I indxn2o_nev
 # endif
+
+# ifdef EXPLICIT_MICROBES
+     &          , indxaoa=LAST_I+1, indxnob=LAST_I+2, indxaox=LAST_I+3
+     &          , indxnar=LAST_I+4, indxnai=LAST_I+5, indxnir=LAST_I+6
+     &          , indxnio=LAST_I+7, indxnos=LAST_I+8, indxDOCR=LAST_I+9
+     &          , indxszooc=LAST_I+10
+#  undef LAST_I
+#  define LAST_I indxszooc
+# endif
+
 # ifdef USE_EXPLICIT_VSINK
      &          , indxdusthard=LAST_I+1, indxpochard=indxdusthard+1
      &          , indxpcaco3hard=indxdusthard+2, indxpsio2hard=indxdusthard+3
