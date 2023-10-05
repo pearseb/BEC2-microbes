@@ -296,30 +296,40 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname(3,indxaox)='mMol C m-3                       ' 
       vname(4,indxaox)='  ' 
 
+      vname(1,indxaer)='AER                              ' 
+      vname(2,indxaer)='Obligate aerobic heterotrophs    ' 
+      vname(3,indxaer)='mMol C m-3                       ' 
+      vname(4,indxaer)='  ' 
+ 
       vname(1,indxnar)='NAR                              '
-      vname(2,indxnar)='Facultative NO3-->NO2 reducing heterotrophs'
+      vname(2,indxnar)='NO3-->NO2 reducing heterotrophs'
       vname(3,indxnar)='mMol C m-3                       '
       vname(4,indxnar)='  '
 
       vname(1,indxnai)='NAI                              '
-      vname(2,indxnai)='Facultative NO3-->N2O reducing heterotrophs'
+      vname(2,indxnai)='NO3-->N2O reducing heterotrophs'
       vname(3,indxnai)='mMol C m-3                       '
       vname(4,indxnai)='  '
 
       vname(1,indxnir)='NIR                              '
-      vname(2,indxnir)='Facultative NO2-->N2O reducing heterotrophs'
+      vname(2,indxnir)='NO2-->N2O reducing heterotrophs'
       vname(3,indxnir)='mMol C m-3                       '
       vname(4,indxnir)='  '
 
       vname(1,indxnio)='NIO                              '
-      vname(2,indxnio)='Facultative NO2-->N2 reducing heterotrophs'
+      vname(2,indxnio)='NO2-->N2 reducing heterotrophs'
       vname(3,indxnio)='mMol C m-3                       '
       vname(4,indxnio)='  '
 
       vname(1,indxnos)='NOS                              '
-      vname(2,indxnos)='Facultative N2O-->N2 reducing heterotrophs'
+      vname(2,indxnos)='N2O-->N2 reducing heterotrophs'
       vname(3,indxnos)='mMol C m-3                       '
       vname(4,indxnos)='  '
+
+      vname(1,indxnao)='NAO                              '
+      vname(2,indxnao)='NO3-->N2 reducing heterotrophs'
+      vname(3,indxnao)='mMol C m-3                       '
+      vname(4,indxnao)='  '
 
       vname(1,indxdocr)='DOCR                              '
       vname(2,indxdocr)='refractory dissolved organic carbon  '
@@ -1369,6 +1379,11 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname_bec2_diag_3d(3,indxNOBmu)='/s'
       vname_bec2_diag_3d(4,indxNOBmu)=' '
 
+      vname_bec2_diag_3d(1,indxNOBmuana)='NOBmu_ana'
+      vname_bec2_diag_3d(2,indxNOBmuana)='Realised growth rate of NOB (anaerobic)'
+      vname_bec2_diag_3d(3,indxNOBmuana)='/s'
+      vname_bec2_diag_3d(4,indxNOBmuana)=' '
+
       vname_bec2_diag_3d(1,indxAOXmu)='AOXmu'
       vname_bec2_diag_3d(2,indxAOXmu)='Realised growth rate of AOX'
       vname_bec2_diag_3d(3,indxAOXmu)='/s'
@@ -1383,6 +1398,11 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname_bec2_diag_3d(2,indxNOBbio)='Realised biomass growth of NOB'
       vname_bec2_diag_3d(3,indxNOBbio)='mmolC/m3/s'
       vname_bec2_diag_3d(4,indxNOBbio)=' '
+
+      vname_bec2_diag_3d(1,indxNOBbioana)='NOBbio_ann'
+      vname_bec2_diag_3d(2,indxNOBbioana)='Realised biomass growth of NOB (anaerobic)'
+      vname_bec2_diag_3d(3,indxNOBbioana)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNOBbioana)=' '
 
       vname_bec2_diag_3d(1,indxAOXbio)='AOXbio'
       vname_bec2_diag_3d(2,indxAOXbio)='Realised biomass growth of AOX'
@@ -1464,6 +1484,11 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname_bec2_diag_3d(3,indxAOXmort)='mmolC/m3/s'
       vname_bec2_diag_3d(4,indxAOXmort)=' '
 
+      vname_bec2_diag_3d(1,indxAERmu)='AERmu'
+      vname_bec2_diag_3d(2,indxAERmu)='Realised growth rate of AER'
+      vname_bec2_diag_3d(3,indxAERmu)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxAERmu)=' '
+
       vname_bec2_diag_3d(1,indxNARmu)='NARmu'
       vname_bec2_diag_3d(2,indxNARmu)='Realised growth rate of NAR'
       vname_bec2_diag_3d(3,indxNARmu)='mmolC/m3/s'
@@ -1488,6 +1513,16 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname_bec2_diag_3d(2,indxNOSmu)='Realised growth rate of NOS'
       vname_bec2_diag_3d(3,indxNOSmu)='mmolC/m3/s'
       vname_bec2_diag_3d(4,indxNOSmu)=' '
+
+      vname_bec2_diag_3d(1,indxNAOmu)='NAOmu'
+      vname_bec2_diag_3d(2,indxNAOmu)='Realised growth rate of NAO'
+      vname_bec2_diag_3d(3,indxNAOmu)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNAOmu)=' '
+
+      vname_bec2_diag_3d(1,indxAERbio)='AERbio'
+      vname_bec2_diag_3d(2,indxAERbio)='Realised biomass growth of AER'
+      vname_bec2_diag_3d(3,indxAERbio)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxAERbio)=' '
 
       vname_bec2_diag_3d(1,indxNARbio)='NARbio'
       vname_bec2_diag_3d(2,indxNARbio)='Realised biomass growth of NAR'
@@ -1514,6 +1549,11 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname_bec2_diag_3d(3,indxNOSbio)='mmolC/m3/s'
       vname_bec2_diag_3d(4,indxNOSbio)=' '
 
+      vname_bec2_diag_3d(1,indxNAObio)='NAObio'
+      vname_bec2_diag_3d(2,indxNAObio)='Realised biomass growth of NAO'
+      vname_bec2_diag_3d(3,indxNAObio)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNAObio)=' '
+
       vname_bec2_diag_3d(1,indxNARana)='NARana'
       vname_bec2_diag_3d(2,indxNARana)='Growth of NAR anaerobic?'
       vname_bec2_diag_3d(3,indxNARana)='1 == yes'
@@ -1538,6 +1578,16 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname_bec2_diag_3d(2,indxNOSana)='Growth of NOS anaerobic?'
       vname_bec2_diag_3d(3,indxNOSana)='1 == yes'
       vname_bec2_diag_3d(4,indxNOSana)=' '
+
+      vname_bec2_diag_3d(1,indxNAOana)='NAOana'
+      vname_bec2_diag_3d(2,indxNAOana)='Growth of NAO anaerobic?'
+      vname_bec2_diag_3d(3,indxNAOana)='1 == yes'
+      vname_bec2_diag_3d(4,indxNAOana)=' '
+
+      vname_bec2_diag_3d(1,indxAER2szoo)='AER2szoo'
+      vname_bec2_diag_3d(2,indxAER2szoo)='Grazing losses of AER to sZOO'
+      vname_bec2_diag_3d(3,indxAER2szoo)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxAER2szoo)=' '
 
       vname_bec2_diag_3d(1,indxNAR2szoo)='NAR2szoo'
       vname_bec2_diag_3d(2,indxNAR2szoo)='Grazing losses of NAR to sZOO'
@@ -1564,6 +1614,16 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname_bec2_diag_3d(3,indxNOS2szoo)='mmolC/m3/s'
       vname_bec2_diag_3d(4,indxNOS2szoo)=' '
 
+      vname_bec2_diag_3d(1,indxNAO2szoo)='NAO2szoo'
+      vname_bec2_diag_3d(2,indxNAO2szoo)='Grazing losses of NAO to sZOO'
+      vname_bec2_diag_3d(3,indxNAO2szoo)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNAO2szoo)=' '
+
+      vname_bec2_diag_3d(1,indxAER2szoo_excN)='AER2szoo_excN'
+      vname_bec2_diag_3d(2,indxAER2szoo_excN)='Grazing losses of AER to sZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxAER2szoo_excN)='mmolN/m3/s'
+      vname_bec2_diag_3d(4,indxAER2szoo_excN)=' '
+
       vname_bec2_diag_3d(1,indxNAR2szoo_excN)='NAR2szoo_excN'
       vname_bec2_diag_3d(2,indxNAR2szoo_excN)='Grazing losses of NAR to sZOO but excreted as N (DON + NH4)'
       vname_bec2_diag_3d(3,indxNAR2szoo_excN)='mmolN/m3/s'
@@ -1588,6 +1648,16 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname_bec2_diag_3d(2,indxNOS2szoo_excN)='Grazing losses of NOS to sZOO but excreted as N (DON + NH4)'
       vname_bec2_diag_3d(3,indxNOS2szoo_excN)='mmolN/m3/s'
       vname_bec2_diag_3d(4,indxNOS2szoo_excN)=' '
+
+      vname_bec2_diag_3d(1,indxNAO2szoo_excN)='NAO2szoo_excN'
+      vname_bec2_diag_3d(2,indxNAO2szoo_excN)='Grazing losses of NAO to sZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxNAO2szoo_excN)='mmolN/m3/s'
+      vname_bec2_diag_3d(4,indxNAO2szoo_excN)=' '
+
+      vname_bec2_diag_3d(1,indxAER2szoo_excP)='AER2szoo_excP'
+      vname_bec2_diag_3d(2,indxAER2szoo_excP)='Grazing losses of AER to sZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxAER2szoo_excP)='mmolP/m3/s'
+      vname_bec2_diag_3d(4,indxAER2szoo_excP)=' '
 
       vname_bec2_diag_3d(1,indxNAR2szoo_excP)='NAR2szoo_excP'
       vname_bec2_diag_3d(2,indxNAR2szoo_excP)='Grazing losses of NAR to sZOO but excreted as N (DON + NH4)'
@@ -1614,6 +1684,16 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname_bec2_diag_3d(3,indxNOS2szoo_excP)='mmolP/m3/s'
       vname_bec2_diag_3d(4,indxNOS2szoo_excP)=' '
 
+      vname_bec2_diag_3d(1,indxNAO2szoo_excP)='NAO2szoo_excP'
+      vname_bec2_diag_3d(2,indxNAO2szoo_excP)='Grazing losses of NAO to sZOO but excreted as N (DON + NH4)'
+      vname_bec2_diag_3d(3,indxNAO2szoo_excP)='mmolP/m3/s'
+      vname_bec2_diag_3d(4,indxNAO2szoo_excP)=' '
+
+      vname_bec2_diag_3d(1,indxAER2szoo_excFe)='AER2szoo_excFe'
+      vname_bec2_diag_3d(2,indxAER2szoo_excFe)='Grazing losses of AER to sZOO but excreted as dFe'
+      vname_bec2_diag_3d(3,indxAER2szoo_excFe)='mmolFe/m3/s'
+      vname_bec2_diag_3d(4,indxAER2szoo_excFe)=' '
+
       vname_bec2_diag_3d(1,indxNAR2szoo_excFe)='NAR2szoo_excFe'
       vname_bec2_diag_3d(2,indxNAR2szoo_excFe)='Grazing losses of NAR to sZOO but excreted as dFe'
       vname_bec2_diag_3d(3,indxNAR2szoo_excFe)='mmolFe/m3/s'
@@ -1639,6 +1719,16 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname_bec2_diag_3d(3,indxNOS2szoo_excFe)='mmolFe/m3/s'
       vname_bec2_diag_3d(4,indxNOS2szoo_excFe)=' '
 
+      vname_bec2_diag_3d(1,indxNAO2szoo_excFe)='NAO2szoo_excFe'
+      vname_bec2_diag_3d(2,indxNAO2szoo_excFe)='Grazing losses of NAO to sZOO but excreted as dFe'
+      vname_bec2_diag_3d(3,indxNAO2szoo_excFe)='mmolFe/m3/s'
+      vname_bec2_diag_3d(4,indxNAO2szoo_excFe)=' '
+
+      vname_bec2_diag_3d(1,indxAERmort)='AERmort'
+      vname_bec2_diag_3d(2,indxAERmort)='Linear mortality losses of AER'
+      vname_bec2_diag_3d(3,indxAERmort)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxAERmort)=' '
+
       vname_bec2_diag_3d(1,indxNARmort)='NARmort'
       vname_bec2_diag_3d(2,indxNARmort)='Linear mortality losses of NAR'
       vname_bec2_diag_3d(3,indxNARmort)='mmolC/m3/s'
@@ -1663,6 +1753,11 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname_bec2_diag_3d(2,indxNOSmort)='Linear mortality losses of NOS'
       vname_bec2_diag_3d(3,indxNOSmort)='mmolC/m3/s'
       vname_bec2_diag_3d(4,indxNOSmort)=' '
+
+      vname_bec2_diag_3d(1,indxNAOmort)='NAOmort'
+      vname_bec2_diag_3d(2,indxNAOmort)='Linear mortality losses of NAO'
+      vname_bec2_diag_3d(3,indxNAOmort)='mmolC/m3/s'
+      vname_bec2_diag_3d(4,indxNAOmort)=' '
 
       vname_bec2_diag_3d(1,indxDINrelease)='DINrelease'
       vname_bec2_diag_3d(2,indxDINrelease)='DIN release by Heterotrophic bacteria'
@@ -1718,6 +1813,16 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       vname_bec2_diag_3d(2,indxDEN5)='Denitrification5 (NO2-->N2)'
       vname_bec2_diag_3d(3,indxDEN5)='mmol/m3/s '
       vname_bec2_diag_3d(4,indxDEN5)=' '
+
+      vname_bec2_diag_3d(1,indxDEN6)='DENITRIF6'
+      vname_bec2_diag_3d(2,indxDEN6)='Denitrification6 (NO3-->N2)'
+      vname_bec2_diag_3d(3,indxDEN6)='mmol/m3/s '
+      vname_bec2_diag_3d(4,indxDEN6)=' '
+
+      vname_bec2_diag_3d(1,indxnitroxana)='NITROXana'
+      vname_bec2_diag_3d(2,indxnitroxana)='Nitrite oxidation (NO2 -> NO3) (anaerobic)'
+      vname_bec2_diag_3d(3,indxnitroxana)='mmol N/m3/s'
+      vname_bec2_diag_3d(4,indxnitroxana)=' '
 
 # endif /* EXPLICIT_MICROBES */
 # endif /* Ncycle_SY */
@@ -1838,21 +1943,21 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
 # ifdef BEC2_DIAG
 
         ! MF: Control BEC2_DIAG Output vars
-      wrtavg_bec2_diag_3d=(/.true. ,.false. ,.true.,.true. ,.false.,   !PAR, POC_FLUX_IN, POC_Prod,POC_REMIN, CACO3_FLUX_IN,
+      wrtavg_bec2_diag_3d=(/.false. ,.false. ,.false.,.false. ,.false.,   !PAR, POC_FLUX_IN, POC_Prod,POC_REMIN, CACO3_FLUX_IN,
      &                      .false.,.false.,.false.,.false.,.false.,   !PCACO3_PROD, CACO3_REMIN,SIO2_FLUX_IN, SIO2_PROD, SIO2_REMIN,
      &                      .false.,.false.,.false.,.false.,.false.,   !DUST_FLUX_IN, DUST_REMIN,P_IRON_FLUX_IN, P_IRON_PROD, P_IRON_REMIN,
-     &                      .true., .true., .true., .true., .true.,    !GRAZE_SP, GRAZE_DIAT,GRAZE_DIAZ, SP_LOSS, DIAT_LOSS,
-     &                      .true., .true., .true., .true. ,.true. ,   !ZOO_LOSS, SP_AGG, DIAT_AGG,PHOTOC_SP, PHOTOC_DIAT,
-     &                      .false. ,.true. ,.true. ,.false.,.false.,  !TOT_PROD, DOC_PROD,DOC_REMIN, FE_SCAVENGE, SP_N_LIM, 
+     &                      .false., .false., .false., .false., .false.,    !GRAZE_SP, GRAZE_DIAT,GRAZE_DIAZ, SP_LOSS, DIAT_LOSS,
+     &                      .false., .false., .false., .false. ,.false. ,   !ZOO_LOSS, SP_AGG, DIAT_AGG,PHOTOC_SP, PHOTOC_DIAT,
+     &                      .false. ,.false. ,.false. ,.false.,.false.,  !TOT_PROD, DOC_PROD,DOC_REMIN, FE_SCAVENGE, SP_N_LIM, 
      &                      .false.,.false.,.false.,.false.,.false.,   !SP_FE_LIM, SP_PO4_LIM,SP_LIGHT_LIM, DIAT_N_LIM, DIAT_FE_LIM,
-     &                      .false.,.false.,.false.,.false.,.true. ,   !DIAT_PO4_LIM, DIAT_SIO3_LIM,DIAT_LIGHT_LIM, CACO3_PROD, DIAZ_NFIX,
-     &                      .true. ,.true. ,.false.,.false.,.false.,   !DIAZ_LOSS, PHOTOC_DIAZ,DIAZ_PO4_LIM, DIAZ_FE_LIM, DIAZ_LIGHT_LIM,
+     &                      .false.,.false.,.false.,.false.,.false. ,   !DIAT_PO4_LIM, DIAT_SIO3_LIM,DIAT_LIGHT_LIM, CACO3_PROD, DIAZ_NFIX,
+     &                      .false. ,.false. ,.false.,.false.,.false.,   !DIAZ_LOSS, PHOTOC_DIAZ,DIAZ_PO4_LIM, DIAZ_FE_LIM, DIAZ_LIGHT_LIM,
      &                      .false.,.false.,.false. ,.false.,.false.,  !FE_SCAVENGE_RATE, DON_PROD,DON_REMIN, DOFE_PROD, DOFE_REMIN,
      &                      .false.,.false.,.false.,.false.,.false.,   !DOP_PROD, DOP_REMIN,DIAT_SI_UPTAKE, PHOTOFE_SP, PHOTOFE_DIA,  
      &                      .false.,.false.,.false.,.false. ,.false.,  !PHOTOFE_DIAZ, NITRI,DENITRI,SP_NO3_UPTAKE,DIAT_NO3_UPTAKE,  
      &                      .false.,.false.,.false.,.false.,.false.,   !DIAZ_NO3_UPTAKE,SP_NH4_UPTAKE, DIAT_NH4_UPTAKE,DIAZ_NH4_UPTAKE,SP_GRAZE_DIC,  
      &                      .false. ,.false. ,.false.,.false.,.false., !DIAT_GRAZE_DIC,DIAZ_GRAZE_DIC, SP_LOSS_DIC,DIAT_LOSS_DIC,DIAZ_LOSS_DIC,  
-     &                      .false. ,.true. ,.false.,.false.,.false.,  !ZOO_LOSS_DIC, DIAZ_AGG,GRAZE_SP_ZOO, GRAZE_DIAT_ZOO, GRAZE_DIAZ_ZOO,      
+     &                      .false. ,.false. ,.false.,.false.,.false.,  !ZOO_LOSS_DIC, DIAZ_AGG,GRAZE_SP_ZOO, GRAZE_DIAT_ZOO, GRAZE_DIAZ_ZOO,      
      &                      .false.,.false.,.false.,.false.,           !SPQCACO3,PHOTOACC_SP,PHOTOACC_DIAT, PHOTOACC_DIAZ,
      &                      .false.,.false.,.false.,.false.,.false.,   !SPC_ZERO, DIATC_ZERO, DIAZC_ZERO, DOC_ZERO, ZOOC_ZERO
      &                      .false.,.false. ,.false. ,.false.,           !SPCACO3_ZERO, DONR_REMIN, TOTCHL, SP_P_LIM 
@@ -1881,26 +1986,36 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
      &                     ,.false.,.false. ! n2o_cons_nev, n2o_prod_nev
 # endif
 # ifdef EXPLICIT_MICROBES
-     &                     ,.true.,.true.,.true.,.true.,.true.,.true.! AOAmu, NOBmu, AOXmu, AOAbio, NOBbio, AOXbio
+     &                     ,.true.,.true.,.true.                     ! AOAmu, NOBmu, AOXmu
+     &                     ,.true.,.true.,.true.                     ! AOAbio, NOBbio, AOXbio
      &                     ,.true.,.true.,.true.                     ! AOA2zoo, NOB2zoo, AOX2zoo
      &                     ,.false.,.false.,.false.                  ! AOA2zoo_excN, NOB2zoo_excN, AOX2zoo_excN
      &                     ,.false.,.false.,.false.                  ! AOA2zoo_excP, NOB2zoo_excP, AOX2zoo_excP
      &                     ,.false.,.false.,.false.                  ! AOA2zoo_excFe, NOB2zoo_excFe, AOX2zoo_excFe
      &                     ,.true.,.true.,.true.                     ! AOAmort, NOBmort, AOXmort
-     &                     ,.true.,.true.,.true.,.true.,.true.       ! NARmu, NAImu, NIRmu, NIOmu, NOSmu 
-     &                     ,.true.,.true.,.true.,.true.,.true.       ! NARbio, NAIbio, NIRbio, NIObio, NOSbio 
-     &                     ,.true.,.true.,.true.,.true.,.true.       ! NARana, NAIana, NIRana, NIOana, NOSana 
-     &                     ,.false.,.false.,.false.,.false.,.false.  ! NAR2szoo, NAI2szoo, NIR2szoo, NIO2szoo, NOS2szoo 
-     &                     ,.false.,.false.,.false.,.false.,.false.  ! NAR2szoo_excN, NAI2szoo_excN, NIR2szoo_excN, NIO2szoo_excN, NOS2szoo_excN 
-     &                     ,.false.,.false.,.false.,.false.,.false.  ! NAR2szoo_excP, NAI2szoo_excP, NIR2szoo_excP, NIO2szoo_excP, NOS2szoo_excP 
-     &                     ,.false.,.false.,.false.,.false.,.false.  ! NAR2szoo_excFe, NAI2szoo_excFe, NIR2szoo_excFe, NIO2szoo_excFe, NOS2szoo_excFe 
-     &                     ,.true.,.true.,.true.,.true.,.true.       ! NARmort, NAImort, NIRmort, NIOmort, NOSmort 
+     &                     ,.true.,.true.,.true.,.true.              ! AERmu, NARmu, NAImu, NIRmu
+     &                     ,.true.,.true.,.true.                     ! NIOmu, NOSmu, NAOmu 
+     &                     ,.true.,.true.,.true.,.true.              ! AERbio, NARbio, NAIbio, NIRbio
+     &                     ,.true.,.true.,.true.                     ! NIObio, NOSbio, NAObio 
+     &                     ,.true.,.true.,.true.                     ! NARana, NAIana, NIRana
+     &                     ,.true.,.true.,.true.                     ! NIOana, NOSana, NAOana 
+     &                     ,.false.,.false.,.false.,.false.             ! AER2szoo, NAR2szoo, NAI2szoo, NIR2szoo
+     &                     ,.false.,.false.,.false.                     ! NIO2szoo, NOS2szoo, NAO2szoo 
+     &                     ,.false.,.false.,.false.,.false.             ! AER2szoo_excN, NAR2szoo_excN, NAI2szoo_excN, NIR2szoo_excN
+     &                     ,.false.,.false.,.false.                     ! NIO2szoo_excN, NOS2szoo_excN, NAO2szoo_excN 
+     &                     ,.false.,.false.,.false.,.false.             ! AER2szoo_excP, NAR2szoo_excP, NAI2szoo_excP, NIR2szoo_excP
+     &                     ,.false.,.false.,.false.                     ! NIO2szoo_excP, NOS2szoo_excP, NAO2szoo_excP 
+     &                     ,.false.,.false.,.false.,.false.             ! AER2szoo_excFe, NAR2szoo_excFe, NAI2szoo_excFe, NIR2szoo_excFe
+     &                     ,.false.,.false.,.false.                     ! NIO2szoo_excFe, NOS2szoo_excFe, NAO2szoo_excFe 
+     &                     ,.false.,.false.,.false.,.false.             ! AERmort, NARmort, NAImort, NIRmort
+     &                     ,.false.,.false.,.false.                     ! NIOmort, NOSmort, NAOmort 
      &                     ,.false.,.false.                          ! DINrelease, DIPrelease
      &                     ,.false.,.false.,.false.                  ! DINuptake, DIPuptake, dFeuptake
      &                     ,.false.                                  ! SZOOLOSS 
      &                     ,.false.,.false.                          ! DOCr_REMIN, DOPr_REMIN  
      &                     ,.true.                                   ! NOBfmu
-     &                     ,.true.,.true.                            ! DENITRIF4, DENITRIF5
+     &                     ,.true.,.true.,.true.                     ! DENITRIF4, DENITRIF5, DENITRIF6
+     &                     ,.false.,.false.,.false.                     ! NOBmu_ana, NOBbio_ana, NITROXana
 # endif
      &                     /)
 
@@ -1961,11 +2076,13 @@ CR      write(*,'(1x,A,I3)') 'indxNH4 =',indxNH4
       tclm_name(iAOA) = 'aoa_time'
       tclm_name(iNOB) = 'nob_time'
       tclm_name(iAOX) = 'aox_time'
+      tclm_name(iAER) = 'aer_time'
       tclm_name(iNAR) = 'nar_time'
       tclm_name(iNAI) = 'nai_time'
       tclm_name(iNIR) = 'nir_time'
       tclm_name(iNIO) = 'nio_time'
       tclm_name(iNOS) = 'nos_time'
+      tclm_name(iNAO) = 'nao_time'
       tclm_name(iDOCR) = 'DOCR_time'
       tclm_name(iSZOOC) = 'szooc_time'
 # endif

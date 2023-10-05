@@ -38,7 +38,7 @@
      &  +2 
 #endif
 # ifdef EXPLICIT_MICROBES
-     &  +72
+     &  +91
 #endif
 # ifdef USE_EXPLICIT_VSINK
      &  +10
@@ -191,33 +191,38 @@
      &   aoa2zoo_excFe_idx_t=LAST_I+16, nob2zoo_excFe_idx_t=LAST_I+17,
      &   aox2zoo_excFe_idx_t=LAST_I+18,
      &   aoamort_idx_t=LAST_I+19, nobmort_idx_t=LAST_I+20, aoxmort_idx_t=LAST_I+21,
-     &   narmu_idx_t=LAST_I+22, naimu_idx_t=LAST_I+23, nirmu_idx_t=LAST_I+24, 
-     &   niomu_idx_t=LAST_I+25, nosmu_idx_t=LAST_I+26,
-     &   narbio_idx_t=LAST_I+27, naibio_idx_t=LAST_I+28, nirbio_idx_t=LAST_I+29, 
-     &   niobio_idx_t=LAST_I+30, nosbio_idx_t=LAST_I+31,
-     &   narana_idx_t=LAST_I+32, naiana_idx_t=LAST_I+33, nirana_idx_t=LAST_I+34, 
-     &   nioana_idx_t=LAST_I+35, nosana_idx_t=LAST_I+36,
-     &   nar2szoo_idx_t=LAST_I+37,nai2szoo_idx_t=LAST_I+38,nir2szoo_idx_t=LAST_I+39, 
-     &   nio2szoo_idx_t=LAST_I+40, nos2szoo_idx_t=LAST_I+41,
-     &   nar2szoo_excN_idx_t=LAST_I+42, nai2szoo_excN_idx_t=LAST_I+43,
-     &   nir2szoo_excN_idx_t=LAST_I+44, nio2szoo_excN_idx_t=LAST_I+45, 
-     &   nos2szoo_excN_idx_t=LAST_I+46, 
-     &   nar2szoo_excP_idx_t=LAST_I+47, nai2szoo_excP_idx_t=LAST_I+48,
-     &   nir2szoo_excP_idx_t=LAST_I+49, nio2szoo_excP_idx_t=LAST_I+50, 
-     &   nos2szoo_excP_idx_t=LAST_I+51, 
-     &   nar2szoo_excFe_idx_t=LAST_I+52, nai2szoo_excFe_idx_t=LAST_I+53,
-     &   nir2szoo_excFe_idx_t=LAST_I+54, nio2szoo_excFe_idx_t=LAST_I+55, 
-     &   nos2szoo_excFe_idx_t=LAST_I+56, 
-     &   narmort_idx_t=LAST_I+57, naimort_idx_t=LAST_I+58, nirmort_idx_t=LAST_I+59,
-     &   niomort_idx_t=LAST_I+60, nosmort_idx_t=LAST_I+61,
-     &   dinrelease_idx_t=LAST_I+62, diprelease_idx_t=LAST_I+63,
-     &   dinuptake_idx_t=LAST_I+64, dipuptake_idx_t=LAST_I+65,
-     &   dfeuptake_idx_t=LAST_I+66, szooloss_idx_t=LAST_I+67,
-     &   docrremin_idx_t=LAST_I+68, doprremin_idx_t=LAST_I+69,
-     &   nobfmu_idx_t=LAST_I+70,
-     &   denitrif4_idx_t=LAST_I+71, denitrif5_idx_t=LAST_I+72
+     &   aermu_idx_t=LAST_I+22,narmu_idx_t=LAST_I+23, naimu_idx_t=LAST_I+24, 
+     &   nirmu_idx_t=LAST_I+25,niomu_idx_t=LAST_I+26, nosmu_idx_t=LAST_I+27,
+     &   naomu_idx_t=LAST_I+28, aerbio_idx_t=LAST_I+29,
+     &   narbio_idx_t=LAST_I+30, naibio_idx_t=LAST_I+31, nirbio_idx_t=LAST_I+32, 
+     &   niobio_idx_t=LAST_I+33, nosbio_idx_t=LAST_I+34, naobio_idx_t=LAST_I+35,
+     &   narana_idx_t=LAST_I+36, naiana_idx_t=LAST_I+37, nirana_idx_t=LAST_I+38, 
+     &   nioana_idx_t=LAST_I+39, nosana_idx_t=LAST_I+40, naoana_idx_t=LAST_I+41,
+     &   aer2szoo_idx_t=LAST_I+42,nar2szoo_idx_t=LAST_I+43,nai2szoo_idx_t=LAST_I+44,
+     &   nir2szoo_idx_t=LAST_I+45,nio2szoo_idx_t=LAST_I+46,nos2szoo_idx_t=LAST_I+47,
+     &   nao2szoo_idx_t=LAST_I+48, aer2szoo_excN_idx_t=LAST_I+49,
+     &   nar2szoo_excN_idx_t=LAST_I+50, nai2szoo_excN_idx_t=LAST_I+51,
+     &   nir2szoo_excN_idx_t=LAST_I+52, nio2szoo_excN_idx_t=LAST_I+53, 
+     &   nos2szoo_excN_idx_t=LAST_I+54, nao2szoo_excN_idx_t=LAST_I+55,
+     &   aer2szoo_excP_idx_t=LAST_I+56, nar2szoo_excP_idx_t=LAST_I+57, 
+     &   nai2szoo_excP_idx_t=LAST_I+58, nir2szoo_excP_idx_t=LAST_I+59, 
+     &   nio2szoo_excP_idx_t=LAST_I+60, nos2szoo_excP_idx_t=LAST_I+61, 
+     &   nao2szoo_excP_idx_t=LAST_I+62, aer2szoo_excFe_idx_t=LAST_I+63,
+     &   nar2szoo_excFe_idx_t=LAST_I+64, nai2szoo_excFe_idx_t=LAST_I+65,
+     &   nir2szoo_excFe_idx_t=LAST_I+66, nio2szoo_excFe_idx_t=LAST_I+67, 
+     &   nos2szoo_excFe_idx_t=LAST_I+68, nao2szoo_excFe_idx_t=LAST_I+69,
+     &   aermort_idx_t=LAST_I+70, narmort_idx_t=LAST_I+71, naimort_idx_t=LAST_I+72,
+     &   nirmort_idx_t=LAST_I+73, niomort_idx_t=LAST_I+74, nosmort_idx_t=LAST_I+75, 
+     &   naomort_idx_t=LAST_I+76,
+     &   dinrelease_idx_t=LAST_I+77, diprelease_idx_t=LAST_I+78,
+     &   dinuptake_idx_t=LAST_I+79, dipuptake_idx_t=LAST_I+80,
+     &   dfeuptake_idx_t=LAST_I+81, szooloss_idx_t=LAST_I+82,
+     &   docrremin_idx_t=LAST_I+83, doprremin_idx_t=LAST_I+84,
+     &   nobfmu_idx_t=LAST_I+85, denitrif4_idx_t=LAST_I+86, 
+     &   denitrif5_idx_t=LAST_I+87,denitrif6_idx_t=LAST_I+88,
+     &   nobmuana_idx_t=LAST_I+89,nobbioana_idx_t=LAST_I+90,nitroxana_idx_t=LAST_I+91
 #  undef LAST_I
-#  define LAST_I denitrif5_idx_t
+#  define LAST_I nitroxana_idx_t
 # endif
 
       ! Indices to be used in bec2_diag_2d only:
@@ -398,10 +403,10 @@
       integer, parameter ::
      &      aoa_ind_t=LAST_I+1, nob_ind_t=LAST_I+2, aox_ind_t=LAST_I+3,
      &      nar_ind_t=LAST_I+4, nai_ind_t=LAST_I+5, nir_ind_t=LAST_I+6, 
-     &      nio_ind_t=LAST_I+7, nos_ind_t=LAST_I+8, docr_ind_t=LAST_I+9,
-     &      szooc_ind_t=LAST_I+10
+     &      nio_ind_t=LAST_I+7, nos_ind_t=LAST_I+8, nao_ind_t=LAST_I+9,
+     &      docr_ind_t=LAST_I+10, szooc_ind_t=LAST_I+11, aer_ind_t=LAST_I+12
 #  undef LAST_I
-#  define LAST_I szooc_ind_t
+#  define LAST_I aer_ind_t
 # endif
 
 !

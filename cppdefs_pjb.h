@@ -53,6 +53,7 @@
 !# define N2O_TRACER_DECOMP
 !# define N2O_NEV
 # define EXPLICIT_MICROBES
+# undef FACULTATIVE_MICROBES
 # undef IODINE
 # define PCO2AIR_FORCING
 #endif /* BIOLOGY_BEC2 */

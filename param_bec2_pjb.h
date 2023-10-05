@@ -157,70 +157,89 @@
      &   parm_muaoa,      ! max growth rate of AOA (per day)
      &   parm_munob,      ! max growth rate of NOB (per day)
      &   parm_muaox,      ! max growth rate of AOX (per day)
+     &   parm_muaer,      ! max growth rate of AER (per day)
      &   parm_munar,      ! max growth rate of NAR (per day)
-     &   parm_munai,      ! max growth rate of NAR (per day)
+     &   parm_munai,      ! max growth rate of NAI (per day)
      &   parm_munir,      ! max growth rate of NIR (per day)
-     &   parm_munio,      ! max growth rate of NIR (per day)
+     &   parm_munio,      ! max growth rate of NIO (per day)
      &   parm_munos,      ! max growth rate of NOS (per day)
+     &   parm_munao,      ! max growth rate of NOS (per day)
+     &   parm_Vmax_doc,   ! max uptake rate of DOC into cell (per day)
+     &   parm_Vmax_no3,   ! max uptake rate of NO3 into cell (per day)
+     &   parm_Vmax_no2,   ! max uptake rate of NO2 into cell (per day)
      &   parm_yaoa_nh4,   ! biomass yield per NH4 for AOA (mol bioC per mol NH4)
      &   parm_yaoa_oxy,   ! biomass yield per O2 for AOA  (mol bioC per mol O2)
      &   parm_ynob_no2,   ! biomass yield per NO2 for NOB (mol bioC per mol NO2)
      &   parm_ynob_oxy,   ! biomass yield per O2 for NOB  (mol bioC per mol O2)
      &   parm_yaox_nh4,   ! biomass yield per NH4 for AOX (mol bioC per mol NH4)
      &   parm_yaox_no2,   ! biomass yield per NO2 for AOX (mol bioC per mol NO2)
-     &   parm_paox_no3,   ! production of NO3 per biomass (mol NO3 per mol bioC)
+     &   parm_yaer_doc,   ! biomass yield per DOC for AER (mol bioC per mol DOC)
+     &   parm_yaer_oxy,   ! biomass yield per O2 for AER  (mol bioC per mol O2)
      &   parm_ynar_aer,   ! biomass yield per DOC for NAR (mol bioC per mol DOC)
      &   parm_ynar_oxy,   ! biomass yield per O2 for NAR  (mol bioC per mol O2)
-     &   parm_ynar_ana,   ! biomass yield per DOC for NAR (mol bioC per mol DOC)
-     &   parm_ynar_no3,   ! biomass yield per NO3 for NAR (mol bioC per mol NO3)
-     &   parm_ynai_aer,   ! biomass yield per DOC for NAR (mol bioC per mol DOC)
-     &   parm_ynai_oxy,   ! biomass yield per O2 for NAR  (mol bioC per mol O2)
-     &   parm_ynai_ana,   ! biomass yield per DOC for NAR (mol bioC per mol DOC)
-     &   parm_ynai_no3,   ! biomass yield per NO3 for NAR (mol bioC per mol NO3)
+     &   parm_ynai_aer,   ! biomass yield per DOC for NAI (mol bioC per mol DOC)
+     &   parm_ynai_oxy,   ! biomass yield per O2 for NAI  (mol bioC per mol O2)
      &   parm_ynir_aer,   ! biomass yield per DOC for NIR (mol bioC per mol DOC)
      &   parm_ynir_oxy,   ! biomass yield per O2 for NIR  (mol bioC per mol O2)
-     &   parm_ynir_ana,   ! biomass yield per DOC for NIR (mol bioC per mol DOC)
-     &   parm_ynir_no2,   ! biomass yield per NO2 for NIR (mol bioC per mol NO2)
-     &   parm_ynio_aer,   ! biomass yield per DOC for NIR (mol bioC per mol DOC)
-     &   parm_ynio_oxy,   ! biomass yield per O2 for NIR  (mol bioC per mol O2)
-     &   parm_ynio_ana,   ! biomass yield per DOC for NIR (mol bioC per mol DOC)
-     &   parm_ynio_no2,   ! biomass yield per NO2 for NIR (mol bioC per mol NO2)
+     &   parm_ynio_aer,   ! biomass yield per DOC for NIO (mol bioC per mol DOC)
+     &   parm_ynio_oxy,   ! biomass yield per O2 for NIO  (mol bioC per mol O2)
      &   parm_ynos_aer,   ! biomass yield per DOC for NOS (mol bioC per mol DOC)
      &   parm_ynos_oxy,   ! biomass yield per O2 for NOS  (mol bioC per mol O2)
+     &   parm_ynao_aer,   ! biomass yield per DOC for NAO (mol bioC per mol DOC)
+     &   parm_ynao_oxy,   ! biomass yield per O2 for NAO  (mol bioC per mol O2)
+     &   parm_ynar_ana,   ! biomass yield per DOC for NAR (mol bioC per mol DOC)
+     &   parm_ynar_no3,   ! biomass yield per NO3 for NAR (mol bioC per mol NO3)
+     &   parm_ynir_ana,   ! biomass yield per DOC for NIR (mol bioC per mol DOC)
+     &   parm_ynir_no2,   ! biomass yield per NO2 for NIR (mol bioC per mol NO2)
      &   parm_ynos_ana,   ! biomass yield per DOC for NOS (mol bioC per mol DOC)
      &   parm_ynos_n2o,   ! biomass yield per N2O for NOS (mol bioC per mol N2O)
+     &   parm_ynai_ana,   ! biomass yield per DOC for NAI (mol bioC per mol DOC)
+     &   parm_ynai_no3,   ! biomass yield per NO3 for NAI (mol bioC per mol NO3)
+     &   parm_ynio_ana,   ! biomass yield per DOC for NIO (mol bioC per mol DOC)
+     &   parm_ynio_no2,   ! biomass yield per NO2 for NIO (mol bioC per mol NO2)
+     &   parm_ynao_ana,   ! biomass yield per DOC for NAO (mol bioC per mol DOC)
+     &   parm_ynao_no3,   ! biomass yield per NO3 for NAO (mol bioC per mol NO3)
+     &   parm_paox_no3,   ! production of NO3 per biomass (mol NO3 per mol bioC)
      &   parm_aoa_po2,    ! diffusive uptake limit of O2 by AOA (m3 / mmol C / day)
      &   parm_nob_po2,    ! diffusive uptake limit of O2 by NOB (m3 / mmol C / day)
+     &   parm_aer_po2,    ! diffusive uptake limit of O2 by AER (m3 / mmol C / day)
      &   parm_nar_po2,    ! diffusive uptake limit of O2 by NAR (m3 / mmol C / day)
-     &   parm_nai_po2,    ! diffusive uptake limit of O2 by NAR (m3 / mmol C / day)
+     &   parm_nai_po2,    ! diffusive uptake limit of O2 by NAI (m3 / mmol C / day)
      &   parm_nir_po2,    ! diffusive uptake limit of O2 by NIR (m3 / mmol C / day)
-     &   parm_nio_po2,    ! diffusive uptake limit of O2 by NIR (m3 / mmol C / day)
+     &   parm_nio_po2,    ! diffusive uptake limit of O2 by NIO (m3 / mmol C / day)
      &   parm_nos_po2,    ! diffusive uptake limit of O2 by NOS (m3 / mmol C / day)
+     &   parm_nao_po2,    ! diffusive uptake limit of O2 by NAO (m3 / mmol C / day)
      &   parm_nos_pn2o,   ! diffusive uptake limit of N2O by NOS (m3 / mmol C / day)
      &   parm_aoa_CN,     ! C:N ratio of AOA biomass
      &   parm_nob_CN,     ! C:N ratio of NOB biomass
      &   parm_aox_CN,     ! C:N ratio of AOX biomass
+     &   parm_aer_CN,     ! C:N ratio of AER biomass
      &   parm_nar_CN,     ! C:N ratio of NAR biomass
-     &   parm_nai_CN,     ! C:N ratio of NAR biomass
+     &   parm_nai_CN,     ! C:N ratio of NAI biomass
      &   parm_nir_CN,     ! C:N ratio of NIR biomass
-     &   parm_nio_CN,     ! C:N ratio of NIR biomass
+     &   parm_nio_CN,     ! C:N ratio of NIO biomass
      &   parm_nos_CN,     ! C:N ratio of NOS biomass
+     &   parm_nao_CN,     ! C:N ratio of NAO biomass
      &   parm_aoa_CP,     ! C:P ratio of AOA biomass
      &   parm_nob_CP,     ! C:P ratio of NOB biomass
      &   parm_aox_CP,     ! C:P ratio of AOX biomass
+     &   parm_aer_CP,     ! C:P ratio of AER biomass
      &   parm_nar_CP,     ! C:P ratio of NAR biomass
-     &   parm_nai_CP,     ! C:P ratio of NAR biomass
+     &   parm_nai_CP,     ! C:P ratio of NAI biomass
      &   parm_nir_CP,     ! C:P ratio of NIR biomass
-     &   parm_nio_CP,     ! C:P ratio of NIR biomass
+     &   parm_nio_CP,     ! C:P ratio of NIO biomass
      &   parm_nos_CP,     ! C:P ratio of NOS biomass
+     &   parm_nao_CP,     ! C:P ratio of NAO biomass
      &   parm_aoa_CFe,    ! C:Fe ratio of AOA biomass
      &   parm_nob_CFe,    ! C:Fe ratio of NOB biomass
      &   parm_aox_CFe,    ! C:Fe ratio of AOX biomass
+     &   parm_aer_CFe,    ! C:Fe ratio of AER biomass
      &   parm_nar_CFe,    ! C:Fe ratio of NAR biomass
-     &   parm_nai_CFe,    ! C:Fe ratio of NAR biomass
+     &   parm_nai_CFe,    ! C:Fe ratio of NAI biomass
      &   parm_nir_CFe,    ! C:Fe ratio of NIR biomass
-     &   parm_nio_CFe,    ! C:Fe ratio of NIR biomass
+     &   parm_nio_CFe,    ! C:Fe ratio of NIO biomass
      &   parm_nos_CFe,    ! C:Fe ratio of NOS biomass
+     &   parm_nao_CFe,    ! C:Fe ratio of NAO biomass
      &   parm_kaoa_oxy,   ! half-saturation constant for O2 uptake by AOA
      &   parm_kaoa_nh4,   ! half-saturation constant for NH4 uptake by AOA
      &   parm_kaoa_po4,   ! half-saturation constant for PO4 uptake by AOA
@@ -234,36 +253,47 @@
      &   parm_kaox_no2,   ! half-saturation constant for NO2 uptake by AOX
      &   parm_kaox_po4,   ! half-saturation constant for PO4 uptake by AOX
      &   parm_kaox_fer,   ! half-saturation constant for Iron uptake by AOX
+     &   parm_kaer_oxy,   ! half-saturation constant for O2 uptake by AER
+     &   parm_kaer_doc,   ! half-saturation constant for DOC uptake by AER
+     &   parm_kaer_docr,  ! half-saturation constant for DOCr uptake by AER
+     &   parm_kaer_po4,   ! half-saturation constant for P uptake by AER
+     &   parm_kaer_fer,   ! half-saturation constant for Iron uptake by AER
      &   parm_knar_oxy,   ! half-saturation constant for O2 uptake by NAR
      &   parm_knar_doc,   ! half-saturation constant for DOC uptake by NAR
      &   parm_knar_docr,  ! half-saturation constant for DOCr uptake by NAR
      &   parm_knar_no3,   ! half-saturation constant for NO3 uptake by NAR
      &   parm_knar_po4,   ! half-saturation constant for P uptake by NAR
      &   parm_knar_fer,   ! half-saturation constant for Iron uptake by NAR
-     &   parm_knai_oxy,   ! half-saturation constant for O2 uptake by NAR
-     &   parm_knai_doc,   ! half-saturation constant for DOC uptake by NAR
-     &   parm_knai_docr,  ! half-saturation constant for DOCr uptake by NAR
-     &   parm_knai_no3,   ! half-saturation constant for NO3 uptake by NAR
-     &   parm_knai_po4,   ! half-saturation constant for P uptake by NAR
-     &   parm_knai_fer,   ! half-saturation constant for Iron uptake by NAR
+     &   parm_knai_oxy,   ! half-saturation constant for O2 uptake by NAI
+     &   parm_knai_doc,   ! half-saturation constant for DOC uptake by NAI
+     &   parm_knai_docr,  ! half-saturation constant for DOCr uptake by NAI
+     &   parm_knai_no3,   ! half-saturation constant for NO3 uptake by NAI
+     &   parm_knai_po4,   ! half-saturation constant for P uptake by NAI
+     &   parm_knai_fer,   ! half-saturation constant for Iron uptake by NAI
      &   parm_knir_oxy,   ! half-saturation constant for O2 uptake by NIR
      &   parm_knir_doc,   ! half-saturation constant for DOC uptake by NIR
      &   parm_knir_docr,  ! half-saturation constant for DOCr uptake by NIR
      &   parm_knir_no2,   ! half-saturation constant for NO2 uptake by NIR
      &   parm_knir_po4,   ! half-saturation constant for PO4 uptake by NIR
      &   parm_knir_fer,   ! half-saturation constant for Iron uptake by NIR
-     &   parm_knio_oxy,   ! half-saturation constant for O2 uptake by NIR
-     &   parm_knio_doc,   ! half-saturation constant for DOC uptake by NIR
-     &   parm_knio_docr,  ! half-saturation constant for DOCr uptake by NIR
-     &   parm_knio_no2,   ! half-saturation constant for NO2 uptake by NIR
-     &   parm_knio_po4,   ! half-saturation constant for PO4 uptake by NIR
-     &   parm_knio_fer,   ! half-saturation constant for Iron uptake by NIR
+     &   parm_knio_oxy,   ! half-saturation constant for O2 uptake by NIO
+     &   parm_knio_doc,   ! half-saturation constant for DOC uptake by NIO
+     &   parm_knio_docr,  ! half-saturation constant for DOCr uptake by NIO
+     &   parm_knio_no2,   ! half-saturation constant for NO2 uptake by NIO
+     &   parm_knio_po4,   ! half-saturation constant for PO4 uptake by NIO
+     &   parm_knio_fer,   ! half-saturation constant for Iron uptake by NIO
      &   parm_knos_oxy,   ! half-saturation constant for O2 uptake by NOS
      &   parm_knos_doc,   ! half-saturation constant for DOC uptake by NOS
      &   parm_knos_docr,  ! half-saturation constant for DOCr uptake by NOS
      &   parm_knos_n2o,   ! half-saturation constant for N2O uptake by NOS
      &   parm_knos_po4,   ! half-saturation constant for PO4 uptake by NOS
      &   parm_knos_fer,   ! half-saturation constant for Iron uptake by NOS
+     &   parm_knao_oxy,   ! half-saturation constant for O2 uptake by NAO
+     &   parm_knao_doc,   ! half-saturation constant for DOC uptake by NAO
+     &   parm_knao_docr,  ! half-saturation constant for DOCr uptake by NAO
+     &   parm_knao_no3,   ! half-saturation constant for NO3 uptake by NAO
+     &   parm_knao_po4,   ! half-saturation constant for P uptake by NAO
+     &   parm_knao_fer,   ! half-saturation constant for Iron uptake by NAO
      &   parm_che_bmin,   ! minimum C biomass beneath which losses do not occur (mmol C / m3)
      &   parm_het_bmin,   ! minimum C biomass beneath which losses do not occur (mmol C / m3)
      &   parm_szoo_mumax, ! maximum growth rate of small zooplankton
@@ -276,27 +306,33 @@
      &   parm_kzoo_aoa,   ! half-saturation constant for zoo grazing on AOA
      &   parm_kzoo_nob,   ! half-saturation constant for zoo grazing on NOB
      &   parm_kzoo_aox,   ! half-saturation constant for zoo grazing on AOX
+     &   parm_kszoo_aer,  ! half-saturation constant for szoo grazing on AER
      &   parm_kszoo_nar,  ! half-saturation constant for szoo grazing on NAR
-     &   parm_kszoo_nai,  ! half-saturation constant for szoo grazing on NAR
+     &   parm_kszoo_nai,  ! half-saturation constant for szoo grazing on NAI
      &   parm_kszoo_nir,  ! half-saturation constant for szoo grazing on NIR
-     &   parm_kszoo_nio,  ! half-saturation constant for szoo grazing on NIR
+     &   parm_kszoo_nio,  ! half-saturation constant for szoo grazing on NIO
      &   parm_kszoo_nos,  ! half-saturation constant for szoo grazing on NOS
+     &   parm_kszoo_nao,  ! half-saturation constant for szoo grazing on NAO
+     &   parm_aer_qmort,  ! quadratic mortality rate for AER
      &   parm_aoa_qmort,  ! quadratic mortality rate for AOA
      &   parm_nob_qmort,  ! quadratic mortality rate for NOB
      &   parm_aox_qmort,  ! quadratic mortality rate for AOX
      &   parm_nar_qmort,  ! quadratic mortality rate for NAR
-     &   parm_nai_qmort,  ! quadratic mortality rate for NAR
+     &   parm_nai_qmort,  ! quadratic mortality rate for NAI
      &   parm_nir_qmort,  ! quadratic mortality rate for NIR
-     &   parm_nio_qmort,  ! quadratic mortality rate for NIR
+     &   parm_nio_qmort,  ! quadratic mortality rate for NIO
      &   parm_nos_qmort,  ! quadratic mortality rate for NOS
+     &   parm_nao_qmort,  ! quadratic mortality rate for NAO
+     &   parm_aer_lmort,  ! linear mortality rate for AER
      &   parm_aoa_lmort,  ! linear mortality rate for AOA
      &   parm_nob_lmort,  ! linear mortality rate for NOB
      &   parm_aox_lmort,  ! linear mortality rate for AOX
      &   parm_nar_lmort,  ! linear mortality rate for NAR
-     &   parm_nai_lmort,  ! linear mortality rate for NAR
+     &   parm_nai_lmort,  ! linear mortality rate for NAI
      &   parm_nir_lmort,  ! linear mortality rate for NIR
-     &   parm_nio_lmort,  ! linear mortality rate for NIR
+     &   parm_nio_lmort,  ! linear mortality rate for NIO
      &   parm_nos_lmort,  ! linear mortality rate for NOS
+     &   parm_nao_lmort,  ! linear mortality rate for NAO
      &   parm_che_mortdoc,  ! fraction of mortality of chemoautotrophs routed to DOC
      &   parm_che_mortpoc,  ! fraction of mortality of chemoautotrophs routed to POC
      &   parm_het_mortdoc,  ! fraction of mortality of heterotrophs routed to DOC
@@ -337,22 +373,32 @@
      &   ,parm_n2o_nev_a1, parm_n2o_nev_a2, O2_crit_nev, N2O_cons_tau_nev, z_scale_nev
 # endif
 # ifdef EXPLICIT_MICROBES
-     &   , parm_muaoa, parm_munob, parm_muaox,
-     &   parm_munar, parm_munai, parm_munir, parm_munio, parm_munos,
+     &   , parm_muaer, parm_muaoa, parm_munob, parm_muaox,
+     &   parm_munar, parm_munai, parm_munir, parm_munio, parm_munos, parm_munao,
+     &   parm_Vmax_doc, parm_Vmax_no3, parm_Vmax_no2,
+     &   parm_yaer_doc, parm_yaer_oxy, 
      &   parm_yaoa_nh4, parm_yaoa_oxy, parm_ynob_no2, parm_ynob_oxy, parm_yaox_nh4, parm_yaox_no2,
-     &   parm_ynar_aer, parm_ynar_oxy, parm_ynar_ana, parm_ynar_no3,
-     &   parm_ynai_aer, parm_ynai_oxy, parm_ynai_ana, parm_ynai_no3,
-     &   parm_ynir_aer, parm_ynir_oxy, parm_ynir_ana, parm_ynir_no2,
-     &   parm_ynio_aer, parm_ynio_oxy, parm_ynio_ana, parm_ynio_no2,
-     &   parm_ynos_aer, parm_ynos_oxy, parm_ynos_ana, parm_ynos_n2o,
-     &   parm_paox_no3, parm_aoa_po2, parm_nob_po2,
-     &   parm_nar_po2, parm_nai_po2, parm_nir_po2, parm_nio_po2, parm_nos_po2, parm_nos_pn2o,
-     &   parm_aoa_CN, parm_nob_CN, parm_aox_CN,
-     &   parm_nar_CN, parm_nai_CN, parm_nir_CN, parm_nio_CN, parm_nos_CN,
-     &   parm_aoa_CP, parm_nob_CP, parm_aox_CP,
-     &   parm_nar_CP, parm_nai_CP, parm_nir_CP, parm_nio_CP, parm_nos_CP,
-     &   parm_aoa_CFe, parm_nob_CFe, parm_aox_CFe,
-     &   parm_nar_CFe, parm_nai_CFe, parm_nir_CFe, parm_nio_CFe, parm_nos_CFe,
+     &   parm_ynar_aer, parm_ynar_oxy, 
+     &   parm_ynai_aer, parm_ynai_oxy, 
+     &   parm_ynir_aer, parm_ynir_oxy, 
+     &   parm_ynio_aer, parm_ynio_oxy, 
+     &   parm_ynos_aer, parm_ynos_oxy, 
+     &   parm_ynao_aer, parm_ynao_oxy, 
+     &   parm_ynar_ana, parm_ynar_no3,
+     &   parm_ynai_ana, parm_ynai_no3,
+     &   parm_ynir_ana, parm_ynir_no2,
+     &   parm_ynio_ana, parm_ynio_no2,
+     &   parm_ynos_ana, parm_ynos_n2o,
+     &   parm_ynao_ana, parm_ynao_no3,
+     &   parm_paox_no3, parm_aer_po2, parm_aoa_po2, parm_nob_po2,
+     &   parm_nar_po2, parm_nai_po2, parm_nir_po2, parm_nio_po2, parm_nos_po2, parm_nao_po2, parm_nos_pn2o,
+     &   parm_aer_CN, parm_aoa_CN, parm_nob_CN, parm_aox_CN,
+     &   parm_nar_CN, parm_nai_CN, parm_nir_CN, parm_nio_CN, parm_nos_CN, parm_nao_CN,
+     &   parm_aer_CP, parm_aoa_CP, parm_nob_CP, parm_aox_CP,
+     &   parm_nar_CP, parm_nai_CP, parm_nir_CP, parm_nio_CP, parm_nos_CP, parm_nao_CP,
+     &   parm_aer_CFe, parm_aoa_CFe, parm_nob_CFe, parm_aox_CFe,
+     &   parm_nar_CFe, parm_nai_CFe, parm_nir_CFe, parm_nio_CFe, parm_nos_CFe, parm_nao_CFe,
+     &   parm_kaer_oxy, parm_kaer_doc, parm_kaer_docr, parm_kaer_po4, parm_kaer_fer,
      &   parm_kaoa_oxy, parm_kaoa_nh4, parm_kaoa_po4, parm_kaoa_fer, parm_kaoa_par,
      &   parm_knob_oxy, parm_knob_no2, parm_knob_po4, parm_knob_fer,
      &   parm_kaox_nh4, parm_kaox_no2, parm_kaox_po4, parm_kaox_fer,
@@ -366,15 +412,17 @@
      &   parm_knio_po4, parm_knio_fer,
      &   parm_knos_oxy, parm_knos_doc, parm_knos_docr, parm_knos_n2o,
      &   parm_knos_po4, parm_knos_fer,
+     &   parm_knao_oxy, parm_knao_doc, parm_knao_docr, parm_knao_no3,
+     &   parm_knao_po4, parm_knao_fer,
      &   parm_che_bmin, parm_het_bmin,
      &   parm_szoo_mumax, parm_szoo_lmort, parm_szoo_qmort,
      &   parm_szoo_labil, parm_szoo_fdetr, parm_szoo_losst, parm_szoo_bmin,
-     &   parm_kzoo_aoa, parm_kzoo_nob, parm_kzoo_aox,
-     &   parm_kszoo_nar, parm_kszoo_nai, parm_kszoo_nir, parm_kszoo_nio, parm_kszoo_nos,
-     &   parm_aoa_qmort, parm_nob_qmort, parm_aox_qmort,
-     &   parm_nar_qmort, parm_nai_qmort, parm_nir_qmort, parm_nio_qmort, parm_nos_qmort,
-     &   parm_aoa_lmort, parm_nob_lmort, parm_aox_lmort,
-     &   parm_nar_lmort, parm_nai_lmort, parm_nir_lmort, parm_nio_lmort, parm_nos_lmort,
+     &   parm_kzoo_aoa, parm_kzoo_nob, parm_kzoo_aox, parm_kszoo_aer,
+     &   parm_kszoo_nar, parm_kszoo_nai, parm_kszoo_nir, parm_kszoo_nio, parm_kszoo_nos, parm_kszoo_nao,
+     &   parm_aoa_qmort, parm_nob_qmort, parm_aox_qmort, parm_aer_qmort, 
+     &   parm_nar_qmort, parm_nai_qmort, parm_nir_qmort, parm_nio_qmort, parm_nos_qmort, parm_nao_qmort,
+     &   parm_aoa_lmort, parm_nob_lmort, parm_aox_lmort, parm_aer_lmort,
+     &   parm_nar_lmort, parm_nai_lmort, parm_nir_lmort, parm_nio_lmort, parm_nos_lmort, parm_nao_lmort,
      &   parm_che_mortdoc, parm_che_mortpoc,
      &   parm_het_mortdoc, parm_het_mortpoc
 # endif

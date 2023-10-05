@@ -344,11 +344,11 @@ c     &      NSUB_X=2, NSUB_E=8  ! <-- iswake 768x192
 # ifdef EXPLICIT_MICROBES
      &       , iAOA=LAST_I+1, iNOB=LAST_I+2, iAOX=LAST_I+3
      &       , iNAR=LAST_I+4, iNAI=LAST_I+5, iNIR=LAST_I+6
-     &       , iNIO=LAST_I+7, iNOS=LAST_I+8
-     &       , iDOCR=LAST_I+9, iSZOOC=LAST_I+10
-     &       , ntrc_bio_mic=10
+     &       , iNIO=LAST_I+7, iNOS=LAST_I+8, iNAO=LAST_I+9
+     &       , iDOCR=LAST_I+10,iSZOOC=LAST_I+11,iAER=LAST_I+12
+     &       , ntrc_bio_mic=12
 #  undef LAST_I
-#  define LAST_I iSZOOC
+#  define LAST_I iAER
 # else
      &       , ntrc_bio_mic=0
 # endif

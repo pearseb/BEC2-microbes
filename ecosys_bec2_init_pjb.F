@@ -64,18 +64,24 @@
      &    parm_muaoa,
      &    parm_munob,
      &    parm_muaox,
+     &    parm_muaer,
      &    parm_munar,
      &    parm_munai,
      &    parm_munir,
      &    parm_munio,
      &    parm_munos,
+     &    parm_munao,
+     &    parm_Vmax_doc,
+     &    parm_Vmax_no3,
+     &    parm_Vmax_no2,
      &    parm_yaoa_nh4,
      &    parm_yaoa_oxy,
      &    parm_ynob_no2,
      &    parm_ynob_oxy,
      &    parm_yaox_nh4,
      &    parm_yaox_no2,
-     &    parm_paox_no3,
+     &    parm_yaer_doc,
+     &    parm_yaer_oxy,
      &    parm_ynar_aer,
      &    parm_ynar_oxy,
      &    parm_ynar_ana,
@@ -96,38 +102,51 @@
      &    parm_ynos_oxy,
      &    parm_ynos_ana,
      &    parm_ynos_n2o,
+     &    parm_ynao_aer,
+     &    parm_ynao_oxy,
+     &    parm_ynao_ana,
+     &    parm_ynao_no3,
+     &    parm_paox_no3,
      &    parm_aoa_po2,
      &    parm_nob_po2,
+     &    parm_aer_po2,
      &    parm_nar_po2,
      &    parm_nai_po2,
      &    parm_nir_po2,
      &    parm_nio_po2,
      &    parm_nos_po2,
+     &    parm_nao_po2,
      &    parm_nos_pn2o,
      &    parm_aoa_CN,
      &    parm_nob_CN,
      &    parm_aox_CN,
+     &    parm_aer_CN,
      &    parm_nar_CN,
      &    parm_nai_CN,
      &    parm_nir_CN,
      &    parm_nio_CN,
      &    parm_nos_CN,
+     &    parm_nao_CN,
      &    parm_aoa_CP,
      &    parm_nob_CP,
      &    parm_aox_CP,
+     &    parm_aer_CP,
      &    parm_nar_CP,
      &    parm_nai_CP,
      &    parm_nir_CP,
      &    parm_nio_CP,
      &    parm_nos_CP,
+     &    parm_nao_CP,
      &    parm_aoa_CFe,
      &    parm_nob_CFe,
      &    parm_aox_CFe,
+     &    parm_aer_CFe,
      &    parm_nar_CFe,
      &    parm_nai_CFe,
      &    parm_nir_CFe,
      &    parm_nio_CFe,
      &    parm_nos_CFe,
+     &    parm_nao_CFe,
      &    parm_kaoa_oxy,
      &    parm_kaoa_nh4,
      &    parm_kaoa_po4,
@@ -141,6 +160,11 @@
      &    parm_kaox_no2,
      &    parm_kaox_po4,
      &    parm_kaox_fer,
+     &    parm_kaer_oxy,
+     &    parm_kaer_doc,
+     &    parm_kaer_docr,
+     &    parm_kaer_po4,
+     &    parm_kaer_fer,
      &    parm_knar_oxy,
      &    parm_knar_doc,
      &    parm_knar_docr,
@@ -171,6 +195,12 @@
      &    parm_knos_n2o,
      &    parm_knos_po4,
      &    parm_knos_fer,
+     &    parm_knao_oxy,
+     &    parm_knao_doc,
+     &    parm_knao_docr,
+     &    parm_knao_no3,
+     &    parm_knao_po4,
+     &    parm_knao_fer,
      &    parm_che_bmin,
      &    parm_het_bmin,
      &    parm_szoo_mumax,
@@ -183,27 +213,33 @@
      &    parm_kzoo_aoa,
      &    parm_kzoo_nob,
      &    parm_kzoo_aox,
+     &    parm_kszoo_aer,
      &    parm_kszoo_nar,
      &    parm_kszoo_nai,
      &    parm_kszoo_nir,
      &    parm_kszoo_nio,
      &    parm_kszoo_nos,
+     &    parm_kszoo_nao,
      &    parm_aoa_qmort,
      &    parm_nob_qmort,
      &    parm_aox_qmort,
+     &    parm_aer_qmort,
      &    parm_nar_qmort,
      &    parm_nai_qmort,
      &    parm_nir_qmort,
      &    parm_nio_qmort,
      &    parm_nos_qmort,
+     &    parm_nao_qmort,
      &    parm_aoa_lmort,
      &    parm_nob_lmort,
      &    parm_aox_lmort,
+     &    parm_aer_lmort,
      &    parm_nar_lmort,
      &    parm_nai_lmort,
      &    parm_nir_lmort,
      &    parm_nio_lmort,
      &    parm_nos_lmort,
+     &    parm_nao_lmort,
      &    parm_che_mortdoc,
      &    parm_che_mortpoc,
      &    parm_het_mortdoc,
@@ -292,70 +328,89 @@
       parm_muaoa = 1.0 * dps
       parm_munob = 2.0 * dps
       parm_muaox = 0.5 * dps
+      parm_muaer = 1.0 * dps
       parm_munar = 1.0 * dps
       parm_munai = 1.0 * dps
       parm_munir = 1.0 * dps
       parm_munio = 1.0 * dps
       parm_munos = 1.0 * dps
+      parm_munao = 1.0 * dps
+      parm_Vmax_doc = 6.7 * dps
+      parm_Vmax_no3 = 19.2 * dps
+      parm_Vmax_no2 = 19.2 * dps
       parm_yaoa_nh4 = 11.0
       parm_yaoa_oxy = 15.5
       parm_ynob_no2 = 27.8
       parm_ynob_oxy = 12.9
       parm_yaox_nh4 = 14.0
       parm_yaox_no2 = 16.2
+      parm_yaer_doc = 6.7  ! 6.7 (default)
+      parm_yaer_oxy = 6.3  ! 6.3 (default)
+      parm_ynar_aer = 6.7  ! 6.7 (default)
+      parm_ynar_oxy = 6.3  ! 6.3 (default)
+      parm_ynir_aer = 6.7  ! 6.7 (default)
+      parm_ynir_oxy = 6.3  ! 6.3 (default)
+      parm_ynos_aer = 6.7  ! 6.7 (default)
+      parm_ynos_oxy = 6.3  ! 6.3 (default)
+      parm_ynai_aer = 6.7  ! 6.7 (default)
+      parm_ynai_oxy = 6.3  ! 6.3 (default)
+      parm_ynio_aer = 6.7  ! 6.7 (default)
+      parm_ynio_oxy = 6.3  ! 6.3 (default)
+      parm_ynao_aer = 6.7  ! 6.7 (default)
+      parm_ynao_oxy = 6.3  ! 6.3 (default)
+      parm_ynar_ana = 7.4  ! 7.4 when y equivalent; 9.7  when y(NAR) < y(NIR) < y(NOS)
+      parm_ynar_no3 = 14.2 !14.2 when y equivalent; 19.3 when y(NAR) < y(NIR) < y(NOS)
+      parm_ynir_ana = 7.4  ! 7.4 when y equivalent; 7.3  when y(NAR) < y(NIR) < y(NOS)
+      parm_ynir_no2 = 14.2 !14.2 when y equivalent; 13.9 when y(NAR) < y(NIR) < y(NOS)
+      parm_ynos_ana = 7.4  ! 7.4 when y equivalent; 4.9  when y(NAR) < y(NIR) < y(NOS); 6.7 when NOS yield == aerobic Het yield
+      parm_ynos_n2o = 28.4 !28.4 when y equivalent; 17.4 when y(NAR) < y(NIR) < y(NOS); 25.3 when NOS yield == aerobic Het yield
+      parm_ynai_ana = 8.2  ! 8.2 when y equivalent; 9.9  when y(NAR) < y(NIR) < y(NOS)
+      parm_ynai_no3 = 8.0  ! 8.0 when y equivalent; 9.8  when y(NAR) < y(NIR) < y(NOS)
+      parm_ynio_ana = 8.2  ! 8.2 when y equivalent; 7.4  when y(NAR) < y(NIR) < y(NOS)
+      parm_ynio_no2 = 10.6 !10.6 when y equivalent; 9.5  when y(NAR) < y(NIR) < y(NOS)
+      parm_ynao_ana = 9.1  ! 9.1 when y equivalent; 10.6 when y(NAR) < y(NIR) < y(NOS)
+      parm_ynao_no3 = 7.2  ! 7.2 when y equivalent; 8.4  when y(NAR) < y(NIR) < y(NOS)
       parm_paox_no3 = 2.0
-      parm_ynar_aer = 5.9  ! 5.9 (default)
-      parm_ynar_oxy = 5.4  ! 5.4 (default)
-      parm_ynar_ana = 8.6  ! 6.5 (default)  ; 8.6 when y(NAR) < y(NIR) < y(NOS)
-      parm_ynar_no3 = 16.8  ! 12.3 (default); 16.8 when y(NAR) < y(NIR) < y(NOS)
-      parm_ynir_aer = 5.9  ! 5.9 (default)
-      parm_ynir_oxy = 5.4  ! 5.4 (default)
-      parm_ynir_ana = 6.5  ! 6.5 (default)  ; 6.5 when y(NAR) < y(NIR) < y(NOS)
-      parm_ynir_no2 = 12.1  ! 12.3 (default); 12.1 when y(NAR) < y(NIR) < y(NOS)
-      parm_ynos_aer = 5.9  ! 5.9 (default)
-      parm_ynos_oxy = 5.4  ! 5.4 (default)
-      parm_ynos_ana = 4.3  ! 6.5 (default)  ; 4.3 when y(NAR) < y(NIR) < y(NOS)
-      parm_ynos_n2o = 14.8  ! 24.6 (default); 14.8 when y(NAR) < y(NIR) < y(NOS)
-      parm_ynai_aer = 5.9  ! 5.9 (default)
-      parm_ynai_oxy = 5.4  ! 5.4 (default)
-      parm_ynai_ana = 9.3  ! 6.5 (default)  ; 9.3 when y(NAR) < y(NIR) < y(NOS)
-      parm_ynai_no3 = 9.1  ! 12.3 (default); 9.1 when y(NAR) < y(NIR) < y(NOS)
-      parm_ynio_aer = 5.9  ! 5.9 (default)
-      parm_ynio_oxy = 5.4  ! 5.4 (default)
-      parm_ynio_ana = 8.2  ! 6.5 (default)  ; 8.2 when y(NAR) < y(NIR) < y(NOS)
-      parm_ynio_no2 = 10.6  ! 12.3 (default); 10.6 when y(NAR) < y(NIR) < y(NOS)
-      parm_aoa_po2 = 293.0 * dps
-      parm_nob_po2 = 71.0 * dps
+      parm_aoa_po2 = 275.0 * dps
+      parm_nob_po2 = 67.0 * dps
+      parm_aer_po2 = 450.0 * dps  ! 450.0 (default)
       parm_nar_po2 = 450.0 * dps  ! 450.0 (default)
       parm_nai_po2 = 450.0 * dps  ! 450.0 (default)
       parm_nir_po2 = 450.0 * dps  ! 450.0 (default)
       parm_nio_po2 = 450.0 * dps  ! 450.0 (default)
       parm_nos_po2 = 450.0 * dps  ! 450.0 (default)
+      parm_nao_po2 = 450.0 * dps  ! 450.0 (default)
       parm_nos_pn2o = 452.0 * dps
-      parm_aoa_CN = 4.0    ! Important ! C:N(chemos) <= C:N(zoo) = 7.3
-      parm_nob_CN = 4.0
+      parm_aoa_CN = 5.0    ! Important ! C:N(chemos) <= C:N(zoo) = 7.3
+      parm_nob_CN = 5.0
       parm_aox_CN = 5.0
-      parm_nar_CN = 4.5      ! Important ! C:N(chemos) <= C:N(zoo) 
-      parm_nai_CN = 4.5      ! Important ! C:N(chemos) <= C:N(zoo) 
-      parm_nir_CN = 4.5
-      parm_nio_CN = 4.5
-      parm_nos_CN = 4.5
+      parm_aer_CN = 5.0      ! Important ! C:N(chemos) <= C:N(zoo) 
+      parm_nar_CN = 5.0      ! Important ! C:N(chemos) <= C:N(zoo) 
+      parm_nai_CN = 5.0      ! Important ! C:N(chemos) <= C:N(zoo) 
+      parm_nir_CN = 5.0
+      parm_nio_CN = 5.0
+      parm_nos_CN = 5.0
+      parm_nao_CN = 5.0      ! Important ! C:N(chemos) <= C:N(zoo) 
       parm_aoa_CP = 55.0   ! Shafiee et al. 2019, Meador et al. 2020
       parm_nob_CP = 55.0   ! Important ! C:P(chemos) <= C:P(zoo) = 117 
       parm_aox_CP = 55.0
-      parm_nar_CP = 35.0   ! Important ! C:P(chemos) <= C:P(zoo)
-      parm_nai_CP = 35.0   ! Important ! C:P(chemos) <= C:P(zoo)
-      parm_nir_CP = 35.0   ! White et al. 2019; Zimmerman et al. 2014
-      parm_nio_CP = 35.0   ! White et al. 2019; Zimmerman et al. 2014
-      parm_nos_CP = 35.0
+      parm_aer_CP = 55.0   ! Important ! C:P(chemos) <= C:P(zoo)
+      parm_nar_CP = 55.0   ! Important ! C:P(chemos) <= C:P(zoo)
+      parm_nai_CP = 55.0   ! Important ! C:P(chemos) <= C:P(zoo)
+      parm_nir_CP = 55.0   ! White et al. 2019; Zimmerman et al. 2014
+      parm_nio_CP = 55.0   ! White et al. 2019; Zimmerman et al. 2014
+      parm_nos_CP = 55.0
+      parm_nao_CP = 55.0   ! Important ! C:P(chemos) <= C:P(zoo)
       parm_aoa_CFe = 1.0/20.0e-6  ! Shafiee et al. 2019, Meador et al. 2020
       parm_nob_CFe = 1.0/20.0e-6  ! Important ! C:Fe(chemos) <= C:Fe(zoo) = 1/3.0e-6 
       parm_aox_CFe = 1.0/20.0e-6
+      parm_aer_CFe = 1.0/20.0e-6  ! Important ! C:Fe(chemos) <= C:Fe(zoo)
       parm_nar_CFe = 1.0/20.0e-6  ! Important ! C:Fe(chemos) <= C:Fe(zoo)
       parm_nai_CFe = 1.0/20.0e-6  ! Important ! C:Fe(chemos) <= C:Fe(zoo)
       parm_nir_CFe = 1.0/20.0e-6  ! Fourquez et al. 2020 says 1/3.6e-6
       parm_nio_CFe = 1.0/20.0e-6  ! Fourquez et al. 2020 says 1/3.6e-6
       parm_nos_CFe = 1.0/20.0e-6
+      parm_nao_CFe = 1.0/20.0e-6  ! Important ! C:Fe(chemos) <= C:Fe(zoo)
       parm_kaoa_oxy = 0.3  ! 333 nM at oxic-anoxic interface (Bristow et al. 2016)
       parm_kaoa_nh4 = 0.1
       parm_kaoa_po4 = 0.0
@@ -369,6 +424,11 @@
       parm_kaox_no2 = 0.45
       parm_kaox_po4 = 0.0
       parm_kaox_fer = 0.0
+      parm_kaer_oxy = 0.05  ! 10 to 200 nM at extremely low oxygen concentrations (Tiano et al., 2014)  
+      parm_kaer_doc = 10.0
+      parm_kaer_docr = 1000.0
+      parm_kaer_po4 = 0.0
+      parm_kaer_fer = 0.0
       parm_knar_oxy = 0.05  ! 10 to 200 nM at extremely low oxygen concentrations (Tiano et al., 2014)  
       parm_knar_doc = 10.0
       parm_knar_docr = 1000.0
@@ -384,13 +444,13 @@
       parm_knir_oxy = 0.05  ! 10 to 200 nM at extremely low oxygen concentrations (Tiano et al., 2014)  
       parm_knir_doc = 10.0
       parm_knir_docr = 1000.0
-      parm_knir_no2 = 10.0
+      parm_knir_no2 = 15.0
       parm_knir_po4 = 0.0
       parm_knir_fer = 0.0
       parm_knio_oxy = 0.05  ! 10 to 200 nM at extremely low oxygen concentrations (Tiano et al., 2014)  
       parm_knio_doc = 10.0
       parm_knio_docr = 1000.0
-      parm_knio_no2 = 10.0
+      parm_knio_no2 = 15.0
       parm_knio_po4 = 0.0
       parm_knio_fer = 0.0
       parm_knos_oxy = 0.05  ! 10 to 200 nM at extremely low oxygen concentrations (Tiano et al., 2014)  
@@ -399,10 +459,16 @@
       parm_knos_n2o = 0.3  ! based on (Sun et al., 2021) in ODZ k = 0.3 µM N2O
       parm_knos_po4 = 0.0
       parm_knos_fer = 0.0
+      parm_knao_oxy = 0.05  ! 10 to 200 nM at extremely low oxygen concentrations (Tiano et al., 2014)  
+      parm_knao_doc = 10.0
+      parm_knao_docr = 1000.0
+      parm_knao_no3 = 15.0
+      parm_knao_po4 = 0.0
+      parm_knao_fer = 0.0
       parm_che_bmin = 1e-4   ! Equivalent to 30-100 cells per mL for cell C content of 40-10 fg C
       parm_het_bmin = 1e-4   ! Equivalent to 80-240 cells per mL for cell C content of 15-5 fg C
-      parm_szoo_mumax = 3.3 * dps
-      parm_szoo_lmort = 0.05 * dps
+      parm_szoo_mumax = 4.5 * dps
+      parm_szoo_lmort = 0.0 * dps
       parm_szoo_qmort = 0.5 * dps
       parm_szoo_labil = 0.85
       parm_szoo_fdetr = 0.25
@@ -411,27 +477,33 @@
       parm_kzoo_aoa = 2.4
       parm_kzoo_nob = 2.4
       parm_kzoo_aox = 2.4
+      parm_kszoo_aer = 6.2
       parm_kszoo_nar = 6.2
       parm_kszoo_nai = 6.2
       parm_kszoo_nir = 6.2
       parm_kszoo_nio = 6.2
       parm_kszoo_nos = 6.2
-      parm_aoa_qmort = 0.1 * dps
-      parm_nob_qmort = 0.1 * dps
-      parm_aox_qmort = 0.1 * dps
-      parm_nar_qmort = 0.1 * dps
-      parm_nai_qmort = 0.1 * dps
-      parm_nir_qmort = 0.1 * dps
-      parm_nio_qmort = 0.1 * dps
-      parm_nos_qmort = 0.1 * dps
-      parm_aoa_lmort = 0.025 * parm_muaoa  ! average of % heterotrophic cells infected by viruses
-      parm_nob_lmort = 0.025 * parm_munob  ! (Proctor & Fuhrman 1990 Nature)
-      parm_aox_lmort = 0.025 * parm_muaox
-      parm_nar_lmort = 0.025 * parm_munar
-      parm_nai_lmort = 0.025 * parm_munai
-      parm_nir_lmort = 0.025 * parm_munir
-      parm_nio_lmort = 0.025 * parm_munio
-      parm_nos_lmort = 0.025 * parm_munos
+      parm_kszoo_nao = 6.2
+      parm_aoa_qmort = 0.2 * dps
+      parm_nob_qmort = 0.2 * dps
+      parm_aox_qmort = 0.2 * dps
+      parm_aer_qmort = 0.2 * dps
+      parm_nar_qmort = 0.2 * dps
+      parm_nai_qmort = 0.2 * dps
+      parm_nir_qmort = 0.2 * dps
+      parm_nio_qmort = 0.2 * dps
+      parm_nos_qmort = 0.2 * dps
+      parm_nao_qmort = 0.2 * dps
+      parm_aoa_lmort = 0.05 * parm_muaoa  ! average of % heterotrophic cells infected by viruses
+      parm_nob_lmort = 0.05 * parm_munob  ! (Proctor & Fuhrman 1990 Nature)
+      parm_aox_lmort = 0.05 * parm_muaox
+      parm_aer_lmort = 0.05 * parm_muaer
+      parm_nar_lmort = 0.05 * parm_munar
+      parm_nai_lmort = 0.05 * parm_munai
+      parm_nir_lmort = 0.05 * parm_munir
+      parm_nio_lmort = 0.05 * parm_munio
+      parm_nos_lmort = 0.05 * parm_munos
+      parm_nao_lmort = 0.05 * parm_munao
       parm_che_mortdoc = 0.5
       parm_che_mortpoc = 0.3   ! Guo et al. 2023 GRL
       parm_het_mortdoc = 0.5

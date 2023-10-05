@@ -979,22 +979,26 @@
      &    AOA_loc,         ! local copy of model AOA
      &    NOB_loc,         ! local copy of model NOB
      &    AOX_loc,         ! local copy of model AOX
+     &    AER_loc,         ! local copy of model AER
      &    NAR_loc,         ! local copy of model NAR
      &    NAI_loc,         ! local copy of model NAI
      &    NIR_loc,         ! local copy of model NIR
      &    NIO_loc,         ! local copy of model NIO
      &    NOS_loc,         ! local copy of model NOS
+     &    NAO_loc,         ! local copy of model NAO
      &    DOCr_loc,        ! local copy of model DOCr
      &    szooC_loc,       ! local copy of model small zooC
      &    DOC_tot,         ! total DOC
      &    AOAprime,        ! AOA biomass minus minimum biomass threshold 
      &    NOBprime,        ! NOB biomass minus minimum biomass threshold
      &    AOXprime,        ! AOX biomass minus minimum biomass threshold
+     &    AERprime,        ! AER biomass minus minimum biomass threshold 
      &    NARprime,        ! NAR biomass minus minimum biomass threshold 
      &    NAIprime,        ! NAI biomass minus minimum biomass threshold 
      &    NIRprime,        ! NIR biomass minus minimum biomass threshold
      &    NIOprime,        ! NIO biomass minus minimum biomass threshold
      &    NOSprime,        ! NOS biomass minus minimum biomass threshold
+     &    NAOprime,        ! NAO biomass minus minimum biomass threshold 
      &    SZOOprime,       ! SZOO biomass minus minimum biomass threshold
      &    zuptoxy,         ! uptake rate of oxygen by microbe
      &    zuptnh4,         ! uptake rate of ammonium by microbe
@@ -1002,6 +1006,8 @@
      &    zuptdoc,         ! uptake rate of dissolved organic matter by microbe
      &    zuptno3,         ! uptake rate of nitrate by microbe
      &    zuptn2o,         ! uptake rate of nitrous oxide by microbe
+     &    zlimaer_doc,     ! limitation of AER growth by DOC
+     &    zlimaer_docr,    ! limitation of AER growth by DOCr
      &    zlimnar_doc,     ! limitation of NAR growth by DOC
      &    zlimnar_docr,    ! limitation of NAR growth by DOCr
      &    zlimnai_doc,     ! limitation of NAI growth by DOC
@@ -1012,9 +1018,13 @@
      &    zlimnio_docr,    ! limitation of NIO growth by DOCr
      &    zlimnos_doc,     ! limitation of NOS growth by DOC
      &    zlimnos_docr,    ! limitation of NOS growth by DOCr
+     &    zlimnao_doc,     ! limitation of NAO growth by DOC
+     &    zlimnao_docr,    ! limitation of NAO growth by DOCr
      &    zmuaoa,          ! realised growth rate of AOA
      &    zmunob,          ! realised growth rate of NOB
+     &    zmunob_ana,      ! realised growth rate of NOB (anaerobic)
      &    zmuaox,          ! realised growth rate of AOX
+     &    zmuaer,          ! realised growth rate of AER
      &    zmunar_aer,      ! realised aerobic growth rate of NAR
      &    zmunar_ana,      ! realised anaerobic growth rate of NAR
      &    zmunar_fac,      ! facultative growth? (1 == yes)
@@ -1035,14 +1045,21 @@
      &    zmunos_ana,      ! realised anaerobic growth rate of NOS
      &    zmunos_fac,      ! facultative growth? (1 == yes)
      &    zmunos,          ! realised growth rate of NOS
+     &    zmunao_aer,      ! realised aerobic growth rate of NAO
+     &    zmunao_ana,      ! realised anaerobic growth rate of NAO
+     &    zmunao_fac,      ! facultative growth? (1 == yes)
+     &    zmunao,          ! realised growth rate of NAO
      &    zbioaoa,         ! biomass accumulation rate of AOA
      &    zbionob,         ! biomass accumulation rate of NOB
+     &    zbionob_ana,     ! biomass accumulation rate of NOB (anaerobic)
      &    zbioaox,         ! biomass accumulation rate of AOX
+     &    zbioaer,         ! biomass accumulation rate of AER
      &    zbionar,         ! biomass accumulation rate of NAR
      &    zbionai,         ! biomass accumulation rate of NAI
      &    zbionir,         ! biomass accumulation rate of NIR
      &    zbionio,         ! biomass accumulation rate of NIO
      &    zbionos,         ! biomass accumulation rate of NOS
+     &    zbionao,         ! biomass accumulation rate of NAO
      &    zmufnob,         ! f-value for NOB growth (1 = limited by NO2, 0 = limited by O2)
      &    yaoa_n2o,        ! N2O production yield during ammonia oxidation
      &    zmortaoa,        ! mortality loss rate of AOA
@@ -1051,6 +1068,7 @@
      &    zmortaoa_poc,    ! mortality loss rate of AOA routed to POC
      &    zmortaoa_don,    ! mortality loss rate of AOA routed to DON
      &    zmortaoa_dop,    ! mortality loss rate of AOA routed to DOP
+     &    zmortnob2,       ! temporary mortality loss rate of NOB (remove later!)
      &    zmortnob,        ! mortality loss rate of NOB
      &    zmortnob_doc,    ! mortality loss rate of NOB routed to DOC
      &    zmortnob_dic,    ! mortality loss rate of NOB routed to DIC
@@ -1063,6 +1081,12 @@
      &    zmortaox_poc,    ! mortality loss rate of AOX routed to POC
      &    zmortaox_don,    ! mortality loss rate of AOX routed to DON
      &    zmortaox_dop,    ! mortality loss rate of AOX routed to DOP
+     &    zmortaer,        ! mortality loss rate of AER
+     &    zmortaer_doc,    ! mortality loss rate of AER routed to DOC
+     &    zmortaer_dic,    ! mortality loss rate of AER routed to DIC
+     &    zmortaer_poc,    ! mortality loss rate of AER routed to POC
+     &    zmortaer_don,    ! mortality loss rate of AER routed to DON
+     &    zmortaer_dop,    ! mortality loss rate of AER routed to DOP
      &    zmortnar,        ! mortality loss rate of NAR
      &    zmortnar_doc,    ! mortality loss rate of NAR routed to DOC
      &    zmortnar_dic,    ! mortality loss rate of NAR routed to DIC
@@ -1093,6 +1117,12 @@
      &    zmortnos_poc,    ! mortality loss rate of NOS routed to POC
      &    zmortnos_don,    ! mortality loss rate of NOS routed to DON
      &    zmortnos_dop,    ! mortality loss rate of NOS routed to DOP
+     &    zmortnao,        ! mortality loss rate of NAO
+     &    zmortnao_doc,    ! mortality loss rate of NAO routed to DOC
+     &    zmortnao_dic,    ! mortality loss rate of NAO routed to DIC
+     &    zmortnao_poc,    ! mortality loss rate of NAO routed to POC
+     &    zmortnao_don,    ! mortality loss rate of NAO routed to DON
+     &    zmortnao_dop,    ! mortality loss rate of NAO routed to DOP
      &    zzooaoa,         ! grazing mortality loss rate of AOA
      &    zzooaoa_zoo,     ! zzooaoa routed to zoo (mmol C/m^3/sec)
      &    zzooaoa_poc,     ! zzooaoa routed to poc (mmol C/m^3/sec)
@@ -1117,6 +1147,14 @@
      &    zzooaox_excN,    ! zzooaox N routed to zoo but excreted (mmol N/m^3/sec)
      &    zzooaox_excP,    ! zzooaox P routed to zoo but excreted (mmol P/m^3/sec)
      &    zzooaox_excFe,   ! zzooaox Fe routed to zoo but becomes dFe (mmol Fe/m^3/sec)
+     &    zszooaer,         ! grazing mortality loss rate of AER
+     &    zszooaer_szoo,     ! zszooaer routed to zoo (mmol C/m^3/sec)
+     &    zszooaer_poc,     ! zszooaer routed to poc (mmol C/m^3/sec)
+     &    zszooaer_doc,     ! zszooaer routed to doc (mmol C/m^3/sec)
+     &    zszooaer_dic,     ! zszooaer routed to dic (mmol C/m^3/sec)
+     &    zszooaer_excN,    ! zszooaer N routed to zoo but excreted (mmol N/m^3/sec)
+     &    zszooaer_excP,    ! zszooaer P routed to zoo but excreted (mmol P/m^3/sec)
+     &    zszooaer_excFe,   ! zszooaer Fe routed to zoo but becomes dFe (mmol Fe/m^3/sec)
      &    zszoonar,         ! grazing mortality loss rate of NAR
      &    zszoonar_szoo,     ! zszoonar routed to zoo (mmol C/m^3/sec)
      &    zszoonar_poc,     ! zszoonar routed to poc (mmol C/m^3/sec)
@@ -1157,6 +1195,14 @@
      &    zszoonos_excN,    ! zszoonos N routed to zoo but excreted (mmol N/m^3/sec)
      &    zszoonos_excP,    ! zszoonos P routed to zoo but excreted (mmol P/m^3/sec)
      &    zszoonos_excFe,   ! zszoonos Fe routed to zoo but becomes dFe (mmol Fe/m^3/sec)
+     &    zszoonao,         ! grazing mortality loss rate of NAO
+     &    zszoonao_szoo,     ! zszoonao routed to zoo (mmol C/m^3/sec)
+     &    zszoonao_poc,     ! zszoonao routed to poc (mmol C/m^3/sec)
+     &    zszoonao_doc,     ! zszoonao routed to doc (mmol C/m^3/sec)
+     &    zszoonao_dic,     ! zszoonao routed to dic (mmol C/m^3/sec)
+     &    zszoonao_excN,    ! zszoonao N routed to zoo but excreted (mmol N/m^3/sec)
+     &    zszoonao_excP,    ! zszoonao P routed to zoo but excreted (mmol P/m^3/sec)
+     &    zszoonao_excFe,   ! zszoonao Fe routed to zoo but becomes dFe (mmol Fe/m^3/sec)
      &    qDON,            ! DON to DOC ratio
      &    qDOP,            ! DOP to DOC ratio
      &    qDONr,           ! DONr to DOCr ratio
@@ -1173,6 +1219,8 @@
      &    szoo_loss_poc,   ! szoo_loss routed to poc (mmol C/m^3/sec)
      &    DENITRIF4,       ! NO3-->N2O consumed during denitrification
      &    DENITRIF5,       ! NO2-->N2 consumed during denitrification
+     &    DENITRIF6,       ! NO3-->N2 consumed during denitrification
+     &    nitrox_ana,      ! anaerobic nitrite oxidation (NO2 -> NO3) (mmolN/m^3/sec)
 # endif /* EXPLICIT_MICROBES */
      &    QA_dust_def,     ! incoming deficit in the QA(dust) POC flux
      &    NITRIF,          ! nitrification (NH4 -> NO3) (mmol N/m^3/sec)
@@ -1350,11 +1398,13 @@
        AOA_loc  = MAX(c0, TRACER(istr:iend,j,k,aoa_ind_t))
        NOB_loc  = MAX(c0, TRACER(istr:iend,j,k,nob_ind_t))
        AOX_loc  = MAX(c0, TRACER(istr:iend,j,k,aox_ind_t))
+       AER_loc  = MAX(c0, TRACER(istr:iend,j,k,aer_ind_t))
        NAR_loc  = MAX(c0, TRACER(istr:iend,j,k,nar_ind_t))
        NAI_loc  = MAX(c0, TRACER(istr:iend,j,k,nai_ind_t))
        NIR_loc  = MAX(c0, TRACER(istr:iend,j,k,nir_ind_t))
        NIO_loc  = MAX(c0, TRACER(istr:iend,j,k,nio_ind_t))
        NOS_loc  = MAX(c0, TRACER(istr:iend,j,k,nos_ind_t))
+       NAO_loc  = MAX(c0, TRACER(istr:iend,j,k,nao_ind_t))
        DOCr_loc  = MAX(c0, TRACER(istr:iend,j,k,docr_ind_t))
        szooC_loc  = MAX(c0, TRACER(istr:iend,j,k,szooc_ind_t))
 # endif /* EXPLICIT_MICROBES */
@@ -2229,27 +2279,33 @@
           ! Nano zooplankton eats bacterial heterotrophs ! 
           !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+          AERprime = MAX(AER_loc - parm_het_bmin, c0)
           NARprime = MAX(NAR_loc - parm_het_bmin, c0)
           NAIprime = MAX(NAI_loc - parm_het_bmin, c0)
           NIRprime = MAX(NIR_loc - parm_het_bmin, c0)
           NIOprime = MAX(NIO_loc - parm_het_bmin, c0)
           NOSprime = MAX(NOS_loc - parm_het_bmin, c0)
+          NAOprime = MAX(NAO_loc - parm_het_bmin, c0)
 
-          WORK1 = NARprime + NAIprime + NIRprime + NIOprime + NOSprime
+          WORK1 = AERprime + NARprime + NAIprime + NIRprime + NIOprime + NOSprime + NAOprime
           z_umax = parm_szoo_mumax * Tfunc
 
           where (WORK1 > c0)
+             zszooaer = z_umax * szooC_loc * (AERprime / (WORK1 + parm_kszoo_aer))
              zszoonar = z_umax * szooC_loc * (NARprime / (WORK1 + parm_kszoo_nar))
              zszoonai = z_umax * szooC_loc * (NAIprime / (WORK1 + parm_kszoo_nai))
              zszoonir = z_umax * szooC_loc * (NIRprime / (WORK1 + parm_kszoo_nir))
              zszoonio = z_umax * szooC_loc * (NIOprime / (WORK1 + parm_kszoo_nio))
              zszoonos = z_umax * szooC_loc * (NOSprime / (WORK1 + parm_kszoo_nos))
+             zszoonao = z_umax * szooC_loc * (NAOprime / (WORK1 + parm_kszoo_nao))
           elsewhere
+             zszooaer = c0
              zszoonar = c0
              zszoonai = c0
              zszoonir = c0
              zszoonio = c0
              zszoonos = c0
+             zszoonao = c0
           end where
 # endif /* EXPLICIT_MICROBES */ 
 
@@ -2437,41 +2493,49 @@
        zzooaoa_zoo = graze_zoo(sp_ind) * zzooaoa
        zzoonob_zoo = graze_zoo(sp_ind) * zzoonob
        zzooaox_zoo = graze_zoo(sp_ind) * zzooaox
+       zszooaer_szoo = graze_zoo(sp_ind) * zszooaer
        zszoonar_szoo = graze_zoo(sp_ind) * zszoonar
        zszoonai_szoo = graze_zoo(sp_ind) * zszoonai
        zszoonir_szoo = graze_zoo(sp_ind) * zszoonir
        zszoonio_szoo = graze_zoo(sp_ind) * zszoonio
        zszoonos_szoo = graze_zoo(sp_ind) * zszoonos
+       zszoonao_szoo = graze_zoo(sp_ind) * zszoonao
 
        ! 2. Route grazing to POC (0.0) THIS SHOULD BE ZERO
        zzooaoa_poc = graze_poc(sp_ind) * zzooaoa
        zzoonob_poc = graze_poc(sp_ind) * zzoonob
        zzooaox_poc = graze_poc(sp_ind) * zzooaox
+       zszooaer_poc = graze_poc(sp_ind) * zszooaer
        zszoonar_poc = graze_poc(sp_ind) * zszoonar
        zszoonai_poc = graze_poc(sp_ind) * zszoonai
        zszoonir_poc = graze_poc(sp_ind) * zszoonir
        zszoonio_poc = graze_poc(sp_ind) * zszoonio
        zszoonos_poc = graze_poc(sp_ind) * zszoonos
+       zszoonao_poc = graze_poc(sp_ind) * zszoonao
 
        ! 3. Route grazing to DOC, DON, DOP (not DOFe) (0.06)
        zzooaoa_doc = graze_doc(sp_ind) * zzooaoa
        zzoonob_doc = graze_doc(sp_ind) * zzoonob
        zzooaox_doc = graze_doc(sp_ind) * zzooaox
+       zszooaer_doc = graze_doc(sp_ind) * zszooaer
        zszoonar_doc = graze_doc(sp_ind) * zszoonar
        zszoonai_doc = graze_doc(sp_ind) * zszoonai
        zszoonir_doc = graze_doc(sp_ind) * zszoonir
        zszoonio_doc = graze_doc(sp_ind) * zszoonio
        zszoonos_doc = graze_doc(sp_ind) * zszoonos
+       zszoonao_doc = graze_doc(sp_ind) * zszoonao
 
        ! 4. Route grazing to DIC, NH4, PO4, dFe (1 - 0.3 - 0.0 - 0.06 = 0.64)
        zzooaoa_dic = zzooaoa - zzooaoa_zoo - zzooaoa_poc - zzooaoa_doc
        zzoonob_dic = zzoonob - zzoonob_zoo - zzoonob_poc - zzoonob_doc
        zzooaox_dic = zzooaox - zzooaox_zoo - zzooaox_poc - zzooaox_doc
+       zszooaer_dic = zszooaer - zszooaer_szoo - zszooaer_poc - zszooaer_doc
        zszoonar_dic = zszoonar - zszoonar_szoo - zszoonar_poc - zszoonar_doc
        zszoonai_dic = zszoonai - zszoonai_szoo - zszoonai_poc - zszoonai_doc
        zszoonir_dic = zszoonir - zszoonir_szoo - zszoonir_poc - zszoonir_doc
        zszoonio_dic = zszoonio - zszoonio_szoo - zszoonio_poc - zszoonio_doc
        zszoonos_dic = zszoonos - zszoonos_szoo - zszoonos_poc - zszoonos_doc
+       zszoonao_dic = zszoonao - zszoonao_szoo - zszoonao_poc - zszoonao_doc
 
        ! Because zooplankton and microbes can have different elemental stoichiometries, 
        ! we need to account for the spill over effect of zooplankton consuming N-rich, 
@@ -2497,6 +2561,8 @@
        zzoonob_excFe = zzoonob_zoo/parm_nob_CFe - zzoonob_zoo*Qfe_zoo  ! but particles remain Fe-rich  
        zzooaox_excFe = zzooaox_zoo/parm_aox_CFe - zzooaox_zoo*Qfe_zoo
 
+       zszooaer_excN = zszooaer_szoo/parm_aer_CN - zszooaer_szoo*Q +
+     &                 zszooaer_poc/parm_aer_CN - zszooaer_poc*Q
        zszoonar_excN = zszoonar_szoo/parm_nar_CN - zszoonar_szoo*Q +
      &                 zszoonar_poc/parm_nar_CN - zszoonar_poc*Q
        zszoonai_excN = zszoonai_szoo/parm_nai_CN - zszoonai_szoo*Q +
@@ -2507,6 +2573,10 @@
      &                 zszoonio_poc/parm_nio_CN - zszoonio_poc*Q
        zszoonos_excN = zszoonos_szoo/parm_nos_CN - zszoonos_szoo*Q +
      &                 zszoonos_poc/parm_nos_CN - zszoonos_poc*Q
+       zszoonao_excN = zszoonao_szoo/parm_nao_CN - zszoonao_szoo*Q +
+     &                 zszoonao_poc/parm_nao_CN - zszoonao_poc*Q
+       zszooaer_excP = zszooaer_szoo/parm_aer_CP - zszooaer_szoo*Qp_zoo_pom +
+     &                 zszooaer_poc/parm_aer_CP - zszooaer_poc*Qp_zoo_pom
        zszoonar_excP = zszoonar_szoo/parm_nar_CP - zszoonar_szoo*Qp_zoo_pom +
      &                 zszoonar_poc/parm_nar_CP - zszoonar_poc*Qp_zoo_pom
        zszoonai_excP = zszoonai_szoo/parm_nai_CP - zszoonai_szoo*Qp_zoo_pom +
@@ -2517,11 +2587,15 @@
      &                 zszoonio_poc/parm_nio_CP - zszoonio_poc*Qp_zoo_pom
        zszoonos_excP = zszoonos_szoo/parm_nos_CP - zszoonos_szoo*Qp_zoo_pom +
      &                 zszoonos_poc/parm_nos_CP - zszoonos_poc*Qp_zoo_pom
+       zszoonao_excP = zszoonao_szoo/parm_nao_CP - zszoonao_szoo*Qp_zoo_pom +
+     &                 zszoonao_poc/parm_nao_CP - zszoonao_poc*Qp_zoo_pom
+       zszooaer_excFe = zszooaer_szoo/parm_aer_CFe - zszooaer_szoo*Qfe_zoo  ! extra iron excreted during zoo feeding,
        zszoonar_excFe = zszoonar_szoo/parm_nar_CFe - zszoonar_szoo*Qfe_zoo  ! extra iron excreted during zoo feeding,
        zszoonai_excFe = zszoonai_szoo/parm_nai_CFe - zszoonai_szoo*Qfe_zoo  ! extra iron excreted during zoo feeding,
        zszoonir_excFe = zszoonir_szoo/parm_nir_CFe - zszoonir_szoo*Qfe_zoo  ! but particles remain Fe-rich
        zszoonio_excFe = zszoonio_szoo/parm_nio_CFe - zszoonio_szoo*Qfe_zoo  ! but particles remain Fe-rich
        zszoonos_excFe = zszoonos_szoo/parm_nos_CFe - zszoonos_szoo*Qfe_zoo
+       zszoonao_excFe = zszoonao_szoo/parm_nao_CFe - zszoonao_szoo*Qfe_zoo  ! extra iron excreted during zoo feeding,
 
        ! remove the extra Fe from the zooplankton  
 # endif /* EXPLICIT_MICROBES */
@@ -2688,6 +2762,8 @@
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nob2zoo_excFe_idx_t)) = zzoonob_excFe(istr:iend)
        if (bec2_diag_3d_l(aox2zoo_excFe_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(aox2zoo_excFe_idx_t)) = zzooaox_excFe(istr:iend)
+       if (bec2_diag_3d_l(aer2szoo_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(aer2szoo_idx_t)) = zszooaer(istr:iend)
        if (bec2_diag_3d_l(nar2szoo_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nar2szoo_idx_t)) = zszoonar(istr:iend)
        if (bec2_diag_3d_l(nai2szoo_idx_t))
@@ -2698,6 +2774,10 @@
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nio2szoo_idx_t)) = zszoonio(istr:iend)
        if (bec2_diag_3d_l(nos2szoo_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nos2szoo_idx_t)) = zszoonos(istr:iend)
+       if (bec2_diag_3d_l(nao2szoo_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nao2szoo_idx_t)) = zszoonao(istr:iend)
+       if (bec2_diag_3d_l(aer2szoo_excN_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(aer2szoo_excN_idx_t)) = zszooaer_excN(istr:iend)
        if (bec2_diag_3d_l(nar2szoo_excN_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nar2szoo_excN_idx_t)) = zszoonar_excN(istr:iend)
        if (bec2_diag_3d_l(nai2szoo_excN_idx_t))
@@ -2708,6 +2788,10 @@
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nio2szoo_excN_idx_t)) = zszoonio_excN(istr:iend)
        if (bec2_diag_3d_l(nos2szoo_excN_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nos2szoo_excN_idx_t)) = zszoonos_excN(istr:iend)
+       if (bec2_diag_3d_l(nao2szoo_excN_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nao2szoo_excN_idx_t)) = zszoonao_excN(istr:iend)
+       if (bec2_diag_3d_l(aer2szoo_excP_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(aer2szoo_excP_idx_t)) = zszooaer_excP(istr:iend)
        if (bec2_diag_3d_l(nar2szoo_excP_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nar2szoo_excP_idx_t)) = zszoonar_excP(istr:iend)
        if (bec2_diag_3d_l(nai2szoo_excP_idx_t))
@@ -2718,6 +2802,10 @@
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nio2szoo_excP_idx_t)) = zszoonio_excP(istr:iend)
        if (bec2_diag_3d_l(nos2szoo_excP_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nos2szoo_excP_idx_t)) = zszoonos_excP(istr:iend)
+       if (bec2_diag_3d_l(nao2szoo_excP_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nao2szoo_excP_idx_t)) = zszoonao_excP(istr:iend)
+       if (bec2_diag_3d_l(aer2szoo_excFe_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(aer2szoo_excFe_idx_t)) = zszooaer_excFe(istr:iend)
        if (bec2_diag_3d_l(nar2szoo_excFe_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nar2szoo_excFe_idx_t)) = zszoonar_excFe(istr:iend)
        if (bec2_diag_3d_l(nai2szoo_excFe_idx_t))
@@ -2728,6 +2816,8 @@
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nio2szoo_excFe_idx_t)) = zszoonio_excFe(istr:iend)
        if (bec2_diag_3d_l(nos2szoo_excFe_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nos2szoo_excFe_idx_t)) = zszoonos_excFe(istr:iend)
+       if (bec2_diag_3d_l(nao2szoo_excFe_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nao2szoo_excFe_idx_t)) = zszoonao_excFe(istr:iend)
        if (bec2_diag_3d_l(szooloss_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(szooloss_idx_t)) = szoo_loss
 # endif /* EXPLICIT_MICROBES */
@@ -2800,26 +2890,34 @@
        bec2_diag_3d(istr:iend,j,k,aoa2zoo_excFe_idx_t) = zzooaoa_excFe(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nob2zoo_excFe_idx_t) = zzoonob_excFe(istr:iend)
        bec2_diag_3d(istr:iend,j,k,aox2zoo_excFe_idx_t) = zzooaox_excFe(istr:iend)
+       bec2_diag_3d(istr:iend,j,k,aer2szoo_idx_t) = zszooaer(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nar2szoo_idx_t) = zszoonar(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nai2szoo_idx_t) = zszoonai(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nir2szoo_idx_t) = zszoonir(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nio2szoo_idx_t) = zszoonio(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nos2szoo_idx_t) = zszoonos(istr:iend)
+       bec2_diag_3d(istr:iend,j,k,nao2szoo_idx_t) = zszoonao(istr:iend)
+       bec2_diag_3d(istr:iend,j,k,aer2szoo_excN_idx_t) = zszooaer_excN(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nar2szoo_excN_idx_t) = zszoonar_excN(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nai2szoo_excN_idx_t) = zszoonai_excN(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nir2szoo_excN_idx_t) = zszoonir_excN(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nio2szoo_excN_idx_t) = zszoonio_excN(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nos2szoo_excN_idx_t) = zszoonos_excN(istr:iend)
+       bec2_diag_3d(istr:iend,j,k,nao2szoo_excN_idx_t) = zszoonao_excN(istr:iend)
+       bec2_diag_3d(istr:iend,j,k,aer2szoo_excP_idx_t) = zszooaer_excP(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nar2szoo_excP_idx_t) = zszoonar_excP(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nai2szoo_excP_idx_t) = zszoonai_excP(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nir2szoo_excP_idx_t) = zszoonir_excP(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nio2szoo_excP_idx_t) = zszoonio_excP(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nos2szoo_excP_idx_t) = zszoonos_excP(istr:iend)
+       bec2_diag_3d(istr:iend,j,k,nao2szoo_excP_idx_t) = zszoonao_excP(istr:iend)
+       bec2_diag_3d(istr:iend,j,k,aer2szoo_excFe_idx_t) = zszooaer_excFe(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nar2szoo_excFe_idx_t) = zszoonar_excFe(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nai2szoo_excFe_idx_t) = zszoonai_excFe(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nir2szoo_excFe_idx_t) = zszoonir_excFe(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nio2szoo_excFe_idx_t) = zszoonio_excFe(istr:iend)
        bec2_diag_3d(istr:iend,j,k,nos2szoo_excFe_idx_t) = zszoonos_excFe(istr:iend)
+       bec2_diag_3d(istr:iend,j,k,nao2szoo_excFe_idx_t) = zszoonao_excFe(istr:iend)
        bec2_diag_3d(istr:iend,j,k,szooloss_idx_t) = szoo_loss
 # endif /* EXPLICIT_MICROBES */
        bec2_diag_3d(istr:iend,j,k,spno3uptake_idx_t) = NO3_V(istr:iend,sp_ind)
@@ -2862,19 +2960,29 @@
         AOAprime = MAX(AOA_loc - parm_che_bmin, c0)
         NOBprime = MAX(NOB_loc - parm_che_bmin, c0)
         AOXprime = MAX(AOX_loc - parm_che_bmin, c0)
+        AERprime = MAX(AER_loc - parm_het_bmin, c0)
         NARprime = MAX(NAR_loc - parm_het_bmin, c0)
         NAIprime = MAX(NAI_loc - parm_het_bmin, c0)
         NIRprime = MAX(NIR_loc - parm_het_bmin, c0)
         NIOprime = MAX(NIO_loc - parm_het_bmin, c0)
         NOSprime = MAX(NOS_loc - parm_het_bmin, c0)
+        NAOprime = MAX(NAO_loc - parm_het_bmin, c0)
         zmortaoa = ( AOAprime * parm_aoa_lmort + (AOAprime * AOA_loc) * parm_aoa_qmort )* Tfunc
         zmortnob = ( NOBprime * parm_nob_lmort + (NOBprime * NOB_loc) * parm_nob_qmort )* Tfunc
         zmortaox = ( AOXprime * parm_aox_lmort + (AOXprime * AOX_loc) * parm_aox_qmort )* Tfunc
+        zmortaer = ( AERprime * parm_aer_lmort + (AERprime * AER_loc) * parm_aer_qmort )* Tfunc
         zmortnar = ( NARprime * parm_nar_lmort + (NARprime * NAR_loc) * parm_nar_qmort )* Tfunc
         zmortnai = ( NAIprime * parm_nai_lmort + (NAIprime * NAI_loc) * parm_nai_qmort )* Tfunc
         zmortnir = ( NIRprime * parm_nir_lmort + (NIRprime * NIR_loc) * parm_nir_qmort )* Tfunc
         zmortnio = ( NIOprime * parm_nio_lmort + (NIOprime * NIO_loc) * parm_nio_qmort )* Tfunc
         zmortnos = ( NOSprime * parm_nos_lmort + (NOSprime * NOS_loc) * parm_nos_qmort )* Tfunc
+        zmortnao = ( NAOprime * parm_nao_lmort + (NAOprime * NAO_loc) * parm_nao_qmort )* Tfunc
+
+!        ! Add extra strong mortality to NOB below 1 µM O2
+!        where (O2_loc .lt. c1 )
+!            !zmortnob2 = NOB_loc * parm_munob
+!            zmortnob = zmortnob + NOB_loc * parm_munob
+!        endwhere
 
         ! Route mortality to different pools, conserving constant C:N:P of implicit POM, excess --> DOM
         zmortaoa_doc = zmortaoa * parm_che_mortdoc * (c1-parm_che_mortpoc)
@@ -2892,6 +3000,11 @@
         zmortaox_poc = zmortaox * parm_che_mortpoc
         zmortaox_don = zmortaox/parm_aox_CN - (zmortaox_dic/parm_aox_CN + zmortaox_poc*Q)
         zmortaox_dop = zmortaox/parm_aox_CP - (zmortaox_dic/parm_aox_CP + zmortaox_poc*Qp_zoo_pom)
+        zmortaer_doc = zmortaer * parm_het_mortdoc * (c1-parm_het_mortpoc)
+        zmortaer_dic = zmortaer * (c1-parm_het_mortdoc) * (c1-parm_het_mortpoc)
+        zmortaer_poc = zmortaer * parm_het_mortpoc
+        zmortaer_don = zmortaer/parm_aer_CN - (zmortaer_dic/parm_aer_CN + zmortaer_poc*Q)
+        zmortaer_dop = zmortaer/parm_aer_CP - (zmortaer_dic/parm_aer_CP + zmortaer_poc*Qp_zoo_pom)
         zmortnar_doc = zmortnar * parm_het_mortdoc * (c1-parm_het_mortpoc)
         zmortnar_dic = zmortnar * (c1-parm_het_mortdoc) * (c1-parm_het_mortpoc)
         zmortnar_poc = zmortnar * parm_het_mortpoc
@@ -2917,6 +3030,11 @@
         zmortnos_poc = zmortnos * parm_het_mortpoc
         zmortnos_don = zmortnos/parm_nos_CN - (zmortnos_dic/parm_nos_CN + zmortnos_poc*Q)
         zmortnos_dop = zmortnos/parm_nos_CP - (zmortnos_dic/parm_nos_CP + zmortnos_poc*Qp_zoo_pom)
+        zmortnao_doc = zmortnao * parm_het_mortdoc * (c1-parm_het_mortpoc)
+        zmortnao_dic = zmortnao * (c1-parm_het_mortdoc) * (c1-parm_het_mortpoc)
+        zmortnao_poc = zmortnao * parm_het_mortpoc
+        zmortnao_don = zmortnao/parm_nao_CN - (zmortnao_dic/parm_nao_CN + zmortnao_poc*Q)
+        zmortnao_dop = zmortnao/parm_nao_CP - (zmortnao_dic/parm_nao_CP + zmortnao_poc*Qp_zoo_pom)
         ! NOTE:
         !  You may notice that the routing to DOFe is not calculated here, unlike DON and DOP.
         !  This is on purpose. The C:Fe ratio of sinking particulate matter is not conserved like 
@@ -2934,9 +3052,11 @@
        DOC_prod = zoo_loss_doc + sum(auto_loss_doc, dim=2) + sum(auto_graze_doc, dim=2)
 # ifdef EXPLICIT_MICROBES
      &            + zzooaoa_doc + zzoonob_doc + zzooaox_doc
-     &            + zszoonar_doc + zszoonai_doc + zszoonir_doc + zszoonio_doc + zszoonos_doc
+     &            + zszooaer_doc + zszoonar_doc + zszoonai_doc + zszoonir_doc 
+     &            + zszoonio_doc + zszoonos_doc + zszoonao_doc
      &            + zmortaoa_doc + zmortnob_doc + zmortaox_doc
-     &            + zmortnar_doc + zmortnai_doc + zmortnir_doc + zmortnio_doc + zmortnos_doc
+     &            + zmortaer_doc + zmortnar_doc + zmortnai_doc + zmortnir_doc 
+     &            + zmortnio_doc + zmortnos_doc + zmortnao_doc
      &            + POC_remin(istr:iend,j)
      &            + szoo_loss_doc
 # endif /* EXPLICIT_MICROBES */
@@ -2947,11 +3067,13 @@
      &            + zzooaoa_doc/parm_aoa_CN + zmortaoa_don
      &            + zzoonob_doc/parm_nob_CN + zmortnob_don
      &            + zzooaox_doc/parm_aox_CN + zmortaox_don
+     &            + zszooaer_doc/parm_aer_CN + zmortaer_don
      &            + zszoonar_doc/parm_nar_CN + zmortnar_don
      &            + zszoonai_doc/parm_nai_CN + zmortnai_don
      &            + zszoonir_doc/parm_nir_CN + zmortnir_don
      &            + zszoonio_doc/parm_nio_CN + zmortnio_don
      &            + zszoonos_doc/parm_nos_CN + zmortnos_don
+     &            + zszoonao_doc/parm_nao_CN + zmortnao_don
      &            + POC_remin(istr:iend,j) * Q
      &            + szoo_loss_doc * Q
 # endif /* EXPLICIT_MICROBES */
@@ -2962,11 +3084,13 @@
      &            + zzooaoa_doc/parm_aoa_CP + zmortaoa_dop
      &            + zzoonob_doc/parm_nob_CP + zmortnob_dop
      &            + zzooaox_doc/parm_aox_CP + zmortaox_dop
+     &            + zszooaer_doc/parm_aer_CP + zmortaer_dop
      &            + zszoonar_doc/parm_nar_CP + zmortnar_dop
      &            + zszoonai_doc/parm_nai_CP + zmortnai_dop
      &            + zszoonir_doc/parm_nir_CP + zmortnir_dop
      &            + zszoonio_doc/parm_nio_CP + zmortnio_dop
      &            + zszoonos_doc/parm_nos_CP + zmortnos_dop
+     &            + zszoonao_doc/parm_nao_CP + zmortnao_dop
      &            + POC_remin(istr:iend,j) * Qp_zoo_pom
      &            + szoo_loss_doc * Qp_zoo_pom
 # endif /* EXPLICIT_MICROBES */
@@ -2988,11 +3112,13 @@
      &            + (zzooaoa_doc + zmortaoa_doc) / parm_aoa_CFe
      &            + (zzoonob_doc + zmortnob_doc) / parm_nob_CFe
      &            + (zzooaox_doc + zmortaox_doc) / parm_aox_CFe
+     &            + (zszooaer_doc + zmortaer_doc) / parm_aer_CFe
      &            + (zszoonar_doc + zmortnar_doc) / parm_nar_CFe
      &            + (zszoonai_doc + zmortnai_doc) / parm_nai_CFe
      &            + (zszoonir_doc + zmortnir_doc) / parm_nir_CFe
      &            + (zszoonio_doc + zmortnio_doc) / parm_nio_CFe
      &            + (zszoonos_doc + zmortnos_doc) / parm_nos_CFe
+     &            + (zszoonao_doc + zmortnao_doc) / parm_nao_CFe
      &            + szoo_loss_doc * Qfe_zoo
 # endif /* EXPLICIT_MICROBES */
        ! Add phytoplankton mortality --> DOFe
@@ -3074,9 +3200,11 @@
      &            + sum(auto_agg, dim=2) + sum(auto_loss_poc, dim=2)
 # ifdef EXPLICIT_MICROBES
      &            + zmortaoa_poc + zmortnob_poc + zmortaox_poc
-     &            + zmortnar_poc + zmortnai_poc + zmortnir_poc + zmortnio_poc + zmortnos_poc
+     &            + zmortaer_poc + zmortnar_poc + zmortnai_poc + zmortnir_poc 
+     &            + zmortnio_poc + zmortnos_poc + zmortnao_poc
      &            + zzooaoa_poc + zzoonob_poc + zzooaox_poc
-     &            + zszoonar_poc + zszoonai_poc + zszoonir_poc + zszoonio_poc + zszoonos_poc
+     &            + zszooaer_poc + zszoonar_poc + zszoonai_poc + zszoonir_poc 
+     &            + zszoonio_poc + zszoonos_poc + zszoonao_poc
      &            + szoo_loss_poc
 # endif /* EXPLICIT_MICROBES */
 
@@ -3140,11 +3268,13 @@
        P_iron_prod = zoo_loss_poc * Qfe_zoo + Fe_scavenge
 # ifdef EXPLICIT_MICROBES
      &               + zmortaoa_poc/parm_aoa_CFe + zmortnob_poc/parm_nob_CFe + zmortaox_poc/parm_aox_CFe
+     &               + zmortaer_poc/parm_aer_CFe 
      &               + zmortnar_poc/parm_nar_CFe + zmortnai_poc/parm_nai_CFe + zmortnir_poc/parm_nir_CFe 
-     &               + zmortnio_poc/parm_nio_CFe + zmortnos_poc/parm_nos_CFe
+     &               + zmortnio_poc/parm_nio_CFe + zmortnos_poc/parm_nos_CFe + zmortnao_poc/parm_nao_CFe
      &               + zzooaoa_poc/parm_aoa_CFe + zzoonob_poc/parm_nob_CFe + zzooaox_poc/parm_aox_CFe
+     &               + zszooaer_poc/parm_aer_CFe 
      &               + zszoonar_poc/parm_nar_CFe + zszoonai_poc/parm_nai_CFe + zszoonir_poc/parm_nir_CFe 
-     &               + zszoonio_poc/parm_nio_CFe + zszoonos_poc/parm_nos_CFe
+     &               + zszoonio_poc/parm_nio_CFe + zszoonos_poc/parm_nos_CFe + zszoonao_poc/parm_nao_CFe
      &               + szoo_loss_poc * Qfe_zoo
 # endif /* EXPLICIT_MICROBES */
        ! Add phytoplankton mortality and grazing terms
@@ -3312,10 +3442,12 @@
         zmuaoa  = c0
         zbioaoa = c0
         zmunob  = c0
+        zmunob_ana = c0
         zbionob = c0
+        zbionob_ana = c0
         zmuaox  = c0
         zbioaox = c0
-        zmufnob   = c0
+        zmufnob    = c0
 
         ! determine N2O yield from ammonia oxidation using empirical relationship with O2 (Frey et al. 2023)
         yaoa_n2o = min(3.0, (0.2/(O2_loc + epsN) + 0.5))/100.0
@@ -3329,8 +3461,8 @@
         zuptnh4 = c0
         zuptoxy = c0
         where (NH4_loc.gt.c0 .and. O2_loc.gt.c0)
-           !zuptoxy = parm_aoa_po2 * O2_loc     !!! diffusive limit to O2 uptake
-           zuptoxy = parm_muaoa * parm_yaoa_oxy * ( O2_loc / ( O2_loc + parm_kaoa_oxy ) )
+           zuptoxy = parm_aoa_po2 * O2_loc     !!! diffusive limit to O2 uptake
+           !zuptoxy = parm_muaoa * parm_yaoa_oxy * ( O2_loc / ( O2_loc + parm_kaoa_oxy ) )
            zuptnh4 = parm_muaoa * parm_yaoa_nh4 * ( NH4_loc / ( NH4_loc + parm_kaoa_nh4 ) )
         endwhere
         zmuaoa = max(c0, min( (zuptoxy/parm_yaoa_oxy), (zuptnh4/parm_yaoa_nh4) ) ) * Tfunc !* aoa_parlim
@@ -3340,12 +3472,17 @@
         zuptno2 = c0
         zuptoxy = c0
         where (NH4_loc.gt.c0 .and. NO2_loc.gt.c0 .and. O2_loc.gt.c0)
-            !zuptoxy = parm_nob_po2 * O2_loc     !!! diffusive limit to O2 uptake
-            zuptoxy = (parm_munob * parm_ynob_oxy) * ( O2_loc / ( O2_loc + parm_knob_oxy ) )
+            zuptoxy = parm_nob_po2 * O2_loc     !!! diffusive limit to O2 uptake
+            !zuptoxy = (parm_munob * parm_ynob_oxy) * ( O2_loc / ( O2_loc + parm_knob_oxy ) )
             zuptno2 = (parm_munob * parm_ynob_no2) * ( NO2_loc / ( NO2_loc + parm_knob_no2 ) )
         endwhere
         zmunob = max(c0, min( (zuptoxy/parm_ynob_oxy), (zuptno2/parm_ynob_no2) ) ) * Tfunc
         where ((zuptoxy/parm_ynob_oxy) .gt. (zuptno2/parm_ynob_no2)) zmufnob = c1
+        ! try simulating some anaerobic nitrite oxidation (only consumes NO2)
+        where (NH4_loc.gt.c0 .and. NO2_loc.gt.c0 .and. O2_loc.eq.c0)
+            zuptno2 = (parm_munob * parm_ynob_no2 * 0.05) * ( NO2_loc / ( NO2_loc + parm_knob_no2 ) )
+            zmunob_ana = (zuptno2/parm_ynob_no2) * Tfunc * c0
+        endwhere
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         ! anaerobic ammonium oxidising archaea metabolism !
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -3360,13 +3497,17 @@
         ! CHEMOAUTOS : growth rate, accumulation of C biomass and rates
         zbioaoa = zmuaoa * AOA_loc
         zbionob = zmunob * NOB_loc
+        zbionob_ana = zmunob_ana * NOB_loc
         zbioaox = zmuaox * AOX_loc
         ammox   = zbioaoa * parm_yaoa_nh4
-        nitrox  = zbionob * parm_ynob_no2
+        nitrox  = zbionob * parm_ynob_no2 
+        nitrox_ana  = zbionob_ana * parm_ynob_no2 
         anammox = zbioaox * parm_yaox_nh4   ! measured by NH4 use
 
 
         ! initialise arrays (heterotrophs)
+        zmuaer = c0
+        zbioaer = c0
         zmunar_aer = c0
         zmunar_ana = c0
         zmunar_fac = c0
@@ -3392,8 +3533,27 @@
         zmunos_fac = c0
         zmunos  = c0
         zbionos = c0
+        zmunao_aer = c0
+        zmunao_ana = c0
+        zmunao_fac = c0
+        zmunao  = c0
+        zbionao = c0
 
         DOC_tot = DOC_loc + DOCr_loc
+
+        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        ! Obligate aerobic heterotrophs !
+        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        ! limitation term for DOC uptake (DOC and DOCr)
+        zlimaer_doc = (DOC_loc/parm_kaer_doc) / (1.0 + (DOC_loc/parm_kaer_doc) + (DOCr_loc/parm_kaer_docr))
+        zlimaer_docr= (DOCr_loc/parm_kaer_docr)/(1.0 + (DOC_loc/parm_kaer_doc) + (DOCr_loc/parm_kaer_docr))
+        zuptdoc = c0
+        zuptoxy = c0
+        where (DOC_tot.gt.c0 .and. O2_loc.gt.c0)
+           zuptoxy = parm_aer_po2 * O2_loc     !!! diffusive limit to O2 uptake
+           zuptdoc = parm_Vmax_doc * ( zlimaer_doc + zlimaer_docr )
+        endwhere
+        zmuaer = max(c0, min( (zuptoxy/parm_yaer_oxy), (zuptdoc/parm_yaer_doc) ) ) * Tfunc
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         ! Nitrate reducers (NO3-->NO2) !
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -3403,16 +3563,15 @@
         zuptdoc = c0
         zuptoxy = c0
         where (DOC_tot.gt.c0 .and. O2_loc.gt.c0)
-           !zuptoxy = parm_nar_po2 * O2_loc     !!! diffusive limit to O2 uptake
-           zuptoxy = (parm_munar * parm_ynar_oxy) * ( O2_loc / ( O2_loc + parm_knar_oxy ) )
-           zuptdoc = (parm_munar * parm_ynar_aer) * ( zlimnar_doc + zlimnar_docr )
+           zuptoxy = parm_nar_po2 * O2_loc     !!! diffusive limit to O2 uptake
+           zuptdoc = parm_Vmax_doc * ( zlimnar_doc + zlimnar_docr )
         endwhere
         zmunar_aer = max(c0, min( (zuptoxy/parm_ynar_oxy), (zuptdoc/parm_ynar_aer) ) ) * Tfunc
         zuptdoc = c0
         zuptno3 = c0
         where (DOC_tot.gt.c0 .and. NO3_loc.gt.c0)
-           zuptno3 = (parm_munar * 0.75 * parm_ynar_no3) * ( NO3_loc / ( NO3_loc + parm_knar_no3 ) )
-           zuptdoc = (parm_munar * 0.75 * parm_ynar_ana) * ( zlimnar_doc + zlimnar_docr )
+           zuptno3 = parm_Vmax_no3 * ( NO3_loc / ( NO3_loc + parm_knar_no3 ) )
+           zuptdoc = parm_Vmax_doc * ( zlimnar_doc + zlimnar_docr )
         endwhere
         zmunar_ana = max(c0, min( (zuptno3/parm_ynar_no3), (zuptdoc/parm_ynar_ana) ) ) * Tfunc
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -3424,16 +3583,15 @@
         zuptdoc = c0
         zuptoxy = c0
         where (DOC_tot.gt.c0 .and. O2_loc.gt.c0)
-           !zuptoxy = parm_nir_po2 * O2_loc     !!! diffusive limit to O2 uptake
-           zuptoxy = (parm_munir * parm_ynir_oxy) * ( O2_loc / ( O2_loc + parm_knir_oxy ) )
-           zuptdoc = (parm_munir * parm_ynir_aer) * ( zlimnir_doc + zlimnir_docr )
+           zuptoxy = parm_nir_po2 * O2_loc     !!! diffusive limit to O2 uptake
+           zuptdoc = parm_Vmax_doc * ( zlimnir_doc + zlimnir_docr )
         endwhere
         zmunir_aer = max(c0, min( (zuptoxy/parm_ynir_oxy), (zuptdoc/parm_ynir_aer) ) ) * Tfunc
         zuptdoc = c0
         zuptno2 = c0
         where (DOC_tot.gt.c0 .and. NO2_loc.gt.c0)
-           zuptno2 = (parm_munir * 0.75 * parm_ynir_no2) * ( NO2_loc / ( NO2_loc + parm_knir_no2 ) )
-           zuptdoc = (parm_munir * 0.75 * parm_ynir_ana) * ( zlimnir_doc + zlimnir_docr )
+           zuptno2 = parm_Vmax_no2 * ( NO2_loc / ( NO2_loc + parm_knir_no2 ) )
+           zuptdoc = parm_Vmax_doc * ( zlimnir_doc + zlimnir_docr )
         endwhere
         zmunir_ana = max(c0, min( (zuptno2/parm_ynir_no2), (zuptdoc/parm_ynir_ana) ) ) * Tfunc
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -3445,17 +3603,15 @@
         zuptdoc = c0
         zuptoxy = c0
         where (DOC_tot.gt.c0 .and. O2_loc.gt.c0)
-           !zuptoxy = parm_nos_po2 * O2_loc     !!! diffusive limit to O2 uptake
-           zuptoxy = (parm_munos * parm_ynos_oxy) * ( O2_loc / ( O2_loc + parm_knos_oxy ) )
-           zuptdoc = (parm_munos * parm_ynos_aer) * ( zlimnos_doc + zlimnos_docr )
+           zuptoxy = parm_nos_po2 * O2_loc     !!! diffusive limit to O2 uptake
+           zuptdoc = parm_Vmax_doc * ( zlimnos_doc + zlimnos_docr )
         endwhere
         zmunos_aer = max(c0, min( (zuptoxy/parm_ynos_oxy), (zuptdoc/parm_ynos_aer) ) ) * Tfunc
         zuptdoc = c0
         zuptn2o = c0
         where (DOC_tot.gt.c0 .and. N2O_loc.gt.c0)
-           !zuptn2o = parm_nos_pn2o * N2O_loc
-           zuptn2o = (parm_munos * 0.75 * parm_ynos_n2o) * ( N2O_loc / ( N2O_loc + parm_knos_n2o ) )
-           zuptdoc = (parm_munos * 0.75 * parm_ynos_ana) * ( zlimnos_doc + zlimnos_docr )
+           zuptn2o = parm_nos_pn2o * N2O_loc   !!! diffusive limit to N2O uptake
+           zuptdoc = parm_Vmax_doc * ( zlimnos_doc + zlimnos_docr )
         endwhere
         zmunos_ana = max(c0, min( (zuptn2o/parm_ynos_n2o), (zuptdoc/parm_ynos_ana) ) ) * Tfunc
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -3467,16 +3623,15 @@
         zuptdoc = c0
         zuptoxy = c0
         where (DOC_tot.gt.c0 .and. O2_loc.gt.c0)
-           !zuptoxy = parm_nai_po2 * O2_loc     !!! diffusive limit to O2 uptake
-           zuptoxy = (parm_munai * parm_ynai_oxy) * ( O2_loc / ( O2_loc + parm_knai_oxy ) )
-           zuptdoc = (parm_munai * parm_ynai_aer) * ( zlimnai_doc + zlimnai_docr )
+           zuptoxy = parm_nai_po2 * O2_loc     !!! diffusive limit to O2 uptake
+           zuptdoc = parm_Vmax_doc * ( zlimnai_doc + zlimnai_docr )
         endwhere
         zmunai_aer = max(c0, min( (zuptoxy/parm_ynai_oxy), (zuptdoc/parm_ynai_aer) ) ) * Tfunc
         zuptdoc = c0
         zuptno3 = c0
         where (DOC_tot.gt.c0 .and. NO3_loc.gt.c0)
-           zuptno3 = (parm_munai * 0.75 * parm_ynai_no3) * ( NO3_loc / ( NO3_loc + parm_knai_no3 ) )
-           zuptdoc = (parm_munai * 0.75 * parm_ynai_ana) * ( zlimnai_doc + zlimnai_docr )
+           zuptno3 = parm_Vmax_no3 * ( NO3_loc / ( NO3_loc + parm_knai_no3 ) )
+           zuptdoc = parm_Vmax_doc * ( zlimnai_doc + zlimnai_docr )
         endwhere
         zmunai_ana = max(c0, min( (zuptno3/parm_ynai_no3), (zuptdoc/parm_ynai_ana) ) ) * Tfunc
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -3488,42 +3643,84 @@
         zuptdoc = c0
         zuptoxy = c0
         where (DOC_tot.gt.c0 .and. O2_loc.gt.c0)
-           !zuptoxy = parm_nio_po2 * O2_loc     !!! diffusive limit to O2 uptake
-           zuptoxy = (parm_munio * parm_ynio_oxy) * ( O2_loc / ( O2_loc + parm_knio_oxy ) )
-           zuptdoc = (parm_munio * parm_ynio_aer) * ( zlimnio_doc + zlimnio_docr )
+           zuptoxy = parm_nio_po2 * O2_loc     !!! diffusive limit to O2 uptake
+           zuptdoc = parm_Vmax_doc * ( zlimnio_doc + zlimnio_docr )
         endwhere
         zmunio_aer = max(c0, min( (zuptoxy/parm_ynio_oxy), (zuptdoc/parm_ynio_aer) ) ) * Tfunc
         zuptdoc = c0
         zuptno2 = c0
         where (DOC_tot.gt.c0 .and. NO2_loc.gt.c0)
-           zuptno2 = (parm_munio * 0.75 * parm_ynio_no2) * ( NO2_loc / ( NO2_loc + parm_knio_no2 ) )
-           zuptdoc = (parm_munio * 0.75 * parm_ynio_ana) * ( zlimnio_doc + zlimnio_docr )
+           zuptno2 = parm_Vmax_no2 * ( NO2_loc / ( NO2_loc + parm_knio_no2 ) )
+           zuptdoc = parm_Vmax_doc * ( zlimnio_doc + zlimnio_docr )
         endwhere
         zmunio_ana = max(c0, min( (zuptno2/parm_ynio_no2), (zuptdoc/parm_ynio_ana) ) ) * Tfunc
-
+        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        ! Nitrate reducers (NO3-->N2) !
+        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        ! limitation term for DOC uptake (DOC and DOCr)
+        zlimnao_doc = (DOC_loc/parm_knao_doc) / (1.0 + (DOC_loc/parm_knao_doc) + (DOCr_loc/parm_knao_docr))
+        zlimnao_docr= (DOCr_loc/parm_knao_docr)/(1.0 + (DOC_loc/parm_knao_doc) + (DOCr_loc/parm_knao_docr))
+        zuptdoc = c0
+        zuptoxy = c0
+        where (DOC_tot.gt.c0 .and. O2_loc.gt.c0)
+           zuptoxy = parm_nao_po2 * O2_loc     !!! diffusive limit to O2 uptake
+           zuptdoc = parm_Vmax_doc * ( zlimnao_doc + zlimnao_docr )
+        endwhere
+        zmunao_aer = max(c0, min( (zuptoxy/parm_ynao_oxy), (zuptdoc/parm_ynao_aer) ) ) * Tfunc
+        zuptdoc = c0
+        zuptno3 = c0
+        where (DOC_tot.gt.c0 .and. NO3_loc.gt.c0)
+           zuptno3 = parm_Vmax_no3 * ( NO3_loc / ( NO3_loc + parm_knao_no3 ) )
+           zuptdoc = parm_Vmax_doc * ( zlimnao_doc + zlimnao_docr )
+        endwhere
+        zmunao_ana = max(c0, min( (zuptno3/parm_ynao_no3), (zuptdoc/parm_ynao_ana) ) ) * Tfunc
+      
+         
+# ifdef FACULTATIVE_MICROBES
         ! Save occurance of facultative anaerobic heterotrophy to array (1 if anaer)
         where (zmunar_aer.lt.zmunar_ana) zmunar_fac = c1
         where (zmunai_aer.lt.zmunai_ana) zmunai_fac = c1
         where (zmunir_aer.lt.zmunir_ana) zmunir_fac = c1
         where (zmunio_aer.lt.zmunio_ana) zmunio_fac = c1
         where (zmunos_aer.lt.zmunos_ana) zmunos_fac = c1
+        where (zmunao_aer.lt.zmunao_ana) zmunao_fac = c1
         ! Determine whether growth is faster on oxygen or nitrogen
         zmunar = max(zmunar_aer, zmunar_ana)
         zmunai = max(zmunai_aer, zmunai_ana)
         zmunir = max(zmunir_aer, zmunir_ana)
         zmunio = max(zmunio_aer, zmunio_ana)
         zmunos = max(zmunos_aer, zmunos_ana)
+        zmunao = max(zmunao_aer, zmunao_ana)
+# else
+        ! Make growth anaerobic
+        zmunar_fac = c1
+        zmunai_fac = c1
+        zmunir_fac = c1
+        zmunio_fac = c1
+        zmunos_fac = c1
+        zmunao_fac = c1
+        ! Make growth anaerobic
+        zmunar = zmunar_ana
+        zmunai = zmunai_ana
+        zmunir = zmunir_ana
+        zmunio = zmunio_ana
+        zmunos = zmunos_ana
+        zmunao = zmunao_ana
+# endif
         ! accumulation of C biomass and rates
+        zbioaer = zmuaer * AER_loc
         zbionar = zmunar * NAR_loc
         zbionai = zmunai * NAI_loc
         zbionir = zmunir * NIR_loc
         zbionio = zmunio * NIO_loc
         zbionos = zmunos * NOS_loc
+        zbionao = zmunao * NAO_loc
         DENITRIF1 = zbionar * zmunar_fac * parm_ynar_no3
         DENITRIF2 = zbionir * zmunir_fac * parm_ynir_no2
         DENITRIF3 = zbionos * zmunos_fac * parm_ynos_n2o
         DENITRIF4 = zbionai * zmunai_fac * parm_ynai_no3
         DENITRIF5 = zbionio * zmunio_fac * parm_ynio_no2
+        DENITRIF6 = zbionao * zmunao_fac * parm_ynao_no3
 
 
       ! Compute remineralisation (consumption) of DOM --> Inorganics
@@ -3539,7 +3736,8 @@
         qDOPr = ( DOPr_loc + epsN ) / ( DOCr_loc + epsN )
 
         ! Then calculate DOC consumption first based on the yields of the bacteria * biomass growth
-        DOC_remin = ( zbionar * (parm_ynar_aer * (c1-zmunar_fac)) + zbionar * (parm_ynar_ana * zmunar_fac))
+        DOC_remin = zbioaer * parm_yaer_doc * ((zlimaer_doc + epsN) / ( zlimaer_doc + zlimaer_docr + epsN)) +
+     &              ( zbionar * (parm_ynar_aer * (c1-zmunar_fac)) + zbionar * (parm_ynar_ana * zmunar_fac))
      &              * ( (zlimnar_doc + epsN) / ( zlimnar_doc + zlimnar_docr + epsN)) +
      &              ( zbionai * (parm_ynai_aer * (c1-zmunai_fac)) + zbionai * (parm_ynai_ana * zmunai_fac))
      &              * ( (zlimnai_doc + epsN) /( zlimnai_doc + zlimnai_docr + epsN)) +
@@ -3548,8 +3746,11 @@
      &              ( zbionio * (parm_ynio_aer * (c1-zmunio_fac)) + zbionio * (parm_ynio_ana * zmunio_fac))
      &              * ( (zlimnio_doc + epsN) /( zlimnio_doc + zlimnio_docr + epsN)) +
      &              ( zbionos * (parm_ynos_aer * (c1-zmunos_fac)) + zbionos * (parm_ynos_ana * zmunos_fac))
-     &              * ( (zlimnos_doc + epsN) /( zlimnos_doc + zlimnos_docr + epsN))
-        DOCr_remin= ( zbionar * (parm_ynar_aer * (c1-zmunar_fac)) + zbionar * (parm_ynar_ana * zmunar_fac))
+     &              * ( (zlimnos_doc + epsN) /( zlimnos_doc + zlimnos_docr + epsN)) +
+     &              ( zbionao * (parm_ynao_aer * (c1-zmunao_fac)) + zbionao * (parm_ynao_ana * zmunao_fac))
+     &              * ( (zlimnao_doc + epsN) /( zlimnao_doc + zlimnao_docr + epsN))
+        DOCr_remin= zbioaer * parm_yaer_doc * ((zlimaer_docr + epsN) / ( zlimaer_doc + zlimaer_docr + epsN)) +
+     &              ( zbionar * (parm_ynar_aer * (c1-zmunar_fac)) + zbionar * (parm_ynar_ana * zmunar_fac))
      &              * ( (zlimnar_docr + epsN)/( zlimnar_doc + zlimnar_docr + epsN)) +
      &              ( zbionai * (parm_ynai_aer * (c1-zmunai_fac)) + zbionai * (parm_ynai_ana * zmunai_fac))
      &              * ( (zlimnai_docr + epsN)/( zlimnai_doc + zlimnai_docr + epsN)) +
@@ -3558,7 +3759,9 @@
      &              ( zbionio * (parm_ynio_aer * (c1-zmunio_fac)) + zbionio * (parm_ynio_ana * zmunio_fac))
      &              * ( (zlimnio_docr + epsN)/( zlimnio_doc + zlimnio_docr + epsN)) +
      &              ( zbionos * (parm_ynos_aer * (c1-zmunos_fac)) + zbionos * (parm_ynos_ana * zmunos_fac))
-     &              * ( (zlimnos_docr + epsN)/( zlimnos_doc + zlimnos_docr + epsN))
+     &              * ( (zlimnos_docr + epsN)/( zlimnos_doc + zlimnos_docr + epsN)) +
+     &              ( zbionao * (parm_ynao_aer * (c1-zmunao_fac)) + zbionao * (parm_ynao_ana * zmunao_fac))
+     &              * ( (zlimnao_docr + epsN)/( zlimnao_doc + zlimnao_docr + epsN))
 
         ! Apply the elemental ratios of DOM to the DOC consumption
         !   - This assumes that microbes indiscriminately munch on DOM that is available
@@ -3574,23 +3777,28 @@
       ! If DOM is poor in N & P, then less NH4 & PO4 will be released.
       ! If DOM is rich in N & P, then more NH4 & PO4 will be released.
       ! NOTE: DOM has to be extremely poor in nutritional quality for bacteria to take up inorganic nutrients
-        DIN_release = max(c0, (DON_remin+DONr_remin) -
-     &                (zbionar/parm_nar_CN + zbionai/parm_nai_CN + zbionir/parm_nir_CN 
-     &                 + zbionio/parm_nio_CN + zbionos/parm_nos_CN) )
+        DIN_release = max(c0, (DON_remin+DONr_remin) - 
+     &                (zbioaer/parm_aer_CN +
+     &                 zbionar/parm_nar_CN + zbionai/parm_nai_CN + zbionir/parm_nir_CN 
+     &               + zbionio/parm_nio_CN + zbionos/parm_nos_CN + zbionao/parm_nao_CN) )
         DIP_release = max(c0, (DOP_remin(istr:iend,j)+DOPr_remin(istr:iend,j)) -
-     &                (zbionar/parm_nar_CP + zbionai/parm_nai_CP + zbionir/parm_nir_CP 
-     &                 + zbionio/parm_nio_CP + zbionos/parm_nos_CP) )
+     &                (zbioaer/parm_aer_CP +
+     &                 zbionar/parm_nar_CP + zbionai/parm_nai_CP + zbionir/parm_nir_CP 
+     &               + zbionio/parm_nio_CP + zbionos/parm_nos_CP + zbionao/parm_nao_CP) )
         DIN_uptake = min(c0, (DON_remin+DONr_remin) -
-     &                (zbionar/parm_nar_CN + zbionai/parm_nai_CN + zbionir/parm_nir_CN 
-     &                 + zbionio/parm_nio_CN + zbionos/parm_nos_CN) )
+     &                (zbioaer/parm_aer_CN +
+     &                 zbionar/parm_nar_CN + zbionai/parm_nai_CN + zbionir/parm_nir_CN 
+     &               + zbionio/parm_nio_CN + zbionos/parm_nos_CN + zbionao/parm_nao_CN) )
         DIP_uptake = min(c0, (DOP_remin(istr:iend,j)+DOPr_remin(istr:iend,j)) -
-     &                (zbionar/parm_nar_CP + zbionai/parm_nai_CP + zbionir/parm_nir_CP 
-     &                 + zbionio/parm_nio_CP + zbionos/parm_nos_CP) )
+     &                (zbioaer/parm_aer_CP +
+     &                 zbionar/parm_nar_CP + zbionai/parm_nai_CP + zbionir/parm_nir_CP 
+     &               + zbionio/parm_nio_CP + zbionos/parm_nos_CP + zbionao/parm_nao_CP) )
 
         ! For Fe, bacteria assimilate dFe from their environment, competing with phytos.
         !  1. Determine how much Fe is needed.
-        dFe_require = (zbionar/parm_nar_CFe + zbionai/parm_nai_CFe + zbionir/parm_nir_CFe 
-     &                 + zbionio/parm_nio_CFe + zbionos/parm_nos_CFe)
+        dFe_require = (zbioaer/parm_aer_CFe
+     &               + zbionar/parm_nar_CFe + zbionai/parm_nai_CFe + zbionir/parm_nir_CFe 
+     &               + zbionio/parm_nio_CFe + zbionos/parm_nos_CFe + zbionao/parm_nao_CFe)
         !  2. Determine if enouch dFe is available
         dFe_uptake  = dFe_require * c1 
 
@@ -3642,6 +3850,8 @@
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(denitrif4_idx_t)) = DENITRIF4
        if (bec2_diag_3d_l(denitrif5_idx_t))
      &   bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(denitrif5_idx_t)) = DENITRIF5
+       if (bec2_diag_3d_l(denitrif6_idx_t))
+     &   bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(denitrif6_idx_t)) = DENITRIF6
        if (bec2_diag_3d_l(docrremin_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(docrremin_idx_t)) = DOCr_remin
        if (bec2_diag_3d_l(doprremin_idx_t))
@@ -3650,6 +3860,8 @@
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(aoamu_idx_t)) = zmuaoa
        if (bec2_diag_3d_l(nobmu_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nobmu_idx_t)) = zmunob
+       if (bec2_diag_3d_l(nobmuana_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nobmuana_idx_t)) = zmunob_ana
        if (bec2_diag_3d_l(nobfmu_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nobfmu_idx_t)) = zmufnob
        if (bec2_diag_3d_l(aoxmu_idx_t))
@@ -3658,8 +3870,12 @@
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(aoabio_idx_t)) = zbioaoa
        if (bec2_diag_3d_l(nobbio_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nobbio_idx_t)) = zbionob
+       if (bec2_diag_3d_l(nobbioana_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nobbioana_idx_t)) = zbionob_ana
        if (bec2_diag_3d_l(aoxbio_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(aoxbio_idx_t)) = zbioaox
+       if (bec2_diag_3d_l(aermu_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(aermu_idx_t)) = zmuaer
        if (bec2_diag_3d_l(narmu_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(narmu_idx_t)) = zmunar
        if (bec2_diag_3d_l(naimu_idx_t))
@@ -3670,6 +3886,10 @@
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(niomu_idx_t)) = zmunio
        if (bec2_diag_3d_l(nosmu_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nosmu_idx_t)) = zmunos
+       if (bec2_diag_3d_l(naomu_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(naomu_idx_t)) = zmunao
+       if (bec2_diag_3d_l(aerbio_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(aerbio_idx_t)) = zbioaer
        if (bec2_diag_3d_l(narbio_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(narbio_idx_t)) = zbionar
        if (bec2_diag_3d_l(naibio_idx_t))
@@ -3680,6 +3900,8 @@
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(niobio_idx_t)) = zbionio
        if (bec2_diag_3d_l(nosbio_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nosbio_idx_t)) = zbionos
+       if (bec2_diag_3d_l(naobio_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(naobio_idx_t)) = zbionao
        if (bec2_diag_3d_l(narana_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(narana_idx_t)) = zmunar_fac
        if (bec2_diag_3d_l(naiana_idx_t))
@@ -3690,6 +3912,8 @@
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nioana_idx_t)) = zmunio_fac
        if (bec2_diag_3d_l(nosana_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nosana_idx_t)) = zmunos_fac
+       if (bec2_diag_3d_l(naoana_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(naoana_idx_t)) = zmunao_fac
        if (bec2_diag_3d_l(dinrelease_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(dinrelease_idx_t)) = DIN_release
        if (bec2_diag_3d_l(diprelease_idx_t))
@@ -3706,6 +3930,8 @@
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nobmort_idx_t)) = zmortnob
        if (bec2_diag_3d_l(aoxmort_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(aoxmort_idx_t)) = zmortaox
+       if (bec2_diag_3d_l(aermort_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(aermort_idx_t)) = zmortaer
        if (bec2_diag_3d_l(narmort_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(narmort_idx_t)) = zmortnar
        if (bec2_diag_3d_l(naimort_idx_t))
@@ -3716,6 +3942,8 @@
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(niomort_idx_t)) = zmortnio
        if (bec2_diag_3d_l(nosmort_idx_t))
      &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(nosmort_idx_t)) = zmortnos
+       if (bec2_diag_3d_l(naomort_idx_t))
+     &    bec2_diag_3d(istr:iend,j,k,bec2_diag_3d_idx(naomort_idx_t)) = zmortnao
 #   endif /* EXPLICIT_MICROBES */
 #  else     
       bec2_diag_3d(istr:iend,j,k,ammox_idx_t) = ammox
@@ -3731,30 +3959,37 @@
 #    ifdef EXPLICIT_MICROBES
        bec2_diag_3d(istr:iend,j,k,denitrif4_idx_t) = DENITRIF4
        bec2_diag_3d(istr:iend,j,k,denitrif5_idx_t) = DENITRIF5
+       bec2_diag_3d(istr:iend,j,k,denitrif6_idx_t) = DENITRIF6
+       bec2_diag_3d(istr:iend,j,k,nitroxana_idx_t) = nitrox_ana
        bec2_diag_3d(istr:iend,j,k,docrremin_idx_t) = DOCr_remin
        bec2_diag_3d(istr:iend,j,k,doprremin_idx_t) = DOPr_remin(istr:iend,j)
        bec2_diag_3d(istr:iend,j,k,aoamu_idx_t) = zmuaoa
-       bec2_diag_3d(istr:iend,j,k,nobmu_idx_t) = zmunob
+       bec2_diag_3d(istr:iend,j,k,nobmuana_idx_t) = zmunob_ana
        bec2_diag_3d(istr:iend,j,k,nobfmu_idx_t) = zmufnob
        bec2_diag_3d(istr:iend,j,k,aoxmu_idx_t) = zmuaox
        bec2_diag_3d(istr:iend,j,k,aoabio_idx_t) = zbioaoa
-       bec2_diag_3d(istr:iend,j,k,nobbio_idx_t) = zbionob
+       bec2_diag_3d(istr:iend,j,k,nobbioana_idx_t) = zbionob_ana
        bec2_diag_3d(istr:iend,j,k,aoxbio_idx_t) = zbioaox
+       bec2_diag_3d(istr:iend,j,k,aermu_idx_t) = zmuaer
        bec2_diag_3d(istr:iend,j,k,narmu_idx_t) = zmunar
        bec2_diag_3d(istr:iend,j,k,naimu_idx_t) = zmunai
        bec2_diag_3d(istr:iend,j,k,nirmu_idx_t) = zmunir
        bec2_diag_3d(istr:iend,j,k,niomu_idx_t) = zmunio
        bec2_diag_3d(istr:iend,j,k,nosmu_idx_t) = zmunos
+       bec2_diag_3d(istr:iend,j,k,naomu_idx_t) = zmunao
+       bec2_diag_3d(istr:iend,j,k,aerbio_idx_t) = zbioaer
        bec2_diag_3d(istr:iend,j,k,narbio_idx_t) = zbionar
        bec2_diag_3d(istr:iend,j,k,naibio_idx_t) = zbionai
        bec2_diag_3d(istr:iend,j,k,nirbio_idx_t) = zbionir
        bec2_diag_3d(istr:iend,j,k,niobio_idx_t) = zbionio
        bec2_diag_3d(istr:iend,j,k,nosbio_idx_t) = zbionos
+       bec2_diag_3d(istr:iend,j,k,naobio_idx_t) = zbionao
        bec2_diag_3d(istr:iend,j,k,narana_idx_t) = zmunar_fac
        bec2_diag_3d(istr:iend,j,k,naiana_idx_t) = zmunai_fac
        bec2_diag_3d(istr:iend,j,k,nirana_idx_t) = zmunir_fac
        bec2_diag_3d(istr:iend,j,k,nioana_idx_t) = zmunio_fac
        bec2_diag_3d(istr:iend,j,k,nosana_idx_t) = zmunos_fac
+       bec2_diag_3d(istr:iend,j,k,naoana_idx_t) = zmunao_fac
        bec2_diag_3d(istr:iend,j,k,dinrelease_idx_t) = DIN_release
        bec2_diag_3d(istr:iend,j,k,diprelease_idx_t) = DIP_release
        bec2_diag_3d(istr:iend,j,k,dinuptake_idx_t) = DIN_uptake
@@ -3763,11 +3998,13 @@
        bec2_diag_3d(istr:iend,j,k,aoamort_idx_t) = zmortaoa
        bec2_diag_3d(istr:iend,j,k,nobmort_idx_t) = zmortnob
        bec2_diag_3d(istr:iend,j,k,aoxmort_idx_t) = zmortaox
+       bec2_diag_3d(istr:iend,j,k,aermort_idx_t) = zmortaer
        bec2_diag_3d(istr:iend,j,k,narmort_idx_t) = zmortnar
        bec2_diag_3d(istr:iend,j,k,naimort_idx_t) = zmortnai
        bec2_diag_3d(istr:iend,j,k,nirmort_idx_t) = zmortnir
        bec2_diag_3d(istr:iend,j,k,niomort_idx_t) = zmortnio
        bec2_diag_3d(istr:iend,j,k,nosmort_idx_t) = zmortnos
+       bec2_diag_3d(istr:iend,j,k,naomort_idx_t) = zmortnao
 #    endif /* EXPLICIT_MICROBES */
 #  endif  
 # endif     
@@ -3836,8 +4073,8 @@
      !!!!!!!!!!!!!!!!!
      ! Nitrate (NO3) !
      !!!!!!!!!!!!!!!!!
-       DTRACER_MODULE(istr:iend,j,k,no3_ind_t) = nitrox
-     &                                           - DENITRIF1 - DENITRIF4
+       DTRACER_MODULE(istr:iend,j,k,no3_ind_t) = nitrox + nitrox_ana
+     &                                           - DENITRIF1 - DENITRIF4 - DENITRIF6
      &                                           - SED_DENITRIF
      &                                           - sum(NO3_V, dim=2)
 # ifdef NO3_RESTORE
@@ -3852,7 +4089,7 @@
      ! Nitrite (NO2) !
      !!!!!!!!!!!!!!!!!
        DTRACER_MODULE(istr:iend,j,k,no2_ind_t) = DENITRIF1 - DENITRIF2 - DENITRIF5
-     &                                           - nitrox
+     &                                           - nitrox - nitrox_ana
      &                                           - sum(NO2_V, dim=2)
 # ifdef EXPLICIT_MICROBES
      &                                           - (zbioaox * parm_yaox_no2)
@@ -3874,25 +4111,31 @@
 # ifdef EXPLICIT_MICROBES
      &                                           + DIN_release - DIN_uptake
      &                                           - ( zbionob / parm_nob_CN )
+     &                                           - ( zbionob_ana / parm_nob_CN )
      &                                           + zmortaoa_dic/parm_aoa_CN
      &                                           + zmortnob_dic/parm_nob_CN
      &                                           + zmortaox_dic/parm_aox_CN
+     &                                           + zmortaer_dic/parm_aer_CN
      &                                           + zmortnar_dic/parm_nar_CN
      &                                           + zmortnai_dic/parm_nai_CN
      &                                           + zmortnir_dic/parm_nir_CN
      &                                           + zmortnio_dic/parm_nio_CN
      &                                           + zmortnos_dic/parm_nos_CN
+     &                                           + zmortnao_dic/parm_nao_CN
      &                                           + zzooaoa_dic/parm_aoa_CN
      &                                           + zzoonob_dic/parm_nob_CN
      &                                           + zzooaox_dic/parm_aox_CN
      &                                           + (zzooaoa_excN + zzoonob_excN + zzooaox_excN)
+     &                                           + zszooaer_dic/parm_aer_CN
      &                                           + zszoonar_dic/parm_nar_CN
      &                                           + zszoonai_dic/parm_nai_CN
      &                                           + zszoonir_dic/parm_nir_CN
      &                                           + zszoonio_dic/parm_nio_CN
      &                                           + zszoonos_dic/parm_nos_CN
-     &                                           + (zszoonar_excN + zszoonai_excN + zszoonir_excN 
-     &                                           +  zszoonio_excN + zszoonos_excN)
+     &                                           + zszoonao_dic/parm_nao_CN
+     &                                           + (zszoonar_excN
+     &                                           +  zszoonar_excN + zszoonai_excN + zszoonir_excN 
+     &                                           +  zszoonio_excN + zszoonos_excN + zszoonao_excN)
      &                                           + Q * szoo_loss_dic
 # else
      &                                           + DON_remin + DONr_remin
@@ -3914,7 +4157,8 @@
      !!!!!!!!!!!!!!!!!!!
      ! Dinitrogen (N2) !
      !!!!!!!!!!!!!!!!!!!
-       DTRACER_MODULE(istr:iend,j,k,n2_ind_t) = DENITRIF3 + 0.5*DENITRIF5 + 0.5*SED_DENITRIF + anammox
+       DTRACER_MODULE(istr:iend,j,k,n2_ind_t) = DENITRIF3 + 0.5*DENITRIF5 + 0.5*DENITRIF6
+     &                                          + 0.5*SED_DENITRIF + anammox
 
 
      !!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -4003,27 +4247,33 @@
      &                                          - dFe_uptake + DOFe_prod
      &                                          - zbioaoa/parm_aoa_CFe
      &                                          - zbionob/parm_nob_CFe
+     &                                          - zbionob_ana/parm_nob_CFe
      &                                          - zbioaox/parm_aox_CFe
      &                                          + zmortaoa_dic/parm_aoa_CFe
      &                                          + zmortnob_dic/parm_nob_CFe
      &                                          + zmortaox_dic/parm_aox_CFe
+     &                                          + zmortaer_dic/parm_aer_CFe
      &                                          + zmortnar_dic/parm_nar_CFe
      &                                          + zmortnai_dic/parm_nai_CFe
      &                                          + zmortnir_dic/parm_nir_CFe
      &                                          + zmortnio_dic/parm_nio_CFe
      &                                          + zmortnos_dic/parm_nos_CFe
+     &                                          + zmortnao_dic/parm_nao_CFe
      &                                          + zzooaoa_dic/parm_aoa_CFe
      &                                          + zzoonob_dic/parm_nob_CFe
      &                                          + zzooaox_dic/parm_aox_CFe
+     &                                          + zszooaer_dic/parm_aer_CFe
      &                                          + zszoonar_dic/parm_nar_CFe
      &                                          + zszoonai_dic/parm_nai_CFe
      &                                          + zszoonir_dic/parm_nir_CFe
      &                                          + zszoonio_dic/parm_nio_CFe
      &                                          + zszoonos_dic/parm_nos_CFe
+     &                                          + zszoonao_dic/parm_nao_CFe
      &                                          + szoo_loss_dic * Qfe_zoo
      &                                          + (zzooaoa_excFe + zzoonob_excFe + zzooaox_excFe)
-     &                                          + (zszoonar_excFe + zszoonai_excFe + zszoonir_excFe 
-     &                                             + zszoonio_excFe + zszoonos_excFe)
+     &                                          + (zszooaer_excFe 
+     &                                          +  zszoonar_excFe + zszoonai_excFe + zszoonir_excFe 
+     &                                           + zszoonio_excFe + zszoonos_excFe + zszoonao_excFe)
 # else
      &                                          + DOFe_remin
 # endif /* EXPLICIT_MICROBES */
@@ -4058,26 +4308,32 @@
      &                                           + DIP_release - DIP_uptake
      &                                           - zbioaoa/parm_aoa_CP
      &                                           - zbionob/parm_nob_CP
+     &                                           - zbionob_ana/parm_nob_CP
      &                                           - zbioaox/parm_aox_CP
      &                                           + zmortaoa_dic/parm_aoa_CP
      &                                           + zmortnob_dic/parm_nob_CP
      &                                           + zmortaox_dic/parm_aox_CP
+     &                                           + zmortaer_dic/parm_aer_CP
      &                                           + zmortnar_dic/parm_nar_CP
      &                                           + zmortnai_dic/parm_nai_CP
      &                                           + zmortnir_dic/parm_nir_CP
      &                                           + zmortnio_dic/parm_nio_CP
      &                                           + zmortnos_dic/parm_nos_CP
+     &                                           + zmortnao_dic/parm_nao_CP
      &                                           + zzooaoa_dic/parm_aoa_CP
      &                                           + zzoonob_dic/parm_nob_CP
      &                                           + zzooaox_dic/parm_aox_CP
+     &                                           + zszooaer_dic/parm_aer_CP
      &                                           + zszoonar_dic/parm_nar_CP
      &                                           + zszoonai_dic/parm_nai_CP
      &                                           + zszoonir_dic/parm_nir_CP
      &                                           + zszoonio_dic/parm_nio_CP
      &                                           + zszoonos_dic/parm_nos_CP
+     &                                           + zszoonao_dic/parm_nao_CP
      &                                           + szoo_loss_dic * Qp_zoo_pom
-     &                                           + (zszoonar_excP + zszoonai_excP + zszoonir_excP 
-     &                                              + zszoonio_excP + zszoonos_excP)
+     &                                           + (zszooaer_excP
+     &                                           +  zszoonar_excP + zszoonai_excP + zszoonir_excP 
+     &                                           +  zszoonio_excP + zszoonos_excP + zszoonao_excP)
      &                                           + (zzooaoa_excP + zzoonob_excP + zzooaox_excP)
 # else
      &                                           + DOP_remin(istr:iend,j) + DOPr_remin(istr:iend,j)
@@ -4132,13 +4388,15 @@
 
 # ifdef EXPLICIT_MICROBES
        DTRACER_MODULE(istr:iend,j,k,aoa_ind_t) = zbioaoa - zzooaoa - zmortaoa
-       DTRACER_MODULE(istr:iend,j,k,nob_ind_t) = zbionob - zzoonob - zmortnob
+       DTRACER_MODULE(istr:iend,j,k,nob_ind_t) = zbionob + zbionob_ana - zzoonob - zmortnob! - zmortnob2
        DTRACER_MODULE(istr:iend,j,k,aox_ind_t) = zbioaox - zzooaox - zmortaox
+       DTRACER_MODULE(istr:iend,j,k,aer_ind_t) = zbioaer - zszooaer - zmortaer
        DTRACER_MODULE(istr:iend,j,k,nar_ind_t) = zbionar - zszoonar - zmortnar
        DTRACER_MODULE(istr:iend,j,k,nai_ind_t) = zbionai - zszoonai - zmortnai
        DTRACER_MODULE(istr:iend,j,k,nir_ind_t) = zbionir - zszoonir - zmortnir
        DTRACER_MODULE(istr:iend,j,k,nio_ind_t) = zbionio - zszoonio - zmortnio
        DTRACER_MODULE(istr:iend,j,k,nos_ind_t) = zbionos - zszoonos - zmortnos
+       DTRACER_MODULE(istr:iend,j,k,nao_ind_t) = zbionao - zszoonao - zmortnao
 # endif /* EXPLICIT_MICROBES */
 
     !-----------------------------------------------------------------------
@@ -4147,9 +4405,11 @@
 
 # ifdef EXPLICIT_MICROBES
        DTRACER_MODULE(istr:iend,j,k,zooC_ind_t) = sum(auto_graze_zoo, dim=2) - zoo_loss 
-     &                                            + zzooaoa_zoo + zzoonob_zoo + zzooaox_zoo
-       DTRACER_MODULE(istr:iend,j,k,szooc_ind_t) = zszoonar_szoo + zszoonai_szoo + zszoonir_szoo 
-     &                                            + zszoonio_szoo + zszoonos_szoo - szoo_loss
+     &                                          + zzooaoa_zoo + zzoonob_zoo + zzooaox_zoo
+       DTRACER_MODULE(istr:iend,j,k,szooc_ind_t) = zszooaer_szoo 
+     &                                           + zszoonar_szoo + zszoonai_szoo + zszoonir_szoo 
+     &                                           + zszoonio_szoo + zszoonos_szoo + zszoonao_szoo
+     &                                           - szoo_loss
 # else
        DTRACER_MODULE(istr:iend,j,k,zooC_ind_t) = sum(auto_graze_zoo, dim=2) - zoo_loss
 # endif /* EXPLICIT_MICROBES */
@@ -4196,18 +4456,22 @@
      &       + zoo_loss_dic
 # ifdef EXPLICIT_MICROBES
      &       - zbioaoa + zzooaoa_dic + zmortaoa_dic
-     &       - zbionob + zzoonob_dic + zmortnob_dic
+     &       - zbionob - zbionob_ana + zzoonob_dic + zmortnob_dic
      &       - zbioaox + zzooaox_dic + zmortaox_dic
+     &       + (zbioaer*(parm_yaer_doc-c1))
      &       + (zbionar*(parm_ynar_aer-c1)*(c1-zmunar_fac)) + (zbionar*(parm_ynar_ana-c1)*zmunar_fac)
      &       + (zbionai*(parm_ynai_aer-c1)*(c1-zmunai_fac)) + (zbionai*(parm_ynai_ana-c1)*zmunai_fac)
      &       + (zbionir*(parm_ynir_aer-c1)*(c1-zmunir_fac)) + (zbionir*(parm_ynir_ana-c1)*zmunir_fac)
      &       + (zbionio*(parm_ynio_aer-c1)*(c1-zmunio_fac)) + (zbionio*(parm_ynio_ana-c1)*zmunio_fac)
      &       + (zbionos*(parm_ynos_aer-c1)*(c1-zmunos_fac)) + (zbionos*(parm_ynos_ana-c1)*zmunos_fac)
+     &       + (zbionao*(parm_ynao_aer-c1)*(c1-zmunao_fac)) + (zbionao*(parm_ynao_ana-c1)*zmunao_fac)
+     &       + zmortaer_dic + zszooaer_dic
      &       + zmortnar_dic + zszoonar_dic
      &       + zmortnai_dic + zszoonai_dic
      &       + zmortnir_dic + zszoonir_dic
      &       + zmortnio_dic + zszoonio_dic
      &       + zmortnos_dic + zszoonos_dic
+     &       + zmortnao_dic + zszoonao_dic
      &       + szoo_loss_dic
 # else 
      &       + DOC_remin
@@ -4306,13 +4570,15 @@
      &   + zbioaoa*parm_yaoa_oxy
      &   + zbionob*parm_ynob_oxy
      &   + ( zzooaoa_dic + zzoonob_dic + zzooaox_dic ) / parm_Remin_D_C_O2
+     &   + zbioaer*parm_yaer_oxy
      &   + zbionar*parm_ynar_oxy*(c1-zmunar_fac)
      &   + zbionai*parm_ynai_oxy*(c1-zmunai_fac)
      &   + zbionir*parm_ynir_oxy*(c1-zmunir_fac)
      &   + zbionio*parm_ynio_oxy*(c1-zmunio_fac)
      &   + zbionos*parm_ynos_oxy*(c1-zmunos_fac)
-     &   + ( zszoonar_dic + zszoonai_dic + zszoonir_dic 
-     &       + zszoonio_dic + zszoonos_dic ) / parm_Remin_D_C_O2
+     &   + zbionao*parm_ynao_oxy*(c1-zmunao_fac)
+     &   + ( zszooaer_dic + zszoonar_dic + zszoonai_dic + zszoonir_dic 
+     &     + zszoonio_dic + zszoonos_dic + zszoonao_dic ) / parm_Remin_D_C_O2
      &   +  szoo_loss_dic / parm_Remin_D_C_O2
 # else
      &   + 1.5 * ammox + 0.5 * nitrox
@@ -6280,7 +6546,7 @@
 
         CALL drtsafe_row(mask, x1, x2, xacc, htotal,istr,
      &    iend, k0, k1, k2, 
-     &   kw, kb, ks, kf, k1p, k2p, k3p, ksi, 
+     &    kw, kb, ks, kf, k1p, k2p, k3p, ksi, 
      &    ff, bt, st, ft, dic, ta, pt, sit)
     !---------------------------------------------------------------------------
     !   Calculate [CO2*] as defined in DOE Methods Handbook 1994 Ver.2,
@@ -6336,9 +6602,8 @@
 !
 !-------------------------------------------------------------------------
 
-       SUBROUTINE talk_row(mask, x, fn, df,istr,iend, k0, k1, k2, 
-     &   kw, kb, ks, kf, k1p, k2p, k3p, ksi, 
-     &    ff, bt, st, ft, dic, ta, pt, sit)
+       SUBROUTINE talk_row(mask, x, fn, df,istr,iend, k0, k1, k2,
+     &  kw, kb, ks, kf, k1p, k2p, k3p, ksi, ff, bt, st, ft, dic, ta, pt, sit)
 
         implicit none
        REAL, PARAMETER :: xacc = 1e-10
