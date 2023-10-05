@@ -1,0 +1,1 @@
+trans.o: trans.F

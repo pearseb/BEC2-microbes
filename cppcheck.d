@@ -1,0 +1,1 @@
+cppcheck.o: cppcheck.F

@@ -1,0 +1,1 @@
+lenstr.o: lenstr.F
