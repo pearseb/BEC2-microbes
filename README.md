@@ -11,10 +11,10 @@ Output for these simulations are available at https://doi.org/10.5281/zenodo.765
 
 Descriptions of the BEC biogeochemical model can be found in:
 
-Moore, J. K., Doney, S. C. & Lindsay, K. Upper ocean ecosystem dynamics and iron cycling in a global three-dimensional model. Global Biogeochem Cycles 18, 1–21 (2004).
-McCoy, D., Damien, P., Clements, D., Yang, S. & Bianchi, D. Pathways of Nitrous Oxide Production in the Eastern Tropical South Pacific Oxygen Minimum Zone. Global Biogeochem Cycles (2023) doi:10.1029/2022GB007670.
+* Moore, J. K., Doney, S. C. & Lindsay, K. Upper ocean ecosystem dynamics and iron cycling in a global three-dimensional model. Global Biogeochem Cycles 18, 1–21 (2004).
+* McCoy, D., Damien, P., Clements, D., Yang, S. & Bianchi, D. Pathways of Nitrous Oxide Production in the Eastern Tropical South Pacific Oxygen Minimum Zone. Global Biogeochem Cycles (2023) doi:10.1029/2022GB007670.
 
 Descriptions of the ROMS physical setting can be found in:
 
-Shchepetkin, A. F. An adaptive, Courant-number-dependent implicit scheme for vertical advection in oceanic modeling. Ocean Model (Oxf) 91, 38–69 (2015).
-Shchepetkin, A. F. & McWilliams, J. C. The regional oceanic modeling system (ROMS): a split-explicit, free-surface, topography-following-coordinate oceanic model. Ocean Model (Oxf) 9, 347–404 (2005).
+* Shchepetkin, A. F. An adaptive, Courant-number-dependent implicit scheme for vertical advection in oceanic modeling. Ocean Model (Oxf) 91, 38–69 (2015).
+* Shchepetkin, A. F. & McWilliams, J. C. The regional oceanic modeling system (ROMS): a split-explicit, free-surface, topography-following-coordinate oceanic model. Ocean Model (Oxf) 9, 347–404 (2005).
